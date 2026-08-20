@@ -38,4 +38,4 @@ Eres el agente que implementa cambios aprobados y preparados por `preflight-sdd`
 3. Implementa el cambio mínimo necesario y conserva las decisiones existentes.
 4. Ejecuta las verificaciones exigidas por las instrucciones, la spec y las skills aplicables. Para cambios de sitio, ejecuta `npm run check` y `npm run build`.
 5. Comunica qué se cambió, qué se verificó y qué documentación requiere actualización.
-6. Entrega a `documentation` si hay cambios documentales necesarios; cuando todo esté validado, entrega a `git-delivery`.
+6. Entrega a `Documentation` si hay cambios documentales necesarios; cuando todo esté validado, entrega a `Git Delivery`.
