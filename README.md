@@ -152,6 +152,18 @@ Cada funcionalidad significativa debe tener una spec en `specs/` antes de implem
 - validar antes de cerrar una tarea,
 - llevar la entrega a revisión humana antes de abrir PR o cerrar trabajo.
 
+### Validación del flujo de entrega
+
+Antes de cualquier operación de entrega Git, el flujo debe verificarse explícitamente en este orden:
+
+- confirmar que la rama actual corresponde a la tarea en curso;
+- sincronizar la rama con el remoto antes de continuar si ya existe o si se está trabajando sobre una rama compartida;
+- comprobar si hay un Pull Request activo para reutilizarlo en lugar de crear otro;
+- validar con MCP o con la evidencia operativa disponible que el contexto de entrega está listo antes de push, PR o merge;
+- solo entonces preparar la entrega final y mantener la rama alineada con la revisión humana y el estado real del repositorio.
+
+La validación del flujo no es solo una comprobación local de cambios: incluye la rama activa, la sincronización remota y la existencia de un PR activo o su apertura solo cuando el trabajo está listo.
+
 ## Guía de onboarding para un nuevo desarrollador
 
 Si eres una persona nueva en este proyecto, esta sección te ayuda a entrar al repositorio sin perderte en la documentación ni en el flujo de trabajo.
@@ -241,15 +253,38 @@ Cuando sea necesario preparar una entrega o abrir un pull request, se usa GitHub
 1. activar el servidor GitHub MCP desde la configuración del editor;
 2. completar la autenticación en navegador;
 3. comprobar que la conexión esté activa;
-4. preparar la rama y verificar que no es `main` sin intención explícita;
-5. solo entonces abrir la pull request correspondiente.
+4. validar con `git status --short --branch` si ya estás en la rama correcta de la funcionalidad;
+5. si ya estás en la rama adecuada, no crear otra rama; solo seguir con commits y push;
+6. si la rama no existe localmente o remotamente, crearla o hacer tracking antes de continuar;
+7. si ya existe un PR para esa rama, actualizar la misma rama y no abrir otro PR;
+8. solo abrir PR cuando no exista uno activo para la rama y el trabajo esté listo para revisión;
+9. si aún no está listo, dejar la rama en progreso y esperar a crear el PR más adelante.
+
+### Flujo correcto de rama y PR
+
+Antes de crear una rama o un PR, el agente debe responder estas preguntas:
+
+- ¿ya estoy en la rama correcta de la funcionalidad?
+- ¿esa rama ya existe en remoto?
+- ¿ya hay un PR abierto para esa rama?
+- si sí, ¿solo necesito hacer push de commits y actualizar el PR existente?
+- si no, ¿el trabajo ya está listo para abrir PR o conviene esperar?
+
+### Regla de decisión
+
+- si ya estás en la rama correcta y la rama ya tiene PR, solo subes commits;
+- si ya estás en la rama correcta y no hay PR, puedes crear el PR cuando el trabajo esté listo;
+- si no estás en la rama correcta, cambia a la rama correcta o créala solo si no existe;
+- si el trabajo todavía no está listo para revisión, no abras PR aún;
+- nunca abras PR duplicado para la misma rama.
 
 ### Qué no hacer
 
 - no dejar tokens en el repositorio,
 - no asumir que el MCP está activo sin comprobarlo,
 - no abrir PRs si la autenticación falló,
-- no inventar una entrega cuando la conexión o permisos no existen.
+- no inventar una entrega cuando la conexión o permisos no existen,
+- no crear ramas nuevas cuando ya se está trabajando en la rama correcta de la funcionalidad.
 
 ## Lineamientos de producto y diseño
 
@@ -360,11 +395,15 @@ La documentación del repositorio quedó ajustada para reflejar el estado actual
 - se documentó la estructura del proyecto y la separación entre código, documentación y specs,
 - se reforzó el flujo SDD con la obligación de validar cambios significativos antes de cerrar una tarea,
 - se precisó el uso responsable de agentes de IA y la política de contenido controlado,
-- se mantuvo la orientación del sitio hacia una arquitectura estática y compatible con GitHub Pages.
+- se mantuvo la orientación del sitio hacia una arquitectura estática y compatible con GitHub Pages,
+- se ajustó el flujo de entrega Git para evitar crear ramas nuevas sin verificar la rama correcta ni duplicar PRs existentes.
 
 Las decisiones verificadas en esta base documental son:
 
 - la estructura del proyecto corresponde al modelo Astro estático con TypeScript y Tailwind CSS 4,
 - la documentación se mantiene alineada con la estrategia de contenido aprobado y sin información comercial inventada,
 - el README funciona como referencia operativa para colaboradores y agentes sin desbordar el alcance del proyecto,
-- los requisitos de diseño, accesibilidad, rendimiento y SEO quedan consistentes con la documentación oficial del repositorio.
+- el proceso de entrega exige verificar rama actual, sincronización remota, existencia de PR y uso correcto de MCP antes de crear o abrir entregas,
+- los requisitos de diseño, accesibilidad, rendimiento y SEO quedan consistentes con la documentación oficial del repositorio,
+- la validación técnica del proyecto quedó confirmada con `npm run check` y `npm run build` sin errores relevantes.
+
