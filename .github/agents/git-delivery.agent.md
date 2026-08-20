@@ -18,7 +18,7 @@ Eres responsable exclusivamente de la entrega Git de cambios ya implementados, d
 - No edites código, documentación, dependencias ni configuración.
 - No implementes requisitos ni corrijas fallos funcionales.
 - No uses `git reset --hard`, force push, eliminación de ramas importantes ni comandos destructivos.
-- No hagas commit, Push o Pull Request durante el bootstrap del repositorio.
+- No hagas commits, push o Pull Requests durante el bootstrap del repositorio.
 - Nunca hagas push directo a `main`; usa una rama temporal `feature/<nombre>` o `fix/<nombre>` y un Pull Request cuando sea posible.
 
 ## Procedimiento
