@@ -3,43 +3,49 @@ import BackToTop from '../components/BackToTop.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
+import type { Locale, Translations } from '../i18n';
 
 interface Props {
   description: string;
+  locale: Locale;
   title: string;
+  translations: Translations;
 }
 
-const { description, title } = Astro.props;
+const { description, locale, title, translations } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale.code}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <title>{title}</title>
     <script is:inline>
-      const initialThemeStorageKey = 'diamond-publicidad-theme';
-      let storedTheme = null;
+      (() => {
+        const initialThemeStorageKey = 'diamond-publicidad-theme';
+        let storedTheme = null;
 
-      try {
-        storedTheme = localStorage.getItem(initialThemeStorageKey);
-      } catch {
-        storedTheme = null;
-      }
+        try {
+          storedTheme = localStorage.getItem(initialThemeStorageKey);
+        } catch {
+          storedTheme = null;
+        }
 
-      const initialTheme = storedTheme === 'light' || storedTheme === 'dark'
-        ? storedTheme
-        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const initialTheme = storedTheme === 'light' || storedTheme === 'dark'
+          ? storedTheme
+          : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-      document.documentElement.dataset.theme = initialTheme;
+        document.documentElement.dataset.theme = initialTheme;
+        document.documentElement.style.colorScheme = initialTheme;
+      })();
     </script>
   </head>
   <body>
-    <SiteHeader />
+    <SiteHeader locale={locale} translations={translations} />
     <slot />
-    <SiteFooter />
-    <BackToTop />
+    <SiteFooter translations={translations} />
+    <BackToTop translations={translations} />
   </body>
 </html>

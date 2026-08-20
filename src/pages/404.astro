@@ -9,11 +9,13 @@ const fallbackPath = getLocalePath(defaultLocale);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
     <meta http-equiv="refresh" content={`0; url=${fallbackPath}`} />
     <script>
       (() => {
         const defaultLocale = document.documentElement.dataset.defaultLocale ?? 'es-co';
         const languageStorageKey = document.documentElement.dataset.languageStorageKey ?? '';
+        const fallbackPath = document.documentElement.dataset.fallbackPath ?? '/';
         let locale = null;
 
         try {
@@ -21,11 +23,8 @@ const fallbackPath = getLocalePath(defaultLocale);
         } catch {}
 
         const allowedLocale = locale === 'en-us' || locale === 'es-co' ? locale : defaultLocale;
-        const fallbackPath = document.documentElement.dataset.fallbackPath ?? '/';
         const basePath = fallbackPath.replace(/(?:es-co|en-us)\/$/, '');
-        const destination = `${basePath}${allowedLocale}/`;
-
-        window.location.replace(destination);
+        window.location.replace(`${basePath}${allowedLocale}/`);
       })();
     </script>
   </head>
