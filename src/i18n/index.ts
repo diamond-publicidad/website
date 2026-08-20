@@ -2,6 +2,9 @@ export const localeSlugs = ['es-co', 'en-us'] as const;
 
 export type LocaleSlug = (typeof localeSlugs)[number];
 
+export const siteVersion = '0.1.0' as const;
+export const siteVersionDate = '20-08-2026' as const;
+
 export interface Locale {
   code: 'es-CO' | 'en-US';
   slug: LocaleSlug;
@@ -41,6 +44,9 @@ const esCO = {
     copyright: 'Todos los derechos reservados.',
     madeBy: 'Hecho por',
     developerLabel: 'Julian Ospina Dev en GitHub',
+    versionLabel: 'Versión',
+    dateLabel: 'Fecha',
+    aboutSite: 'Sobre el sitio',
   },
   home: {
     hero: {
@@ -136,6 +142,9 @@ const enUS = {
     copyright: 'All rights reserved.',
     madeBy: 'Made by',
     developerLabel: 'Julian Ospina Dev on GitHub',
+    versionLabel: 'Version',
+    dateLabel: 'Date',
+    aboutSite: 'About this site',
   },
   home: {
     hero: {
