@@ -1,11 +1,17 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import type { Translations } from '../i18n';
 
+interface Props {
+  translations: Translations;
+}
+
+const { translations } = Astro.props;
 const backToTopIcon = icon(faArrowUp).html.join('');
 ---
 
-<a id="back-to-top" class="scroll-top fixed bottom-5 right-5 z-30 inline-flex translate-y-4 items-center gap-2 rounded-full border border-secondary bg-primary px-4 py-3 text-sm font-bold text-secondary opacity-0 shadow-lg transition duration-200 pointer-events-none hover:-translate-y-0.5 hover:bg-white" href="#inicio" aria-label="Volver al inicio"><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={backToTopIcon}></span><span class="hidden sm:inline">Arriba</span></a>
+<a id="back-to-top" class="scroll-top fixed bottom-5 right-5 z-30 inline-flex translate-y-4 items-center gap-2 rounded-full border border-secondary bg-primary px-4 py-3 text-sm font-bold text-secondary opacity-0 shadow-lg transition duration-200 pointer-events-none hover:-translate-y-0.5 hover:bg-white" href="#inicio" aria-label={translations.backToTop.label}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={backToTopIcon}></span><span class="hidden sm:inline">{translations.backToTop.text}</span></a>
 
 <script>
   const scrollToTop = (event: MouseEvent) => {

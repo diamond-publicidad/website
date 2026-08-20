@@ -44,6 +44,41 @@
   --theme-focus: #F5C400;
 }
 
+:root[data-theme='dark'] .site-header {
+  background-color: color-mix(in srgb, var(--theme-card) 88%, transparent);
+}
+
+:root[data-theme='dark'] .brand-name,
+:root[data-theme='dark'] .nav-link,
+:root[data-theme='dark'] .menu-toggle,
+:root[data-theme='dark'] .theme-label,
+:root[data-theme='dark'] .language-option {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .menu-toggle {
+  background-color: var(--theme-card);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .menu-toggle:hover,
+:root[data-theme='dark'] .menu-toggle:focus-visible {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+:root[data-theme='dark'] .hero-action,
+:root[data-theme='dark'] .hero-action:visited,
+:root[data-theme='dark'] .whatsapp-action,
+:root[data-theme='dark'] .whatsapp-action:visited {
+  color: var(--color-secondary);
+}
+
+:root[data-theme='dark'] .hero-action-outline {
+  border-color: var(--theme-text);
+  color: var(--theme-text);
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 0;

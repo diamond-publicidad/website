@@ -33,6 +33,19 @@ npm run build
 
 La reorganización de la estructura compartida se verificó con `npm run check` y `npm run build` sin errores ni advertencias.
 
+## Implementación validada
+
+La implementación previa quedó documentada en función de los cambios verificados en el código y en la validación del proyecto:
+
+- Se centralizó la internacionalización en `src/i18n/index.ts` con dos culturas: `es-co` y `en-us`, un locale por defecto y recursos con la misma estructura de claves para ambas versiones.
+- Las rutas públicas se generan estáticamente en `/es-co/` y `/en-us/`; la raíz redirige según la preferencia guardada en `localStorage` o, si no existe, a la cultura por defecto. La ruta cultural visitada explícitamente mantiene prioridad.
+- La cabecera comparte un selector de idioma usable en escritorio y móvil, con estado accesible mediante `aria-label`, `aria-pressed` y enlaces por ruta para evitar contenido textual codificado en componentes.
+- El layout aplica el tema inicial antes del render para evitar el parpadeo de color y persiste la preferencia con `localStorage`, manteniendo el tema claro/oscuro sin introducir dependencias adicionales.
+- Los metadatos y el atributo `lang` del documento se resuelven por cultura, y la experiencia mantiene la navegación, el menú móvil, la accesibilidad y la generación estática del sitio.
+- La decisión de uso de rutas por cultura se verificó como la estrategia adecuada para Astro estático y GitHub Pages, porque mantiene el contenido indexable, compartible y compatible con la configuración `base` del despliegue.
+
+> La verificación técnica actual confirma la lógica de i18n, rutas y tema; queda pendiente un ajuste CSS en `src/styles/global.css` relacionado con `@theme`, que debe corregirse para dejar el proyecto completamente libre de errores del compilador y del análisis del editor.
+
 ## SDD
 
 Las funcionalidades significativas siguen el ciclo:

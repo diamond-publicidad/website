@@ -1,94 +1,195 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faGear, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { languageStorageKey, type Locale, type Translations } from '../i18n';
 
+interface Props {
+  locale: Locale;
+  translations: Translations;
+}
+
+const { locale, translations } = Astro.props;
 const moonIcon = icon(faMoon).html.join('');
 const sunIcon = icon(faSun).html.join('');
+const gearIcon = icon(faGear).html.join('');
 const menuIcon = icon(faBars).html.join('');
 const closeIcon = icon(faXmark).html.join('');
 ---
 
-<header class="site-header sticky top-0 z-40 border-b border-border backdrop-blur-sm">
-  <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-5 sm:px-8 lg:px-12">
-    <a class="scroll-top flex items-center gap-3 no-underline" href="#inicio" aria-label="Diamond Publicidad, inicio">
+<header class="site-header sticky top-0 z-40 border-b border-border backdrop-blur-sm" data-language-storage-key={languageStorageKey}>
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-4 sm:px-8 lg:px-12">
+    <a class="scroll-top flex items-center gap-3 no-underline" href="#inicio" aria-label={translations.navigation.home}>
       <span class="h-8 w-2 bg-primary" aria-hidden="true"></span>
-      <span class="text-base font-extrabold tracking-tight text-secondary sm:text-lg">Diamond Publicidad</span>
+      <span class="brand-name text-base font-extrabold tracking-tight sm:text-lg">Diamond Publicidad</span>
     </a>
-    <nav aria-label="Navegación principal">
+    <nav aria-label={translations.navigation.primary} class="flex items-center gap-4 sm:gap-7">
+      <div class="settings-wrapper">
+        <button id="settings-button" class="settings-button" type="button" aria-expanded="false" aria-controls="settings-menu" aria-label={translations.theme.heading} title={translations.theme.heading}>
+          <span class="inline-flex h-4 w-4 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={gearIcon}></span>
+        </button>
+        <div id="settings-menu" class="settings-menu" hidden>
+          <div class="settings-panel" role="menu" aria-label={translations.theme.heading}>
+            <div class="settings-theme-row">
+              <label class="theme-switch-control cursor-pointer" title={translations.theme.label}>
+                <input id="theme-toggle" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} />
+                <span class="theme-switch-track" aria-hidden="true">
+                  <span class="theme-icon theme-icon-moon inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" set:html={moonIcon}></span>
+                  <span class="theme-icon theme-icon-sun inline-flex h-4 w-4 shrink-0 items-center justify-center" set:html={sunIcon}></span>
+                  <span class="theme-switch-thumb"></span>
+                </span>
+              </label>
+              <span class="theme-label">{translations.theme.dark}</span>
+            </div>
+            <div class="settings-language-group" role="group" aria-label={translations.language.label}>
+              <button class="language-option" type="button" data-locale="es-co" aria-label={`${translations.language.esCO}`} aria-pressed={locale.slug === 'es-co'}>
+                <span class="locale-flag locale-flag-colombia" aria-hidden="true"></span>
+                <span class="locale-name">ES</span>
+              </button>
+              <button class="language-option" type="button" data-locale="en-us" aria-label={`${translations.language.enUS}`} aria-pressed={locale.slug === 'en-us'}>
+                <span class="locale-flag locale-flag-us" aria-hidden="true"></span>
+                <span class="locale-name">EN</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="menu-toggle" class="menu-toggle inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-border transition duration-200 sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label={translations.navigation.openMenu} title={translations.navigation.openMenu} data-open-label={translations.navigation.openMenu} data-close-label={translations.navigation.closeMenu}>
+        <span class="menu-icon menu-icon-open inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={menuIcon}></span>
+        <span class="menu-icon menu-icon-close inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={closeIcon}></span>
+      </button>
       <div id="primary-menu" class="mobile-menu">
         <div class="mobile-menu-links">
-          <p class="mobile-menu-heading">Navegación</p>
+          <p class="mobile-menu-heading">{translations.navigation.heading}</p>
           <ul class="flex items-center gap-4 text-sm font-semibold text-text-muted sm:gap-7">
-            <li><a class="nav-link no-underline hover:text-secondary" href="#servicios">Servicios</a></li>
-            <li><a class="nav-link no-underline hover:text-secondary" href="#contacto">Contacto</a></li>
+            <li><a class="nav-link no-underline" href="#servicios">{translations.navigation.services}</a></li>
+            <li><a class="nav-link no-underline" href="#contacto">{translations.navigation.contact}</a></li>
           </ul>
         </div>
-        <div class="mobile-menu-config">
-          <p class="mobile-menu-heading">Configuración</p>
+        <div class="mobile-theme-control">
+          <p class="mobile-menu-heading">{translations.theme.heading}</p>
           <div class="inline-flex h-10 items-center gap-3 text-sm font-semibold">
-            <label class="theme-switch-control cursor-pointer" title="Cambiar tema">
-              <input id="theme-toggle" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" aria-label="Usar tema oscuro" />
+            <label class="theme-switch-control cursor-pointer" title={translations.theme.label}>
+              <input id="mobile-theme-toggle" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} />
               <span class="theme-switch-track" aria-hidden="true">
                 <span class="theme-icon theme-icon-moon inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" set:html={moonIcon}></span>
                 <span class="theme-icon theme-icon-sun inline-flex h-4 w-4 shrink-0 items-center justify-center" set:html={sunIcon}></span>
                 <span class="theme-switch-thumb"></span>
               </span>
             </label>
-            <span class="theme-label">Tema oscuro</span>
+            <span class="mobile-theme-label">{translations.theme.dark}</span>
           </div>
         </div>
       </div>
-      <button id="menu-toggle" class="menu-toggle inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-border text-secondary transition duration-200 sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menú" title="Abrir menú">
-        <span class="menu-icon menu-icon-open inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={menuIcon}></span>
-        <span class="menu-icon menu-icon-close inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={closeIcon}></span>
-      </button>
     </nav>
+  </div>
+  <div class="mobile-language-subheader" role="group" aria-label={translations.language.label}>
+    <button class="mobile-language-option" type="button" data-locale="es-co" aria-label={`${translations.language.esCO}`} aria-pressed={locale.slug === 'es-co'}>
+      <span class="locale-flag locale-flag-colombia" aria-hidden="true"></span>
+      <span class="locale-name">ES</span>
+    </button>
+    <button class="mobile-language-option" type="button" data-locale="en-us" aria-label={`${translations.language.enUS}`} aria-pressed={locale.slug === 'en-us'}>
+      <span class="locale-flag locale-flag-us" aria-hidden="true"></span>
+      <span class="locale-name">EN</span>
+    </button>
   </div>
 </header>
 
 <script>
   const themeStorageKey = 'diamond-publicidad-theme';
+  const localeScrollStorageKey = 'diamond-publicidad-scroll';
+  const languageStorageKey = document.querySelector<HTMLElement>('.site-header')?.dataset.languageStorageKey;
   const themeToggle = document.querySelector<HTMLInputElement>('#theme-toggle');
+  const mobileThemeToggle = document.querySelector<HTMLInputElement>('#mobile-theme-toggle');
   const menuToggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
+  const settingsButton = document.querySelector<HTMLButtonElement>('#settings-button');
+  const settingsMenu = document.querySelector<HTMLDivElement>('#settings-menu');
   const primaryMenu = document.querySelector('#primary-menu');
-  const themeLabel = document.querySelector('.theme-label');
+  const themeLabels = document.querySelectorAll<HTMLElement>('.theme-label, .mobile-theme-label');
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
   let menuOpenedByPointer = false;
 
   const updateThemeControl = (theme: 'light' | 'dark') => {
     const isDark = theme === 'dark';
 
-    if (themeToggle) themeToggle.checked = isDark;
+    [themeToggle, mobileThemeToggle].forEach((toggle) => {
+      if (toggle) toggle.checked = isDark;
+    });
 
-    themeToggle?.setAttribute('aria-checked', String(isDark));
-    themeToggle?.setAttribute('aria-label', isDark ? 'Tema oscuro' : 'Tema claro');
+    const label = isDark ? themeToggle?.dataset.darkLabel : themeToggle?.dataset.lightLabel;
+    [themeToggle, mobileThemeToggle].forEach((toggle) => {
+      toggle?.setAttribute('aria-checked', String(isDark));
+      if (label) toggle?.setAttribute('aria-label', label);
+    });
 
-    if (themeLabel) themeLabel.textContent = isDark ? 'Tema oscuro' : 'Tema claro';
+    if (label) themeLabels.forEach((themeLabel) => {
+      themeLabel.textContent = label;
+    });
   };
 
   const setTheme = (theme: 'light' | 'dark', persist = true) => {
     document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
     updateThemeControl(theme);
 
     if (persist) {
       try {
         localStorage.setItem(themeStorageKey, theme);
-      } catch {
-        // La interfaz sigue funcionando si el navegador bloquea el almacenamiento local.
-      }
+      } catch {}
     }
   };
 
-  updateThemeControl(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+  const initialTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+  updateThemeControl(initialTheme);
+
+  history.scrollRestoration = 'manual';
+
+  const restoreScrollPosition = () => {
+    const savedScroll = Number(sessionStorage.getItem(localeScrollStorageKey) ?? '0');
+    if (!Number.isFinite(savedScroll) || savedScroll <= 0) {
+      sessionStorage.removeItem(localeScrollStorageKey);
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: savedScroll, left: 0, behavior: 'auto' });
+      sessionStorage.removeItem(localeScrollStorageKey);
+    });
+  };
+
+  restoreScrollPosition();
+
+  const setSettingsMenuState = (isOpen: boolean) => {
+    if (!settingsButton || !settingsMenu) return;
+    settingsMenu.hidden = !isOpen;
+    settingsButton.setAttribute('aria-expanded', String(isOpen));
+  };
+
+  settingsButton?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const nextState = settingsButton.getAttribute('aria-expanded') !== 'true';
+    setSettingsMenuState(nextState);
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!settingsMenu?.contains(target) && !settingsButton?.contains(target)) {
+      setSettingsMenuState(false);
+    }
+  });
 
   themeToggle?.addEventListener('change', () => setTheme(themeToggle.checked ? 'dark' : 'light'));
+  mobileThemeToggle?.addEventListener('change', () => setTheme(mobileThemeToggle.checked ? 'dark' : 'light'));
 
   const setMenuState = (isOpen: boolean) => {
     document.body.classList.toggle('menu-open', isOpen);
     primaryMenu?.setAttribute('data-open', String(isOpen));
     menuToggle?.setAttribute('aria-expanded', String(isOpen));
-    menuToggle?.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
-    menuToggle?.setAttribute('title', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    const label = isOpen ? menuToggle?.dataset.closeLabel : menuToggle?.dataset.openLabel;
+    if (label) {
+      menuToggle?.setAttribute('aria-label', label);
+      menuToggle?.setAttribute('title', label);
+    }
   };
 
   menuToggle?.addEventListener('pointerdown', () => {
@@ -109,6 +210,26 @@ const closeIcon = icon(faXmark).html.join('');
     link.addEventListener('click', () => setMenuState(false));
   });
 
+  const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+  document.querySelectorAll<HTMLButtonElement>('.language-option, .mobile-language-option').forEach((button) => {
+    button.addEventListener('click', () => {
+      const nextLocale = button.dataset.locale === 'en-us' ? 'en-us' : 'es-co';
+      const nextPath = `${basePath}${nextLocale}/`;
+
+      if (window.location.pathname === nextPath) return;
+
+      try {
+        if (languageStorageKey) localStorage.setItem(languageStorageKey, nextLocale);
+      } catch {}
+
+      sessionStorage.setItem(localeScrollStorageKey, String(window.scrollY));
+      setMenuState(false);
+      setSettingsMenuState(false);
+      window.location.assign(nextPath);
+    });
+  });
+
   systemTheme.addEventListener('change', (event) => {
     try {
       if (!localStorage.getItem(themeStorageKey)) setTheme(event.matches ? 'dark' : 'light', false);
@@ -120,35 +241,59 @@ const closeIcon = icon(faXmark).html.join('');
 
 <style>
   .site-header { background-color: color-mix(in srgb, var(--theme-card) 95%, transparent); }
+  .settings-wrapper { position: relative; }
+  @media (min-width: 640px) { .settings-wrapper { order: 2; margin-left: 0.25rem; } .mobile-menu { order: 1; } }
+  .settings-button { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--theme-border); border-radius: 999px; background: var(--theme-card); color: var(--theme-text); cursor: pointer; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
+  .settings-button:hover, .settings-button:focus-visible { border-color: var(--color-primary); color: var(--color-primary); }
+  .settings-menu { position: absolute; top: calc(100% + 0.5rem); right: 0; min-width: 13.5rem; z-index: 50; }
+  .settings-panel { display: grid; gap: 0.65rem; padding: 0.75rem; border: 1px solid var(--theme-border); border-radius: 0.75rem; background: var(--theme-card); box-shadow: 0 16px 36px rgb(0 0 0 / 12%); }
+  .settings-theme-row { display: flex; align-items: center; justify-content: flex-start; gap: 0.65rem; }
   .theme-checkbox { position: absolute; width: 1px; height: 1px; opacity: 0; }
   .theme-switch-control { display: inline-flex; height: 1.75rem; }
   .theme-switch-track { position: relative; display: inline-flex; width: 3.25rem; height: 1.75rem; align-items: center; justify-content: space-between; padding-inline: 0.35rem; border: 1px solid var(--theme-border); border-radius: 999px; background-color: var(--theme-surface); color: var(--theme-muted); }
   .theme-switch-track .theme-icon { position: relative; z-index: 1; }
   .theme-icon-sun { color: var(--color-primary); }
-  .theme-switch-thumb { position: absolute; z-index: 2; top: 0.2rem; left: 0.2rem; width: 1.2rem; height: 1.2rem; border-radius: 999px; background-color: var(--theme-text); box-shadow: 0 1px 3px rgb(0 0 0 / 20%); transition: transform 180ms ease, background-color 180ms ease; }
-  .theme-checkbox:checked + .theme-switch-track .theme-switch-thumb { background-color: var(--color-primary); transform: translateX(1.45rem); }
+  .theme-switch-thumb { position: absolute; z-index: 2; top: 0.2rem; left: 0.2rem; width: 1.2rem; height: 1.2rem; border-radius: 999px; background: linear-gradient(145deg, color-mix(in srgb, var(--theme-text) 85%, white), var(--theme-text)); box-shadow: inset 0 1px 1px rgb(255 255 255 / 42%), inset 0 -1px 1px rgb(0 0 0 / 28%), 0 1px 3px rgb(0 0 0 / 34%); transition: transform 180ms ease, background 180ms ease; }
+  .theme-checkbox:checked + .theme-switch-track .theme-switch-thumb { background: linear-gradient(145deg, #ffe45c, var(--color-primary)); transform: translateX(1.45rem); }
   .theme-checkbox:focus-visible + .theme-switch-track { outline: 2px solid var(--theme-focus); outline-offset: 3px; }
-  .theme-label, .mobile-menu-heading { display: none; }
-  .theme-switch-control:hover .theme-switch-track, .theme-switch-control:focus-within .theme-switch-track { border-color: var(--color-primary); }
+  .theme-label { display: inline; color: var(--theme-text); font-size: 0.8rem; font-weight: 700; }
+  .mobile-menu-heading, .mobile-theme-control, .language-control { display: none; }
+  .brand-name { color: var(--theme-text); }
+  .nav-link { position: relative; display: inline-block; padding-block: 0.35rem; color: var(--theme-muted); }
+  .nav-link:hover, .nav-link:focus-visible, .nav-link:focus { color: var(--theme-text); }
+  .nav-link::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--color-primary); content: ''; transform: scaleX(0); transform-origin: right; transition: transform 180ms ease; }
+  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+  .settings-language-group { display: flex; align-items: center; justify-content: flex-start; gap: 1rem; }
+  .language-option, .mobile-language-option { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; border: none; background: transparent; padding: 0.2rem 0; color: var(--theme-text); cursor: pointer; font-weight: 700; transition: color 140ms ease, opacity 140ms ease; -webkit-tap-highlight-color: transparent; }
+  .language-option:hover, .language-option:focus-visible, .mobile-language-option:hover, .mobile-language-option:focus-visible { color: var(--color-primary); }
+  .language-option[aria-pressed='true'], .mobile-language-option[aria-pressed='true'] { color: var(--color-primary); }
+  :global(:root[data-theme='dark']) .language-option:hover, :global(:root[data-theme='dark']) .language-option:focus-visible, :global(:root[data-theme='dark']) .language-option[aria-pressed='true'] { color: var(--color-primary); }
+  .locale-name { font-size: 0.7rem; letter-spacing: 0.08em; }
+  .locale-flag { display: inline-block; width: 1.3rem; height: 0.9rem; border: 1px solid rgb(0 0 0 / 14%); border-radius: 0.15rem; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 18%); }
+  .locale-flag-colombia { background: linear-gradient(to bottom, #fcd116 0 50%, #003893 50% 75%, #ce1126 75% 100%); }
+  .locale-flag-us { position: relative; background: repeating-linear-gradient(to bottom, #b22234 0 0.07rem, #fff 0.07rem 0.14rem); }
+  .locale-flag-us::before { position: absolute; top: 0; left: 0; width: 0.58rem; height: 0.48rem; background: #3c3b6e; content: ''; }
+  .menu-toggle { border-color: var(--theme-border); background-color: var(--theme-card); color: var(--theme-text); }
   .menu-toggle:hover, .menu-toggle:focus-visible { border-color: var(--color-primary); background-color: var(--color-primary); color: var(--color-secondary); }
   .menu-icon-close, .menu-toggle[aria-expanded='true'] .menu-icon-open { display: none; }
   .menu-toggle[aria-expanded='true'] .menu-icon-close { display: inline-flex; }
   .mobile-menu { display: flex; align-items: center; gap: 1.75rem; }
-  .mobile-menu-config { display: flex; align-items: center; }
-  .nav-link { position: relative; display: inline-block; padding-block: 0.35rem; }
-  .nav-link::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--color-primary); content: ''; transform: scaleX(0); transform-origin: right; transition: transform 180ms ease; }
-  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+  .mobile-language-subheader { display: none; }
   @media (hover: none) { .menu-toggle:hover:not(:focus-visible) { border-color: var(--theme-border); background-color: var(--theme-card); color: var(--theme-text); } }
   @media (max-width: 639px) {
     :global(body.menu-open) { overflow: hidden; }
-    .mobile-menu { position: fixed; top: 81px; right: 0; left: 0; z-index: 50; display: none; height: calc(100dvh - 81px); align-items: stretch; flex-direction: column; gap: 0; overflow-y: auto; padding: 2.5rem 1.25rem; background: var(--theme-card); }
+    .settings-wrapper { display: none; }
+    .mobile-language-subheader { display: flex; justify-content: flex-end; align-items: center; gap: 0.85rem; padding: 0 1.25rem 0.9rem; }
+    .mobile-language-option { padding: 0.2rem 0.1rem; color: var(--theme-text); font-weight: 700; transition: none; }
+    .mobile-language-option[aria-pressed='true'] { color: var(--color-primary); }
+    .mobile-menu { position: fixed; top: 73px; right: 0; left: 0; z-index: 60; display: none; height: calc(100dvh - 73px); align-items: stretch; flex-direction: column; gap: 0; overflow-y: auto; padding: 2.5rem 1.25rem; background: var(--theme-card); }
     .mobile-menu[data-open='true'] { display: grid; animation: mobile-menu-in 160ms ease-out both; }
     .mobile-menu-heading { display: block; margin: 0 0 1rem; color: var(--theme-muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
     .mobile-menu-links ul { display: grid; gap: 0; }
     .mobile-menu-links li + li { border-top: 1px solid var(--theme-border); }
     .mobile-menu .nav-link { display: block; padding: 1rem 0; font-size: 1.05rem; }
-    .mobile-menu-config { display: block; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--theme-border); }
-    .theme-label { display: inline; }
+    .mobile-theme-control { display: block; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--theme-border); }
+    .mobile-theme-label { color: var(--theme-text); }
   }
   @keyframes mobile-menu-in { from { opacity: 0; transform: translateY(-0.35rem); } to { opacity: 1; transform: translateY(0); } }
   @media (prefers-reduced-motion: reduce) { .mobile-menu[data-open='true'] { animation: none; } }
