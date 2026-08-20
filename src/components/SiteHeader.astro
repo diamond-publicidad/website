@@ -1,7 +1,7 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faGear, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { languageStorageKey, type Locale, type Translations } from '../i18n';
+import { languageStorageKey, siteVersion, siteVersionDate, type Locale, type Translations } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -64,6 +64,17 @@ const closeIcon = icon(faXmark).html.join('');
             <li><a class="nav-link no-underline" href="#servicios">{translations.navigation.services}</a></li>
             <li><a class="nav-link no-underline" href="#contacto">{translations.navigation.contact}</a></li>
           </ul>
+        </div>
+        <div class="mobile-site-version">
+          <p class="mobile-menu-heading">{translations.footer.aboutSite}</p>
+          <div class="mobile-version-item">
+            <span>{translations.footer.versionLabel}</span>
+            <strong>{siteVersion}</strong>
+          </div>
+          <div class="mobile-version-item">
+            <span>{translations.footer.dateLabel}</span>
+            <span>{siteVersionDate}</span>
+          </div>
         </div>
         <div class="mobile-theme-control">
           <p class="mobile-menu-heading">{translations.theme.heading}</p>
@@ -258,6 +269,7 @@ const closeIcon = icon(faXmark).html.join('');
   .theme-checkbox:focus-visible + .theme-switch-track { outline: 2px solid var(--theme-focus); outline-offset: 3px; }
   .theme-label { display: inline; color: var(--theme-text); font-size: 0.8rem; font-weight: 700; }
   .mobile-menu-heading, .mobile-theme-control, .language-control { display: none; }
+  .mobile-site-version { display: none; }
   .brand-name { color: var(--theme-text); }
   .nav-link { position: relative; display: inline-block; padding-block: 0.35rem; color: var(--theme-muted); }
   .nav-link:hover, .nav-link:focus-visible, .nav-link:focus { color: var(--theme-text); }
@@ -292,6 +304,9 @@ const closeIcon = icon(faXmark).html.join('');
     .mobile-menu-links ul { display: grid; gap: 0; }
     .mobile-menu-links li + li { border-top: 1px solid var(--theme-border); }
     .mobile-menu .nav-link { display: block; padding: 1rem 0; font-size: 1.05rem; }
+    .mobile-site-version { display: block; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--theme-border); }
+    .mobile-version-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; color: var(--theme-text); font-size: 0.82rem; }
+    .mobile-version-item strong { color: var(--color-primary); font-weight: 700; }
     .mobile-theme-control { display: block; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--theme-border); }
     .mobile-theme-label { color: var(--theme-text); }
   }

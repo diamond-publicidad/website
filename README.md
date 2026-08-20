@@ -164,6 +164,12 @@ Antes de cualquier operación de entrega Git, el flujo debe verificarse explíci
 
 La validación del flujo no es solo una comprobación local de cambios: incluye la rama activa, la sincronización remota y la existencia de un PR activo o su apertura solo cuando el trabajo está listo.
 
+### Versionado del sitio
+
+El proyecto mantiene un dato centralizado de versión para el sitio en [src/i18n/index.ts](src/i18n/index.ts). El valor inicial aprobado es `0.1.0`, con fecha de publicación inicial `20-08-2026` en formato `dd-mm-aaaa`.
+
+La versión se usa como metadato del proyecto y no como contenido comercial. Se refleja de forma discreta en el pie de página y, en móvil, dentro del menú desplegable como bloque de información de sitio. El dato debe revisarse siempre antes de cerrar una entrega o publicar una actualización, y cualquiera de sus cambios debe validarse junto con la UI para asegurar que el valor nuevamente aparece en la interfaz.
+
 ## Guía de onboarding para un nuevo desarrollador
 
 Si eres una persona nueva en este proyecto, esta sección te ayuda a entrar al repositorio sin perderte en la documentación ni en el flujo de trabajo.
