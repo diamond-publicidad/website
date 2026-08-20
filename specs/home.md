@@ -8,7 +8,7 @@ Definir la página de inicio del sitio web oficial de Diamond Publicidad para pr
 
 - Presentar a Diamond Publicidad como una empresa colombiana dedicada a la publicidad, la impresión digital y las soluciones gráficas.
 - Incluir una introducción clara de la empresa sin agregar afirmaciones, cifras o promesas comerciales no aprobadas.
-- Presentar únicamente servicios que hayan sido confirmados y aprobados; mientras no exista ese contenido, dejar el apartado pendiente o no publicarlo.
+- Presentar los servicios confirmados y aprobados: impresión digital a gran formato con banner, vinilo adhesivo y microperforado; tarjetas de presentación, avisos, vallas y pendones; y piezas publicitarias como botones, volantes, diseños y avisos en cajas de luz.
 - Mostrar únicamente material de portafolio aprobado; mientras no exista, dejar el apartado pendiente o no publicarlo.
 - Facilitar el contacto mediante el teléfono aprobado `57 3203898548`, el correo electrónico aprobado `nelsongleon@gmail.com`, WhatsApp mediante el número aprobado `57 3203898548` y la dirección aprobada `Cll 12 # 16 - 18, Funza, Colombia`; no inventar horarios, cobertura ni formulario.
 - Permitir iniciar una conversación de WhatsApp mediante un enlace directo al número aprobado, con el mensaje inicial exacto: "Hola, me comunico para cotizar".
@@ -21,7 +21,7 @@ Definir la página de inicio del sitio web oficial de Diamond Publicidad para pr
 
 - La página identifica a Diamond Publicidad y comunica su actividad general confirmada.
 - Ningún contenido publicado presenta como hecho información comercial que no esté confirmada y aprobada.
-- Los apartados de servicios y portafolio solo muestran contenido aprobado o permanecen claramente pendientes/no publicados cuando no haya material disponible.
+- El apartado de servicios muestra únicamente los servicios confirmados: impresión digital a gran formato con banner, vinilo adhesivo y microperforado; tarjetas de presentación, avisos, vallas y pendones; y piezas publicitarias como botones, volantes, diseños y avisos en cajas de luz.
 - El contacto solo ofrece el teléfono `57 3203898548`, el correo electrónico `nelsongleon@gmail.com`, WhatsApp mediante el número `57 3203898548` y la dirección `Cll 12 # 16 - 18, Funza, Colombia`.
 - El canal de WhatsApp permite iniciar una conversación mediante un enlace directo con el mensaje inicial "Hola, me comunico para cotizar".
 - El correo electrónico usa un enlace `mailto:` y el teléfono usa un enlace `tel:` cuando corresponda; los enlaces o acciones describen claramente su propósito.
