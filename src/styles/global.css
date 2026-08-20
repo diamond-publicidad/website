@@ -1,9 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #F5C400;
+  --color-secondary: #171717;
+  --color-accent: #8B8F94;
+  --color-background: #FFFFFF;
+  --color-surface: #F5F5F3;
+  --color-text: #1F2328;
+  --color-text-muted: #5D6268;
+  --color-border: #D9DADC;
+  --color-dark-surface: #171717;
+  --font-sans: 'Manrope', sans-serif;
+}
+
 :root {
-  font-family: sans-serif;
-  color: #1f2937;
-  background: #ffffff;
+  color: var(--color-text);
+  background: var(--color-background);
 }
 
 html {
@@ -12,4 +25,39 @@ html {
 
 body {
   margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
