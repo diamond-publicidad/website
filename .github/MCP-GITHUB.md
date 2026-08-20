@@ -51,6 +51,38 @@ For this repository, the correct sequence is:
 1. enable GitHub MCP in the editor UI;
 2. complete browser authentication;
 3. verify the server is connected;
-4. create or update the branch;
-5. push the branch;
-6. only then open the PR when the MCP is active.
+4. check the current branch with `git status --short --branch` or `git branch --show-current`;
+5. if the task is already running on the correct feature/fix branch, do not create a new branch; just commit and push to that branch;
+6. if the branch does not exist locally or remotely, create or track it before continuing;
+7. if a PR already exists for the current branch, push the new commits to that same branch and update the existing PR instead of creating a duplicate;
+8. only create a PR when there is no active PR for the branch and the branch is ready for review;
+9. push the branch;
+10. open the PR only when the MCP is active and the branch is confirmed.
+
+## Required branch and PR decision flow
+
+Before committing, the agent must answer these checks:
+
+- Am I already on the correct feature/fix branch for this task?
+- Does that branch already exist remotely?
+- Is there already an open PR for this branch?
+- If yes, do I only need to push commits and update the same PR?
+- If no, do I need to create a PR now or wait until the branch is ready?
+
+Correct behavior:
+
+- if the branch is already active and the PR exists, do not create a new branch and do not open a new PR;
+- if the branch is active but no PR exists yet and the work is ready, create the PR;
+- if the branch is not active, switch or track it before committing;
+- if the work is not yet ready for review, keep pushing to the same branch and wait to open the PR later;
+- never create duplicate PRs for the same branch.
+
+## Suggested branch validation commands
+
+```bash
+git status --short --branch
+git branch --show-current
+git fetch --all --prune
+```
+
+If the current branch is not the correct feature/fix branch, the agent should first verify whether that branch already exists remotely before creating anything new.
