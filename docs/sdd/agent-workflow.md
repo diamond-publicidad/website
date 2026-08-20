@@ -18,7 +18,7 @@ No ejecuta comandos. Puede editar únicamente `specs/` mediante la skill `spec-c
 
 ### Implementation
 
-Recibe el informe de Preflight SDD e implementa exclusivamente el alcance preparado. Debe leer las skills indicadas, verificar criterios de aceptación y ejecutar las comprobaciones necesarias.
+Recibe el informe de `SDD Preflight` e implementa exclusivamente el alcance preparado. Debe leer las skills indicadas, verificar criterios de aceptación y ejecutar las comprobaciones necesarias.
 
 No realiza commits, pushes ni Pull Requests. Cuando el cambio requiere documentación, usa el handoff a Documentation; cuando el resultado está validado, usa el handoff a Git Delivery.
 
