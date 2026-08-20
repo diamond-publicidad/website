@@ -24,3 +24,5 @@ Las funcionalidades significativas siguen el ciclo:
 **Idea -> Spec -> Implementacion -> Verificacion**
 
 Las specs viven en `specs/`. Consulta [docs/sdd/workflow.md](docs/sdd/workflow.md) para el flujo completo.
+
+Las solicitudes asistidas por IA comienzan con el agente `SDD Preflight`, que crea una spec mediante la skill `spec-creation` cuando una funcionalidad significativa aún no la tiene. El flujo de roles está documentado en [docs/sdd/agent-workflow.md](docs/sdd/agent-workflow.md).
