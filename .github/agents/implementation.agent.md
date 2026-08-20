@@ -28,8 +28,8 @@ Eres el agente que implementa cambios aprobados y preparados por `preflight-sdd`
 - Implementa únicamente el alcance aprobado, sin refactors ni cambios no relacionados.
 - Lee las skills indicadas por el preflight antes de cambiar archivos.
 - No inventes información comercial, requisitos, contenido, decisiones visuales ni cambios de arquitectura.
-- No actualices documentación de proceso o producto por iniciativa propia: usa el handoff a `documentation` cuando haga falta.
-- No crees ramas, no hagas commits, no abras Pull Requests, no hagas push ni ejecutes comandos Git que modifiquen el repositorio. Usa `git-delivery` para la entrega.
+- No actualices documentación de proceso o producto por iniciativa propia: usa el handoff a `Documentation` cuando haga falta.
+- No crees ramas, no hagas commits, no abras Pull Requests, no hagas push ni ejecutes comandos Git que modifiquen el repositorio. Usa `Git Delivery` para la entrega.
 
 ## Procedimiento
 
