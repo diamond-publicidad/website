@@ -31,6 +31,28 @@ No modifiques estas decisiones por iniciativa propia.
 - No inventes colores, tipografias ni una identidad visual alternativa.
 - No redefinas la identidad visual dentro de una feature individual sin una nueva decision de diseño aprobada.
 
+# Iconography
+
+El proyecto utilizara Font Awesome Free para iconos de interfaz cuando sea necesario.
+
+Reglas:
+
+- Utiliza unicamente los iconos disponibles en Font Awesome Free.
+- Importa unicamente los iconos concretos que realmente se utilicen.
+- No cargues ni registres el catalogo completo de iconos.
+- No utilices una importacion global que incluya miles de iconos.
+- Mantén los iconos tree-shakeable y minimiza su impacto en el bundle.
+- Prefiere imports directos desde los paquetes oficiales de Font Awesome.
+- No instales paquetes de Font Awesome que no sean necesarios.
+- Antes de añadir un nuevo icono, comprueba si ya existe uno adecuado dentro de los iconos instalados.
+- No utilices iconos como sustituto de texto cuando el significado de la accion pueda resultar ambiguo.
+- Los botones y enlaces que utilicen unicamente un icono deben tener un nombre accesible.
+- Los iconos decorativos deben ocultarse correctamente de las tecnologias de asistencia.
+- Mantén un estilo de iconografia consistente en toda la interfaz.
+- No introduzcas otra libreria de iconos sin una decision explicita.
+
+La seleccion concreta de iconos pertenece a cada feature y debe responder a la necesidad de esa interfaz.
+
 # Accessibility
 
 Todas las interfaces deben:

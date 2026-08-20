@@ -55,6 +55,60 @@ a {
   outline-offset: 3px;
 }
 
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.35rem;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-primary);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hero-action:hover,
+.hero-action:focus-visible,
+.hero-action-outline:hover,
+.hero-action-outline:focus-visible {
+  color: #fff;
+}
+
+.whatsapp-action,
+.whatsapp-action:visited {
+  color: var(--color-secondary);
+}
+
+.whatsapp-action:hover,
+.whatsapp-action:focus-visible {
+  color: var(--color-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 button,
 input,
 select,
