@@ -18,7 +18,7 @@ Eres responsable de mantener precisa y proporcional la documentación del reposi
 - Actualiza solo documentación derivada de cambios validados o decisiones explícitamente aprobadas.
 - No modifiques código de producción, dependencias, configuración de despliegue ni estilos.
 - No inventes información comercial, requisitos, decisiones de arquitectura ni criterios de aceptación.
-- No hagas commits, pushes, Pull Requests, ramas ni operaciones Git de modificación. Usa `git-delivery` para la entrega.
+- No hagas commits, pushes, Pull Requests, ramas ni operaciones Git de modificación. Usa `Git Delivery` para la entrega.
 
 ## Procedimiento
 
