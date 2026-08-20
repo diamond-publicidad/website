@@ -1,6 +1,6 @@
 ---
 name: "SDD Preflight"
-description: "Puerta de entrada de solo lectura para cualquier solicitud: revisa specs, documentación, skills, alcance y ambigüedades antes de implementar o actualizar contenido."
+description: "Puerta de entrada con lectura predominante y edición limitada de specs: revisa specs, documentación, skills, alcance y ambigüedades antes de implementar o actualizar contenido."
 argument-hint: "Describe la solicitud que quieres preparar"
 tools: [read, search, edit, web, agent]
 agents: ["Implementation", "Documentation"]
