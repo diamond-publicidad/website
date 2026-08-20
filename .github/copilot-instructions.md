@@ -1,5 +1,14 @@
 # Project Context
 
+# Agent Workflow
+
+El repositorio usa el flujo de agentes definido en [docs/sdd/agent-workflow.md](../docs/sdd/agent-workflow.md).
+
+- Inicia cualquier solicitud con `SDD Preflight` (`preflight-sdd`); no implementes, documentes ni realices entregas Git directamente desde un agente general.
+- `SDD Preflight` revisa fuentes, specs, skills, alcance y ambigüedades antes de proponer el siguiente rol. Si falta una spec para una funcionalidad significativa, usa la skill `spec-creation` para crearla y espera revisión antes de ofrecer implementación.
+- `Implementation` solo implementa trabajo preparado; `Documentation` solo actualiza documentos derivados de decisiones o cambios validados; `Git Delivery` es el único rol para ramas, commits, Pull Requests y push.
+- Los handoffs requieren revisión humana y no autorizan cambios fuera del alcance ni reemplazan una aprobación de spec.
+
 Este repositorio contiene el sitio web de Diamond Publicidad, una microempresa colombiana dedicada a publicidad, impresion digital y soluciones graficas.
 
 La informacion comercial es informacion controlada. Nunca inventes datos sobre el negocio, sus servicios, clientes, resultados, ubicacion, contacto, precios o cobertura. Si falta informacion, dejala pendiente o solicita una decision del propietario.
