@@ -1,21 +1,16 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import {
-  faArrowUp,
   faArrowUpRightFromSquare,
-  faBars,
   faBullhorn,
   faEnvelope,
   faLocationDot,
-  faMoon,
   faPenRuler,
   faPhone,
   faPrint,
-  faSun,
-  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const phone = '57 3203898548';
 const phoneHref = 'tel:+573203898548';
@@ -25,87 +20,22 @@ const whatsappHref = 'https://wa.me/573203898548?text=Hola%2C%20me%20comunico%20
 const facebookHref = 'https://www.facebook.com/diamondpublicidadleon/';
 const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
-const currentYear = new Date().getFullYear();
 const arrowIcon = icon(faArrowUpRightFromSquare).html.join('');
 const whatsappIcon = icon(faWhatsapp).html.join('');
 const phoneIcon = icon(faPhone).html.join('');
 const emailIcon = icon(faEnvelope).html.join('');
 const facebookIcon = icon(faFacebook).html.join('');
 const locationIcon = icon(faLocationDot).html.join('');
-const moonIcon = icon(faMoon).html.join('');
-const sunIcon = icon(faSun).html.join('');
-const menuIcon = icon(faBars).html.join('');
-const closeIcon = icon(faXmark).html.join('');
-const backToTopIcon = icon(faArrowUp).html.join('');
 const printIcon = icon(faPrint).html.join('');
 const advertisingIcon = icon(faBullhorn).html.join('');
 const designIcon = icon(faPenRuler).html.join('');
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Diamond Publicidad: publicidad, impresión digital y soluciones gráficas en Colombia." />
-    <title>Diamond Publicidad | Publicidad y soluciones gráficas</title>
-    <script is:inline>
-      const initialThemeStorageKey = 'diamond-publicidad-theme';
-      let storedTheme = null;
-
-      try {
-        storedTheme = localStorage.getItem(initialThemeStorageKey);
-      } catch {
-        storedTheme = null;
-      }
-
-      const initialTheme = storedTheme === 'light' || storedTheme === 'dark'
-        ? storedTheme
-        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-      document.documentElement.dataset.theme = initialTheme;
-    </script>
-  </head>
-  <body>
-    <header class="theme-header sticky top-0 z-40 border-b border-border backdrop-blur-sm">
-      <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-5 sm:px-8 lg:px-12">
-        <a class="scroll-top flex items-center gap-3 no-underline" href="#inicio" aria-label="Diamond Publicidad, inicio">
-          <span class="h-8 w-2 bg-primary" aria-hidden="true"></span>
-          <span class="text-base font-extrabold tracking-tight text-secondary sm:text-lg">Diamond Publicidad</span>
-        </a>
-        <nav aria-label="Navegación principal">
-          <div id="primary-menu" class="mobile-menu">
-            <div class="mobile-menu-links">
-              <p class="mobile-menu-heading">Navegación</p>
-              <ul class="flex items-center gap-4 text-sm font-semibold text-text-muted sm:gap-7">
-                <li><a class="nav-link no-underline hover:text-secondary" href="#servicios">Servicios</a></li>
-                <li><a class="nav-link no-underline hover:text-secondary" href="#contacto">Contacto</a></li>
-              </ul>
-            </div>
-            <div class="mobile-menu-config">
-              <p class="mobile-menu-heading">Configuración</p>
-              <div class="theme-toggle inline-flex h-10 items-center gap-3 text-sm font-semibold">
-                <label class="theme-switch-control cursor-pointer" title="Cambiar tema">
-                  <input id="theme-toggle" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" aria-label="Usar tema oscuro" />
-                  <span class="theme-switch-track" aria-hidden="true">
-                    <span class="theme-icon theme-icon-moon inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" set:html={moonIcon}></span>
-                    <span class="theme-icon theme-icon-sun inline-flex h-4 w-4 shrink-0 items-center justify-center" set:html={sunIcon}></span>
-                    <span class="theme-switch-thumb"></span>
-                  </span>
-                </label>
-                <span class="theme-label">Tema oscuro</span>
-              </div>
-            </div>
-          </div>
-          <button id="menu-toggle" class="menu-toggle inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-border text-secondary transition duration-200 sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menú" title="Abrir menú">
-            <span class="menu-icon menu-icon-open inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={menuIcon}></span>
-            <span class="menu-icon menu-icon-close inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={closeIcon}></span>
-          </button>
-        </nav>
-      </div>
-    </header>
-
-    <main id="inicio">
+<BaseLayout
+  title="Diamond Publicidad | Publicidad y soluciones gráficas"
+  description="Diamond Publicidad: publicidad, impresión digital y soluciones gráficas en Colombia."
+>
+  <main id="inicio">
       <section class="relative overflow-hidden border-b border-border bg-surface" aria-labelledby="page-title">
         <div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:px-12 lg:py-32">
           <div class="relative z-10">
@@ -226,126 +156,20 @@ const designIcon = icon(faPenRuler).html.join('');
           </div>
         </div>
       </section>
-    </main>
+  </main>
+</BaseLayout>
 
-    <footer class="bg-secondary px-5 pb-28 text-sm text-gray-400 sm:px-8 sm:pb-20 lg:px-12">
-      <div class="mx-auto flex max-w-7xl justify-center border-t border-gray-700 pt-6 text-center">
-        <div class="flex flex-col items-center gap-1">
-          <p>© {currentYear} Diamond Publicidad. Todos los derechos reservados.</p>
-          <p>Hecho por <a class="inline-flex items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 transition-colors hover:text-primary" href="https://github.com/xhate83" target="_blank" rel="noreferrer" aria-label="Julian Ospina Dev en GitHub">Julian Ospina Dev <span class="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={arrowIcon}></span></a></p>
-        </div>
-      </div>
-    </footer>
-
-    <a id="back-to-top" class="scroll-top fixed bottom-5 right-5 z-30 inline-flex translate-y-4 items-center gap-2 rounded-full border border-secondary bg-primary px-4 py-3 text-sm font-bold text-secondary opacity-0 shadow-lg transition duration-200 pointer-events-none hover:-translate-y-0.5 hover:bg-white" href="#inicio" aria-label="Volver al inicio"><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={backToTopIcon}></span><span class="hidden sm:inline">Arriba</span></a>
-
-    <script>
-      const themeStorageKey = 'diamond-publicidad-theme';
-      const themeToggle = document.querySelector<HTMLInputElement>('#theme-toggle');
-      const menuToggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
-      const primaryMenu = document.querySelector('#primary-menu');
-      const themeLabel = document.querySelector('.theme-label');
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
-      let menuOpenedByPointer = false;
-
-      const updateThemeControl = (theme: 'light' | 'dark') => {
-        const isDark = theme === 'dark';
-
-        if (themeToggle) {
-          themeToggle.checked = isDark;
-        }
-
-        themeToggle?.setAttribute('aria-checked', String(isDark));
-        themeToggle?.setAttribute('aria-label', isDark ? 'Tema oscuro' : 'Tema claro');
-
-        if (themeLabel) {
-          themeLabel.textContent = isDark ? 'Tema oscuro' : 'Tema claro';
-        }
-      };
-
-      const setTheme = (theme: 'light' | 'dark', persist = true) => {
-        document.documentElement.dataset.theme = theme;
-        updateThemeControl(theme);
-
-        if (persist) {
-          try {
-            localStorage.setItem(themeStorageKey, theme);
-          } catch {
-            // La interfaz sigue funcionando si el navegador bloquea el almacenamiento local.
-          }
-        }
-      };
-
-      const currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-      updateThemeControl(currentTheme);
-
-      themeToggle?.addEventListener('change', () => {
-        setTheme(themeToggle.checked ? 'dark' : 'light');
-      });
-
-      const setMenuState = (isOpen: boolean) => {
-        document.body.classList.toggle('menu-open', isOpen);
-        primaryMenu?.setAttribute('data-open', String(isOpen));
-        menuToggle?.setAttribute('aria-expanded', String(isOpen));
-        menuToggle?.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
-        menuToggle?.setAttribute('title', isOpen ? 'Cerrar menú' : 'Abrir menú');
-      };
-
-      menuToggle?.addEventListener('pointerdown', () => {
-        menuOpenedByPointer = true;
-      });
-
-      menuToggle?.addEventListener('click', (event) => {
-        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-        setMenuState(!isOpen);
-
-        if (menuOpenedByPointer || event.detail > 0) {
-          requestAnimationFrame(() => menuToggle.blur());
-          menuOpenedByPointer = false;
-        }
-      });
-
-      primaryMenu?.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => setMenuState(false));
-      });
-
-      const scrollToTop = (event: MouseEvent) => {
-        event.preventDefault();
-        const scrollingElement = document.scrollingElement;
-
-        scrollingElement?.scrollTo({
-          top: 0,
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-        });
-      };
-
-      document.querySelectorAll<HTMLAnchorElement>('.scroll-top').forEach((link) => {
-        link.addEventListener('click', scrollToTop);
-      });
-
-      systemTheme.addEventListener('change', (event) => {
-        try {
-          if (!localStorage.getItem(themeStorageKey)) {
-            setTheme(event.matches ? 'dark' : 'light', false);
-          }
-        } catch {
-          setTheme(event.matches ? 'dark' : 'light', false);
-        }
-      });
-
-      const backToTop = document.querySelector('#back-to-top');
-
-      if (backToTop) {
-        const updateBackToTop = () => {
-          const isVisible = window.scrollY > 480;
-          backToTop.classList.toggle('opacity-0', !isVisible);
-          backToTop.classList.toggle('translate-y-4', !isVisible);
-          backToTop.classList.toggle('pointer-events-none', !isVisible);
-        };
-
-        window.addEventListener('scroll', updateBackToTop, { passive: true });
-        updateBackToTop();
-      }
-    </script>
-  </body>
-</html>
+<style>
+  :global([data-theme='dark']) .bg-surface { background-color: var(--theme-surface); }
+  :global([data-theme='dark']) .bg-white { background-color: var(--theme-card); }
+  :global([data-theme='dark']) .bg-secondary { background-color: var(--theme-inverse); }
+  :global([data-theme='dark']) .border-border { border-color: var(--theme-border); }
+  :global([data-theme='dark']) .text-text-muted { color: var(--theme-muted); }
+  :global([data-theme='dark']) .text-secondary { color: var(--theme-text); }
+  :global([data-theme='dark']) .hero-action,
+  :global([data-theme='dark']) .whatsapp-action { color: var(--color-secondary); }
+  :global([data-theme='dark']) .hero-action-outline { border-color: var(--theme-text); color: var(--theme-text); }
+  :global([data-theme='dark']) .service-card:hover .service-icon { background-color: var(--color-primary) !important; color: var(--color-secondary) !important; }
+  .hero-action:hover, .hero-action:focus-visible, .hero-action-outline:hover, .hero-action-outline:focus-visible { color: #fff; }
+  .whatsapp-action, .whatsapp-action:visited, .whatsapp-action:hover, .whatsapp-action:focus-visible { color: var(--color-secondary); }
+</style>
