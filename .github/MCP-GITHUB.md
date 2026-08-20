@@ -1,47 +1,28 @@
 # GitHub MCP local setup
 
-This repository does not require a permanent GitHub MCP configuration in source control. The setup below is intentionally local and safe for a developer machine.
+This repository does not keep a permanent GitHub MCP configuration in source control. The real setup lives in the local editor runtime and must be activated in the developer machine where Copilot is running.
 
-## What to do locally
+## What was required in practice
 
-1. Open VS Code settings and make sure the GitHub MCP server is configured for your environment.
-2. Use a personal access token only in the local environment, never commit it to the repository.
-3. If you use this workspace in a shared environment, keep the token out of git history and prefer environment variables or a local secret manager.
+The working flow for this repository was:
 
-## Local workspace configuration
+1. Open Copilot Chat in VS Code.
+2. Open the tool or server configuration that exposes MCP servers.
+3. Look for the GitHub MCP server in the list of available MCP servers.
+4. Start or enable the GitHub server.
+5. Complete the browser login to GitHub when Copilot requests it.
+6. Confirm that the GitHub MCP server is now connected before trying to open a pull request.
 
-The repository includes a starter configuration at `.vscode/mcp.json`.
+This step is mandatory for PR creation. If the MCP is not enabled, authenticated, or reachable, the agent can still push the feature branch, but it must not attempt to open a PR.
 
-```json
-{
-  "inputs": [
-    {
-      "type": "promptString",
-      "id": "github_token",
-      "description": "GitHub personal access token with repo and pull request permissions. This token is not committed to the repository."
-    }
-  ],
-  "servers": {
-    "github": {
-      "type": "stdio",
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "GITHUB_PERSONAL_ACCESS_TOKEN",
-        "ghcr.io/github/github-mcp-server"
-      ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
-      }
-    }
-  }
-}
-```
+## Local secrets policy
 
-## Delivery behavior
+- Use a personal access token only in the local environment.
+- Never commit the token or a file containing it.
+- Keep the token in a local secret store, environment variable, or editor session, not in the repo.
+- If the repository is shared or the token belongs to an organization, ensure the account is authorized for that organization before using the MCP.
+
+## Expected behavior for Git Delivery
 
 When the GitHub MCP is available and authenticated, the delivery flow should do the following:
 
@@ -51,4 +32,25 @@ When the GitHub MCP is available and authenticated, the delivery flow should do 
 - create the PR from the current branch toward the chosen base branch;
 - avoid pushing directly to `main`.
 
-If the MCP is not configured or authentication is missing, stop and report the blockage instead of creating a PR.
+If the MCP is absent, unavailable, or not authenticated, the agent must stop after the branch is pushed or after preparing the branch and report the blockage clearly. It must not fabricate a PR or assume `main` as the target branch.
+
+## Blockers to report
+
+The agent should stop and report the blocker when any of these happens:
+
+- the GitHub MCP server is not available in the editor;
+- the browser login is not completed;
+- the account does not have access to the target repository;
+- the token or GitHub session is missing or expired;
+- the user has not specified the base branch for the PR.
+
+## Practical reminder
+
+For this repository, the correct sequence is:
+
+1. enable GitHub MCP in the editor UI;
+2. complete browser authentication;
+3. verify the server is connected;
+4. create or update the branch;
+5. push the branch;
+6. only then open the PR when the MCP is active.
