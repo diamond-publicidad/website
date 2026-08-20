@@ -1,0 +1,45 @@
+---
+import BackToTop from '../components/BackToTop.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+interface Props {
+  description: string;
+  title: string;
+}
+
+const { description, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <script is:inline>
+      const initialThemeStorageKey = 'diamond-publicidad-theme';
+      let storedTheme = null;
+
+      try {
+        storedTheme = localStorage.getItem(initialThemeStorageKey);
+      } catch {
+        storedTheme = null;
+      }
+
+      const initialTheme = storedTheme === 'light' || storedTheme === 'dark'
+        ? storedTheme
+        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+      document.documentElement.dataset.theme = initialTheme;
+    </script>
+  </head>
+  <body>
+    <SiteHeader />
+    <slot />
+    <SiteFooter />
+    <BackToTop />
+  </body>
+</html>

@@ -8,6 +8,20 @@ Sitio web oficial de Diamond Publicidad, preparado como un sitio Astro estático
 - TypeScript
 - Tailwind CSS
 
+## Architecture
+
+El sitio usa un layout Astro reutilizable en `src/layouts/BaseLayout.astro`. El layout define el documento HTML, los metadatos básicos mediante props tipadas, la carga de estilos globales y el punto de inserción del contenido de cada ruta.
+
+Los elementos compartidos de la interfaz se encuentran en `src/components/`:
+
+- `SiteHeader.astro`: cabecera, navegación, selector de tema y menú móvil.
+- `SiteFooter.astro`: pie de página común.
+- `BackToTop.astro`: control para volver al inicio y su comportamiento asociado.
+
+Las páginas conservan solamente su contenido, datos y estilos exclusivos. `src/styles/global.css` contiene la importación de Tailwind, fuente, tokens de tema y reglas base globales; los estilos de cada elemento reutilizable se mantienen scoped en su componente Astro.
+
+La estructura conserva la generación estática, la configuración de GitHub Pages y no añade dependencias ni frameworks de interfaz.
+
 ## Development
 
 ```bash
@@ -16,6 +30,8 @@ npm run dev
 npm run check
 npm run build
 ```
+
+La reorganización de la estructura compartida se verificó con `npm run check` y `npm run build` sin errores ni advertencias.
 
 ## SDD
 
