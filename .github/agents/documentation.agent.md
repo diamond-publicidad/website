@@ -26,4 +26,4 @@ Eres responsable de mantener precisa y proporcional la documentación del reposi
 2. Determina el documento mínimo que debe cambiar: spec, contexto, dirección visual, workflow, skill, README o instrucciones.
 3. Si el cambio modifica una funcionalidad significativa y la spec es incompleta, actualiza la spec solo con decisiones ya aprobadas; no la uses para justificar una implementación incorrecta.
 4. Mantén los documentos cortos, coherentes y sin duplicar reglas existentes.
-5. Informa qué documentación cambió y qué sigue pendiente; después, entrega a `git-delivery`.
+5. Informa qué documentación cambió y qué sigue pendiente; después, entrega a `Git Delivery`.
