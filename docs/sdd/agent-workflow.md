@@ -41,4 +41,4 @@ No modifica archivos. No hace push directo a `main`; para ramas relevantes utili
 3. Usa `Implementation` solo con una solicitud lista para implementar y `Documentation` solo con decisiones o cambios ya validados.
 4. Usa `Git Delivery` al final, después de las validaciones, para evitar commits que mezclen trabajo no relacionado.
 
-Para cambios significativos, este flujo complementa el ciclo definido en [workflow.md](workflow.md): `Idea -> Spec -> Implementación -> Verificación`.
+Para cambios significativos, este flujo complementa el ciclo definido en [workflow.md](workflow.md): `Idea -> Spec -> Implementacion -> Verificacion`.
