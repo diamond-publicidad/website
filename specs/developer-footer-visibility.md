@@ -1,12 +1,13 @@
-# Visibilidad del creador en el footer
+# Visibilidad del creador en el footer y menú móvil
 
 ## Objective
 
-Dar visibilidad discreta al creador del sitio exclusivamente en el pie de página, conservando el crédito actual y facilitando el acceso a sus perfiles profesionales y a la información confirmada sobre sus servicios.
+Dar visibilidad discreta al creador del sitio en el pie de página y también dentro de `Sobre el sitio` en el menú móvil, conservando el crédito actual y facilitando el acceso a sus perfiles profesionales y a la información confirmada sobre sus servicios.
 
 ## Requirements
 
 - Mostrar el crédito de autoría como `Julian Ospina`, sin convertir el nombre en enlace, dentro del footer.
+- Permitir que la información del creador también esté disponible dentro de `Sobre el sitio` en el menú móvil, sin exigir exclusividad del footer.
 - Incluir junto al crédito, con jerarquía visual secundaria, la información aprobada: `Sitios web y software a medida`.
 - Añadir enlaces independientes, representados por iconos, a GitHub y LinkedIn dentro del mismo bloque de crédito del footer, con destino respectivamente a `https://github.com/xhate83` y `https://www.linkedin.com/in/jeyson-julian-ospina-leon-14b4aa1aa/`.
 - Representar los enlaces a GitHub y LinkedIn con los iconos correspondientes de Font Awesome Free, importando únicamente los iconos de marca utilizados y sin incorporar otra librería ni cargar el catálogo completo.
@@ -23,7 +24,7 @@ Dar visibilidad discreta al creador del sitio exclusivamente en el pie de págin
 - El bloque de crédito contiene enlaces funcionales e independientes, representados por iconos, para GitHub y LinkedIn con exactamente los destinos proporcionados.
 - Los enlaces de GitHub y LinkedIn muestran los iconos de marca de Font Awesome Free y los iconos no son el único nombre expuesto a tecnologías de asistencia.
 - Los enlaces externos conservan protección mediante `target="_blank"` y `rel="noreferrer"`, son operables con teclado y muestran un foco visible.
-- La atribución del creador sigue apareciendo únicamente en el footer y conserva una jerarquía visual subordinada a la marca y al contenido de Diamond Publicidad en pantallas móviles, tablet y de escritorio; la descripción se presenta antes de los enlaces sociales.
+- La atribución del creador aparece en el footer y también puede estar disponible dentro de `Sobre el sitio` en el menú móvil; en ambos casos conserva una jerarquía visual subordinada a la marca y al contenido de Diamond Publicidad, y en el footer la descripción se presenta antes de los enlaces sociales.
 - Los iconos sociales cambian a amarillo al recibir hover y conservan foco visible al navegar con teclado.
 - La implementación no añade dependencias ni bibliotecas de iconos, e importa únicamente los iconos de Font Awesome necesarios.
 - `npm run check` y `npm run build` terminan correctamente después de la implementación.
