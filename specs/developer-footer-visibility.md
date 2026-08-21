@@ -27,4 +27,3 @@ Dar visibilidad discreta al creador del sitio exclusivamente en el pie de págin
 - Los iconos sociales cambian a amarillo al recibir hover y conservan foco visible al navegar con teclado.
 - La implementación no añade dependencias ni bibliotecas de iconos, e importa únicamente los iconos de Font Awesome necesarios.
 - `npm run check` y `npm run build` terminan correctamente después de la implementación.
-- `npm run check` y `npm run build` terminan correctamente después de la implementación.
