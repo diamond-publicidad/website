@@ -6,9 +6,7 @@ Definir una sección del home que presente a los clientes de Diamond Publicidad 
 
 ## Requirements
 
-- Incluir una sección visual de clientes dentro de la página de inicio, sin crear un enlace de navegación en el header ni un ancla para la sección.
-- Presentar los clientes confirmados por el propietario en el siguiente orden: Ecoplaza Centro Comercial, Mi centro, Colegio Bicentenario, Placeholder cliente 4 y Placeholder cliente 5.
-- Mantener la sección de clientes en un estilo moderno, limpio y de baja complejidad, acorde con la dirección visual del proyecto.
+- Presentar los clientes confirmados por el propietario en el siguiente orden: Ecoplaza Centro Comercial, Mi centro y Colegio Bicentenario.
 - Usar una presentación tipo carrusel o movimiento continuo, sin controles visibles, con una lógica que favorezca la lectura y no distraiga del contenido principal.
 - El carrusel debe mantener un movimiento continuo y lento, sin pausa por hover ni by focus; la lectura debe seguir siendo clara y la experiencia debe respetar `prefers-reduced-motion`.
 - La sección debe permitir una estructura de datos simple para cada cliente, con los campos mínimos: nombre, logo y descripción.
