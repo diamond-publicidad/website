@@ -1,6 +1,7 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faGear, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faBars, faCode, faGem, faInfoCircle, faMoon, faSliders, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { languageStorageKey, siteVersion, siteVersionDate, type Locale, type Translations } from '../i18n';
 
 interface Props {
@@ -11,7 +12,12 @@ interface Props {
 const { locale, translations } = Astro.props;
 const moonIcon = icon(faMoon).html.join('');
 const sunIcon = icon(faSun).html.join('');
-const gearIcon = icon(faGear).html.join('');
+const settingsIcon = icon(faSliders).html.join('');
+const diamondIcon = icon(faGem).html.join('');
+const infoIcon = icon(faInfoCircle).html.join('');
+const cardDecorIcon = icon(faCode).html.join('');
+const githubIcon = icon(faGithub).html.join('');
+const linkedinIcon = icon(faLinkedin).html.join('');
 const menuIcon = icon(faBars).html.join('');
 const closeIcon = icon(faXmark).html.join('');
 ---
@@ -19,13 +25,13 @@ const closeIcon = icon(faXmark).html.join('');
 <header class="site-header sticky top-0 z-40 border-b border-border backdrop-blur-sm" data-language-storage-key={languageStorageKey}>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-4 sm:px-8 lg:px-12">
     <a class="scroll-top flex items-center gap-3 no-underline" href="#inicio" aria-label={translations.navigation.home}>
-      <span class="h-8 w-2 bg-primary" aria-hidden="true"></span>
+      <span class="brand-mark inline-flex h-5 w-5 items-center justify-center text-[0.9rem] text-primary" aria-hidden="true" set:html={diamondIcon}></span>
       <span class="brand-name text-base font-extrabold tracking-tight sm:text-lg">Diamond Publicidad</span>
     </a>
     <nav aria-label={translations.navigation.primary} class="flex items-center gap-4 sm:gap-7">
       <div class="settings-wrapper">
         <button id="settings-button" class="settings-button" type="button" aria-expanded="false" aria-controls="settings-menu" aria-label={translations.theme.heading} title={translations.theme.heading}>
-          <span class="inline-flex h-4 w-4 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={gearIcon}></span>
+          <span class="inline-flex h-4 w-4 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={settingsIcon}></span>
         </button>
         <div id="settings-menu" class="settings-menu" hidden>
           <div class="settings-panel" role="menu" aria-label={translations.theme.heading}>
@@ -59,25 +65,20 @@ const closeIcon = icon(faXmark).html.join('');
       </button>
       <div id="primary-menu" class="mobile-menu">
         <div class="mobile-menu-links">
-          <p class="mobile-menu-heading">{translations.navigation.heading}</p>
+          <p class="mobile-menu-heading">
+            <span class="mobile-heading-icon" aria-hidden="true" set:html={menuIcon}></span>
+            {translations.navigation.heading}
+          </p>
           <ul class="flex items-center gap-4 text-sm font-semibold text-text-muted sm:gap-7">
             <li><a class="nav-link no-underline" href="#servicios">{translations.navigation.services}</a></li>
             <li><a class="nav-link no-underline" href="#contacto">{translations.navigation.contact}</a></li>
           </ul>
         </div>
-        <div class="mobile-site-version">
-          <p class="mobile-menu-heading">{translations.footer.aboutSite}</p>
-          <div class="mobile-version-item">
-            <span>{translations.footer.versionLabel}</span>
-            <strong>{siteVersion}</strong>
-          </div>
-          <div class="mobile-version-item">
-            <span>{translations.footer.dateLabel}</span>
-            <span>{siteVersionDate}</span>
-          </div>
-        </div>
         <div class="mobile-theme-control">
-          <p class="mobile-menu-heading">{translations.theme.heading}</p>
+          <p class="mobile-menu-heading">
+            <span class="mobile-heading-icon" aria-hidden="true" set:html={settingsIcon}></span>
+            {translations.theme.heading}
+          </p>
           <div class="inline-flex h-10 items-center gap-3 text-sm font-semibold">
             <label class="theme-switch-control cursor-pointer" title={translations.theme.label}>
               <input id="mobile-theme-toggle" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} />
@@ -88,6 +89,38 @@ const closeIcon = icon(faXmark).html.join('');
               </span>
             </label>
             <span class="mobile-theme-label">{translations.theme.dark}</span>
+          </div>
+        </div>
+        <div class="mobile-site-version">
+          <p class="mobile-menu-heading">
+            <span class="mobile-heading-icon" aria-hidden="true" set:html={infoIcon}></span>
+            {translations.footer.aboutSite}
+          </p>
+          <div class="mobile-version-item">
+            <span>{translations.footer.versionLabel}</span>
+            <strong>{siteVersion}</strong>
+          </div>
+          <div class="mobile-version-item">
+            <span>{translations.footer.dateLabel}</span>
+            <span>{siteVersionDate}</span>
+          </div>
+          <div class="mobile-about-card">
+            <span class="mobile-card-decoration" aria-hidden="true" set:html={cardDecorIcon}></span>
+            <div class="mobile-credit-item">
+              <span class="mobile-credit-label">{translations.footer.madeBy}</span>
+              <strong>Julian Ospina</strong>
+            </div>
+            <p class="mobile-credit-description">{translations.footer.developerDescription}</p>
+            <div class="mobile-social-row">
+              <a class="mobile-social-link group inline-flex h-5 w-5 items-center justify-center text-gray-500 transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--theme-card)]" href="https://github.com/xhate83" target="_blank" rel="noreferrer" aria-label={translations.footer.githubLabel}>
+                <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center text-current [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={githubIcon}></span>
+                <span class="sr-only">GitHub</span>
+              </a>
+              <a class="mobile-social-link group inline-flex h-5 w-5 items-center justify-center text-gray-500 transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--theme-card)]" href="https://www.linkedin.com/in/jeyson-julian-ospina-leon-14b4aa1aa/" target="_blank" rel="noreferrer" aria-label={translations.footer.linkedinLabel}>
+                <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center text-current [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={linkedinIcon}></span>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -254,6 +287,9 @@ const closeIcon = icon(faXmark).html.join('');
   .site-header { background-color: color-mix(in srgb, var(--theme-card) 95%, transparent); }
   .settings-wrapper { position: relative; }
   @media (min-width: 640px) { .settings-wrapper { order: 2; margin-left: 0.25rem; } .mobile-menu { order: 1; } }
+  .brand-mark { filter: drop-shadow(0 0.2rem 0.5rem rgb(245 196 0 / 0.22)); }
+  .mobile-heading-icon { display: inline-flex; width: 0.8rem; height: 0.8rem; margin-right: 0.45rem; vertical-align: middle; color: currentColor; }
+  .mobile-heading-icon svg, .brand-mark svg, .menu-icon svg, .settings-button svg, .theme-icon svg, .mobile-social-link svg { width: 100%; height: 100%; display: block; fill: currentColor; }
   .settings-button { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--theme-border); border-radius: 999px; background: var(--theme-card); color: var(--theme-text); cursor: pointer; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
   .settings-button:hover, .settings-button:focus-visible { border-color: var(--color-primary); color: var(--color-primary); }
   .settings-menu { position: absolute; top: calc(100% + 0.5rem); right: 0; min-width: 13.5rem; z-index: 50; }
@@ -298,16 +334,29 @@ const closeIcon = icon(faXmark).html.join('');
     .mobile-language-subheader { display: flex; justify-content: flex-end; align-items: center; gap: 0.85rem; padding: 0 1.25rem 0.9rem; }
     .mobile-language-option { padding: 0.2rem 0.1rem; color: var(--theme-text); font-weight: 700; transition: none; }
     .mobile-language-option[aria-pressed='true'] { color: var(--color-primary); }
-    .mobile-menu { position: fixed; top: 73px; right: 0; left: 0; z-index: 60; display: none; height: calc(100dvh - 73px); align-items: stretch; flex-direction: column; gap: 0; overflow-y: auto; padding: 2.5rem 1.25rem; background: var(--theme-card); }
-    .mobile-menu[data-open='true'] { display: grid; animation: mobile-menu-in 160ms ease-out both; }
-    .mobile-menu-heading { display: block; margin: 0 0 1rem; color: var(--theme-muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+    .mobile-menu { position: fixed; top: 73px; right: 0; left: 0; z-index: 60; display: none; height: calc(100dvh - 73px); align-items: stretch; flex-direction: column; gap: 0; overflow-y: auto; padding: 2rem 1.25rem; background: var(--theme-card); }
+    .mobile-menu[data-open='true'] { display: flex; animation: mobile-menu-in 160ms ease-out both; }
+    .mobile-menu-heading { display: flex; align-items: center; margin: 0 0 0.8rem; color: var(--theme-muted); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
     .mobile-menu-links ul { display: grid; gap: 0; }
     .mobile-menu-links li + li { border-top: 1px solid var(--theme-border); }
-    .mobile-menu .nav-link { display: block; padding: 1rem 0; font-size: 1.05rem; }
-    .mobile-site-version { display: block; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--theme-border); }
-    .mobile-version-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; color: var(--theme-text); font-size: 0.82rem; }
+    .mobile-menu .nav-link { display: block; padding: 0.8rem 0; font-size: 1.05rem; }
+    .mobile-theme-control { display: block; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--theme-border); }
+    .mobile-site-version { display: flex; flex-direction: column; justify-content: flex-end; margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--theme-border); }
+    .mobile-version-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.42rem 0; color: var(--theme-text); font-size: 0.82rem; }
     .mobile-version-item strong { color: var(--color-primary); font-weight: 700; }
-    .mobile-theme-control { display: block; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--theme-border); }
+      .mobile-about-card { position: relative; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.7rem; padding: 0.9rem 0.8rem 0.8rem; border: 1px solid var(--theme-border); border-radius: 0.75rem; background: color-mix(in srgb, var(--theme-surface) 82%, transparent); overflow: hidden; }
+    .mobile-card-decoration { position: absolute; right: -0.7rem; bottom: -0.7rem; width: 4.1rem; height: 4.1rem; color: rgb(23 23 23 / 12%); pointer-events: none; transform: rotate(-8deg); }
+    .mobile-card-decoration svg { width: 100%; height: 100%; display: block; fill: currentColor; }
+    :global(:root[data-theme='dark']) .mobile-card-decoration { color: rgb(255 255 255 / 12%); }
+    .mobile-credit-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--theme-text); font-size: 0.8rem; }
+    .mobile-credit-item strong { color: var(--color-primary); font-weight: 700; }
+    .mobile-credit-label { color: var(--theme-muted); }
+    .mobile-credit-description { margin: 0; color: var(--theme-muted); font-size: 0.78rem; line-height: 1.5; }
+    .mobile-social-row { position: relative; z-index: 1; display: flex; align-items: center; gap: 0.75rem; margin-top: 0.15rem; }
+    .mobile-social-link { color: var(--theme-muted); }
+    .mobile-social-link:hover, .mobile-social-link:focus-visible { color: var(--color-primary); }
+    :global(:root[data-theme='dark']) .mobile-social-link { color: rgba(255, 255, 255, 0.72); }
+    :global(:root[data-theme='dark']) .mobile-social-link:hover, :global(:root[data-theme='dark']) .mobile-social-link:focus-visible { color: var(--color-primary); }
     .mobile-theme-label { color: var(--theme-text); }
   }
   @keyframes mobile-menu-in { from { opacity: 0; transform: translateY(-0.35rem); } to { opacity: 1; transform: translateY(0); } }
