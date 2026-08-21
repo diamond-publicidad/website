@@ -81,10 +81,17 @@ const clientMarqueeItems = [...clients, ...clients].map((client: { name: string;
 
         <div class="client-marquee mt-10 overflow-hidden" aria-label={translations.home.clients.listLabel}>
           <div class="client-track flex w-max items-center gap-6 px-3 py-4 sm:gap-8 sm:px-4">
-            {clientMarqueeItems.map((client) => (
-              <div class="client-item flex items-center gap-3 whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary" aria-label={client.name}>
-                <span class="client-mark inline-flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true" set:html={client.icon}></span>
-                <span>{client.name}</span>
+            {clientMarqueeItems.map((client, index) => (
+              <div class="client-item flex items-center gap-3 whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary" aria-hidden={index >= clients.length ? 'true' : undefined}>
+                {client.logo ? (
+                  <img class="h-5 w-auto" src={client.logo} alt={client.name} loading="lazy" decoding="async" />
+                ) : (
+                  <span class="client-mark inline-flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true" set:html={client.icon}></span>
+                )}
+                <span class="flex items-baseline gap-2">
+                  <span>{client.name}</span>
+                  {client.description ? <span class="text-sm font-semibold normal-case tracking-normal text-text-muted">{client.description}</span> : null}
+                </span>
               </div>
             ))}
           </div>
