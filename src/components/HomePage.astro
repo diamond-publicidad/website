@@ -1,8 +1,9 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faArrowUpRightFromSquare, faBullhorn, faEnvelope, faLocationDot, faPenRuler, faPhone, faPrint } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpRightFromSquare, faAward, faBolt, faBuilding, faBullhorn, faEnvelope, faGem, faLeaf, faLocationDot, faPenRuler, faPhone, faPrint, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import clientData from '../data/clients.json';
 import type { Locale, Translations } from '../i18n';
 
 interface Props {
@@ -22,13 +23,18 @@ const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)
 const mapTitle = translations.home.contact.mapTitle.replace('{address}', address);
 const arrowIcon = icon(faArrowUpRightFromSquare).html.join('');
 const icons = {
-  advertising: icon(faBullhorn).html.join(''), email: icon(faEnvelope).html.join(''), facebook: icon(faFacebook).html.join(''), location: icon(faLocationDot).html.join(''), phone: icon(faPhone).html.join(''), print: icon(faPrint).html.join(''), design: icon(faPenRuler).html.join(''), whatsapp: icon(faWhatsapp).html.join(''),
+  advertising: icon(faBullhorn).html.join(''), award: icon(faAward).html.join(''), bolt: icon(faBolt).html.join(''), building: icon(faBuilding).html.join(''), email: icon(faEnvelope).html.join(''), facebook: icon(faFacebook).html.join(''), gem: icon(faGem).html.join(''), leaf: icon(faLeaf).html.join(''), location: icon(faLocationDot).html.join(''), phone: icon(faPhone).html.join(''), print: icon(faPrint).html.join(''), design: icon(faPenRuler).html.join(''), star: icon(faStar).html.join(''), whatsapp: icon(faWhatsapp).html.join(''),
 };
 const services = [
   { content: translations.home.services.largeFormat, icon: icons.print },
   { content: translations.home.services.outdoor, icon: icons.advertising },
   { content: translations.home.services.design, icon: icons.design },
 ];
+const clients = Array.isArray(clientData) ? clientData : [];
+const clientMarqueeItems = [...clients, ...clients].map((client: { name: string; icon?: string; logo?: string; description?: string }) => ({
+  ...client,
+  icon: client.icon && client.icon in icons ? icons[client.icon as keyof typeof icons] : icons.gem,
+}));
 ---
 
 <BaseLayout title={translations.metadata.title} description={translations.metadata.description} locale={locale} translations={translations}>
@@ -61,9 +67,34 @@ const services = [
       </div>
     </section>
 
+    <section class="border-y border-border bg-white" aria-labelledby="clients-title">
+      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+        <div class="flex flex-col gap-5 border-b border-border pb-10 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.home.clients.eyebrow}</p>
+            <h2 id="clients-title" class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">{translations.home.clients.title}</h2>
+          </div>
+          <p class="max-w-2xl text-lg leading-8 text-text-muted">{translations.home.clients.description}</p>
+        </div>
+
+        <p class="mt-8 max-w-3xl text-base leading-7 text-text-muted">{translations.home.clients.providerNote}</p>
+
+        <div class="client-marquee mt-10 overflow-hidden" aria-label={translations.home.clients.listLabel}>
+          <div class="client-track flex w-max items-center gap-6 px-3 py-4 sm:gap-8 sm:px-4">
+            {clientMarqueeItems.map((client) => (
+              <div class="client-item flex items-center gap-3 whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary" aria-label={client.name}>
+                <span class="client-mark inline-flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true" set:html={client.icon}></span>
+                <span>{client.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="border-y border-border bg-surface" aria-labelledby="portfolio-title"><div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.7fr_1.3fr] lg:px-12"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.home.portfolio.eyebrow}</p><h2 id="portfolio-title" class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">{translations.home.portfolio.title}</h2></div><div class="border-t border-border pt-6"><p class="max-w-2xl text-lg leading-8 text-text-muted">{translations.home.portfolio.description}</p><p class="mt-6 inline-flex rounded-md border border-border bg-white px-4 py-3 text-sm font-semibold text-secondary">{translations.home.portfolio.status}</p></div></div></section>
 
-    <section id="contacto" class="scroll-mt-8 bg-secondary text-white" aria-labelledby="contact-title"><div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-12"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">{translations.home.contact.eyebrow}</p><h2 id="contact-title" class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">{translations.home.contact.title}</h2><p class="mt-6 max-w-md leading-7 text-gray-300">{translations.home.contact.description}</p><a class="whatsapp-action mt-8 inline-flex min-h-12 items-center rounded-md bg-primary px-6 py-3 font-bold no-underline transition-colors duration-200 hover:bg-white" href={whatsappHref} target="_blank" rel="noreferrer"><span class="mr-3 inline-flex h-5 w-5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.whatsapp}></span>{translations.home.contact.whatsapp}</a></div><div class="grid gap-8 sm:grid-cols-2"><div><h3 class="text-sm font-bold uppercase tracking-[0.15em] text-primary">{translations.home.contact.channels}</h3><address class="mt-5 grid gap-3 not-italic leading-7 text-gray-200"><a class="inline-flex w-fit items-center gap-2 hover:text-primary" href={phoneHref}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.phone}></span>{translations.home.contact.phonePrefix} {phone}</a><a class="inline-flex w-fit items-center gap-2 break-all hover:text-primary" href={`mailto:${email}`}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.email}></span>{email}</a><a class="facebook-link inline-flex w-fit items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary" href={facebookHref} target="_blank" rel="noreferrer"><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.facebook}></span>{translations.home.contact.facebook}<span class="sr-only">, {translations.home.contact.externalPage}</span></a></address></div><div><h3 class="text-sm font-bold uppercase tracking-[0.15em] text-primary">{translations.home.contact.location}</h3><address class="mt-5 flex items-start gap-2 not-italic leading-7 text-gray-200"><span class="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.location}></span><span>{address}</span></address><a class="mt-4 inline-flex items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 hover:text-primary" href={mapHref} target="_blank" rel="noreferrer">{translations.home.contact.openMap}<span class="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={arrowIcon}></span></a></div><div class="overflow-hidden rounded-md border border-gray-700 sm:col-span-2"><iframe class="h-64 w-full border-0 grayscale sm:h-72" src={mapEmbedSrc} title={mapTitle} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></div></section>
+    <section id="contacto", class="scroll-mt-8 bg-secondary text-white" aria-labelledby="contact-title"><div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-12"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">{translations.home.contact.eyebrow}</p><h2 id="contact-title" class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">{translations.home.contact.title}</h2><p class="mt-6 max-w-md leading-7 text-gray-300">{translations.home.contact.description}</p><a class="whatsapp-action mt-8 inline-flex min-h-12 items-center rounded-md bg-primary px-6 py-3 font-bold no-underline transition-colors duration-200 hover:bg-white" href={whatsappHref} target="_blank" rel="noreferrer"><span class="mr-3 inline-flex h-5 w-5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.whatsapp}></span>{translations.home.contact.whatsapp}</a></div><div class="grid gap-8 sm:grid-cols-2"><div><h3 class="text-sm font-bold uppercase tracking-[0.15em] text-primary">{translations.home.contact.channels}</h3><address class="mt-5 grid gap-3 not-italic leading-7 text-gray-200"><a class="inline-flex w-fit items-center gap-2 hover:text-primary" href={phoneHref}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.phone}></span>{translations.home.contact.phonePrefix} {phone}</a><a class="inline-flex w-fit items-center gap-2 break-all hover:text-primary" href={`mailto:${email}`}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.email}></span>{email}</a><a class="facebook-link inline-flex w-fit items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary" href={facebookHref} target="_blank" rel="noreferrer"><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.facebook}></span>{translations.home.contact.facebook}<span class="sr-only">, {translations.home.contact.externalPage}</span></a></address></div><div><h3 class="text-sm font-bold uppercase tracking-[0.15em] text-primary">{translations.home.contact.location}</h3><address class="mt-5 flex items-start gap-2 not-italic leading-7 text-gray-200"><span class="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.location}></span><span>{address}</span></address><a class="mt-4 inline-flex items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 hover:text-primary" href={mapHref} target="_blank" rel="noreferrer">{translations.home.contact.openMap}<span class="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={arrowIcon}></span></a></div><div class="overflow-hidden rounded-md border border-gray-700 sm:col-span-2"><iframe class="h-64 w-full border-0 grayscale sm:h-72" src={mapEmbedSrc} title={mapTitle} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></div></section>
   </main>
 </BaseLayout>
 
@@ -79,6 +110,58 @@ const services = [
   :global([data-theme='dark']) .hero-action-outline { border-color: var(--theme-text); color: var(--theme-text); }
   :global([data-theme='dark']) .hero-action-outline:hover, :global([data-theme='dark']) .hero-action-outline:focus-visible { border-color: var(--color-primary); background-color: var(--color-primary); color: var(--color-secondary); }
   :global([data-theme='dark']) .service-card:hover .service-icon { background-color: var(--color-primary) !important; color: var(--color-secondary) !important; }
+  .client-marquee {
+    position: relative;
+    touch-action: pan-x;
+    background: transparent;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
+  }
+  .client-item {
+    position: relative;
+    padding-inline: 0.15rem;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .client-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: transparent !important;
+    color: var(--color-primary);
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .client-mark svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor !important;
+    background: transparent !important;
+  }
+  .client-mark svg * {
+    fill: currentColor !important;
+  }
+  .client-track {
+    animation: client-marquee 56s linear infinite;
+    will-change: transform;
+  }
+  @keyframes client-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .client-track { animation: none; }
+  }
+  :global([data-theme='dark']) .client-marquee {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 100%);
+  }
+  :global([data-theme='dark']) .client-mark {
+    color: #f5c400;
+  }
   .hero-action:hover, .hero-action:focus-visible, .hero-action-outline:hover, .hero-action-outline:focus-visible { color: #fff; }
   .whatsapp-action, .whatsapp-action:visited, .whatsapp-action:hover, .whatsapp-action:focus-visible { color: var(--color-secondary); }
 </style>

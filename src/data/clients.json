@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Ecoplaza Centro Comercial",
+    "logo": "",
+    "description": "",
+    "icon": "leaf"
+  },
+  {
+    "name": "Mi centro",
+    "logo": "",
+    "description": "",
+    "icon": "building"
+  },
+  {
+    "name": "Colegio Bicentenario",
+    "logo": "",
+    "description": "",
+    "icon": "award"
+  },
+  {
+    "name": "Placeholder cliente 4",
+    "logo": "",
+    "description": "",
+    "icon": "bolt"
+  },
+  {
+    "name": "Placeholder cliente 5",
+    "logo": "",
+    "description": "",
+    "icon": "star"
+  }
+]

@@ -85,6 +85,13 @@ const esCO = {
       description: 'El portafolio estará disponible cuando existan piezas aprobadas para compartir.',
       status: 'Próximamente',
     },
+    clients: {
+      eyebrow: 'Clientes',
+      title: 'Confían en nosotros',
+      description: 'Una selección de clientes y proyectos con los que Diamond Publicidad ha trabajado de forma clara y directa.',
+      providerNote: 'Trabajamos como proveedor de impresión digital de gran formato para otros publicistas y agencias que necesitan una ejecución clara y precisa.',
+      listLabel: 'Lista de clientes',
+    },
     contact: {
       eyebrow: 'Contacto',
       title: 'Hablemos.',
@@ -182,6 +189,13 @@ const enUS = {
       title: 'Portfolio',
       description: 'The portfolio will be available when approved pieces are ready to share.',
       status: 'Coming soon',
+    },
+    clients: {
+      eyebrow: 'Clients',
+      title: 'They trust us',
+      description: 'A selection of clients and projects worked on by Diamond Publicidad in a clear and direct way.',
+      providerNote: 'We work as a supplier of large-format digital printing for other publicists and agencies that need a clear and precise execution.',
+      listLabel: 'Client list',
     },
     contact: {
       eyebrow: 'Contact',
