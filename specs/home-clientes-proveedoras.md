@@ -19,17 +19,23 @@ Definir una sección del home que presente a los clientes de Diamond Publicidad 
 ## Decisions verified and implemented
 
 - La sección se resolvió como una franja de texto continuo, sin cajas, sin tarjeta, sin fondo de bloque y sin pseudo-elementos visuales para cada item.
-- El movimiento se mantiene en bucle continuo, lento y pasivo, con un desvanecimiento lateral discreto para evitar cortes abruptos en los bordes.
+- La fuente de datos se mantiene en `src/data/clients.json`, con los tres clientes confirmados y en el orden aprobado: Ecoplaza Centro Comercial, Mi centro y Colegio Bicentenario.
+- El movimiento se mantiene en un bucle CSS continuo, lento y pasivo de 56 segundos, sin pausa por hover ni por focus.
+- El track repite seis grupos idénticos y cada grupo incluye su espacio de separación final; esto garantiza contenido suficiente en el viewport y permite desplazar exactamente el 50% del track sin salto visible al reiniciar la animación.
+- Las copias posteriores al primer grupo se marcan con `aria-hidden` para que la repetición visual no duplique el contenido para tecnologías de asistencia.
+- La animación se desactiva con `prefers-reduced-motion`, dejando el contenido estático y legible.
+- El carrusel utiliza una máscara lateral discreta para suavizar la entrada y salida de los nombres sin agregar controles visibles.
 - El icono usado como referencia por cliente queda mínimo y transparente, con amarillo sutil como acento, sin fondo ni badge que alteren la lectura del nombre.
 - Las entradas en dark mode mantienen un fade compatible con el fondo para evitar una diferencia visible entre la zona del carrusel y el resto del bloque.
 - La data de clientes se conserva en JSON con estructura simple (`name`, `logo`, `description` y `icon` opcional para la marca visual auxiliar cuando no hay logo aprobado).
-- La información actualizada quedó validada en navegación estática y compilación del proyecto.
+- La solución no incorpora dependencias nuevas ni JavaScript de cliente para el movimiento.
+- La información actualizada quedó validada mediante comprobación de Astro y compilación estática del proyecto.
 
 ## Acceptance Criteria
 
 - La página de inicio incluye una sección dedicada a clientes y su presencia es visible sin requerir navegación desde el header.
 - No existe un enlace del header ni un ancla que lleve a la sección de clientes.
-- La sección presenta los cinco nombres indicados por el propietario, con el orden de aparición solicitado.
+- La sección presenta los tres nombres confirmados por el propietario, con el orden de aparición solicitado: Ecoplaza Centro Comercial, Mi centro y Colegio Bicentenario.
 - Cada cliente puede definirse con nombre, logo y descripción; cuando no hay logo aprobado, solo se muestra el nombre y la descripción si existe.
 - La presentación usa un movimiento continuo sutil y sin controles visibles, sin interrupción por hover o foco del usuario.
 - La experiencia cumple con `prefers-reduced-motion`, ofreciendo una lectura clara sin movimiento obligatorio.

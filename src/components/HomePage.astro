@@ -32,10 +32,12 @@ const services = [
   { content: translations.home.services.design, icon: icons.design },
 ];
 const clients = Array.isArray(clientData) ? clientData : [];
-const clientMarqueeItems = [...clients, ...clients].map((client: { name: string; icon?: string; logo?: string; description?: string }) => ({
-  ...client,
-  icon: client.icon && client.icon in icons ? icons[client.icon as keyof typeof icons] : icons.gem,
-}));
+const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map((group) =>
+  group.map((client: { name: string; icon?: string; logo?: string; description?: string }) => ({
+    ...client,
+    icon: client.icon && client.icon in icons ? icons[client.icon as keyof typeof icons] : icons.gem,
+  })),
+);
 ---
 
 <BaseLayout title={translations.metadata.title} description={translations.metadata.description} locale={locale} translations={translations}>
@@ -80,19 +82,23 @@ const clientMarqueeItems = [...clients, ...clients].map((client: { name: string;
 
         <p class="mt-8 max-w-3xl text-base leading-7 text-text-muted">{translations.home.clients.providerNote}</p>
 
-        <div class="client-marquee mt-10 overflow-hidden" aria-label={translations.home.clients.listLabel}>
-          <div class="client-track flex w-max items-center gap-6 px-3 py-4 sm:gap-8 sm:px-4">
-            {clientMarqueeItems.map((client, index) => (
-              <div class="client-item flex items-center gap-3 whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary" aria-hidden={index >= clients.length ? 'true' : undefined}>
-                {client.logo ? (
-                  <img class="h-5 w-auto" src={client.logo} alt={client.name} loading="lazy" decoding="async" />
-                ) : (
-                  <span class="client-mark inline-flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true" set:html={client.icon}></span>
-                )}
-                <span class="flex items-baseline gap-2">
-                  <span>{client.name}</span>
-                  {client.description ? <span class="text-sm font-semibold normal-case tracking-normal text-text-muted">{client.description}</span> : null}
-                </span>
+        <div class="client-marquee mt-10 overflow-hidden px-3 py-4 sm:px-4" aria-label={translations.home.clients.listLabel}>
+          <div class="client-track">
+            {clientMarqueeGroups.map((group, groupIndex) => (
+              <div class="client-group" aria-hidden={groupIndex > 0 ? 'true' : undefined}>
+                {group.map((client) => (
+                  <div class="client-item flex items-center gap-3 whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary">
+                    {client.logo ? (
+                      <img class="h-5 w-auto" src={client.logo} alt={client.name} loading="lazy" decoding="async" />
+                    ) : (
+                      <span class="client-mark inline-flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true" set:html={client.icon}></span>
+                    )}
+                    <span class="flex items-baseline gap-2">
+                      <span>{client.name}</span>
+                      {client.description ? <span class="text-sm font-semibold normal-case tracking-normal text-text-muted">{client.description}</span> : null}
+                    </span>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
@@ -119,14 +125,30 @@ const clientMarqueeItems = [...clients, ...clients].map((client: { name: string;
   :global([data-theme='dark']) .hero-action-outline:hover, :global([data-theme='dark']) .hero-action-outline:focus-visible { border-color: var(--color-primary); background-color: var(--color-primary); color: var(--color-secondary); }
   :global([data-theme='dark']) .service-card:hover .service-icon { background-color: var(--color-primary) !important; color: var(--color-secondary) !important; }
   .client-marquee {
+    --client-gap: clamp(1.5rem, 2vw, 2rem);
     position: relative;
     touch-action: auto;
     background: transparent;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
   }
+  .client-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: client-marquee 56s linear infinite;
+    will-change: transform;
+  }
+  .client-group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: var(--client-gap);
+    padding-right: var(--client-gap);
+  }
   .client-item {
     position: relative;
+    flex-shrink: 0;
     padding-inline: 0.15rem;
     background: transparent !important;
     box-shadow: none !important;
@@ -151,10 +173,6 @@ const clientMarqueeItems = [...clients, ...clients].map((client: { name: string;
   }
   .client-mark svg * {
     fill: currentColor !important;
-  }
-  .client-track {
-    animation: client-marquee 56s linear infinite;
-    will-change: transform;
   }
   @keyframes client-marquee {
     from { transform: translateX(0); }
