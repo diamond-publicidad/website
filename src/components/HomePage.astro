@@ -1,6 +1,6 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faArrowUpRightFromSquare, faAward, faBolt, faBuilding, faBullhorn, faEnvelope, faGem, faLeaf, faLocationDot, faPenRuler, faPhone, faPrint, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faAward, faBolt, faBuilding, faBullhorn, faEnvelope, faGem, faLeaf, faLocationDot, faPenRuler, faPhone, faPrint, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import clientData from '../data/clients.json';
@@ -21,7 +21,7 @@ const facebookHref = 'https://www.facebook.com/diamondpublicidadleon/';
 const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 const mapTitle = translations.home.contact.mapTitle.replace('{address}', address);
-const arrowIcon = icon(faArrowUpRightFromSquare).html.join('');
+const arrowIcon = icon(faArrowRight).html.join('');
 const icons = {
   advertising: icon(faBullhorn).html.join(''), award: icon(faAward).html.join(''), bolt: icon(faBolt).html.join(''), building: icon(faBuilding).html.join(''), email: icon(faEnvelope).html.join(''), facebook: icon(faFacebook).html.join(''), gem: icon(faGem).html.join(''), leaf: icon(faLeaf).html.join(''), location: icon(faLocationDot).html.join(''), phone: icon(faPhone).html.join(''), print: icon(faPrint).html.join(''), design: icon(faPenRuler).html.join(''), star: icon(faStar).html.join(''), whatsapp: icon(faWhatsapp).html.join(''),
 };
