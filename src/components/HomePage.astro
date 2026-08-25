@@ -1,10 +1,25 @@
 ---
-import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faArrowRight, faArrowUpRightFromSquare, faAward, faBolt, faBuilding, faBullhorn, faEnvelope, faGem, faLeaf, faLocationDot, faPenRuler, faPhone, faPrint, faStar } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import clientData from '../data/clients.json';
-import type { Locale, Translations } from '../i18n';
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import {
+  faArrowRight,
+  faArrowUpRightFromSquare,
+  faAward,
+  faBolt,
+  faBuilding,
+  faBullhorn,
+  faEnvelope,
+  faGem,
+  faLeaf,
+  faLocationDot,
+  faPenRuler,
+  faPhone,
+  faPrint,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import clientData from "../data/clients.json";
+import type { Locale, Translations } from "../i18n";
 
 interface Props {
   locale: Locale;
@@ -12,19 +27,35 @@ interface Props {
 }
 
 const { locale, translations } = Astro.props;
-const phone = '57 3107860585';
-const phoneHref = 'tel:+573107860585';
-const email = 'nelsongleon@gmail.com';
-const address = 'Cll 12 # 16 - 18, Funza, Colombia';
+const phone = "57 3107860585";
+const phoneHref = "tel:+573107860585";
+const email = "nelsongleon@gmail.com";
+const address = "Cll 12 # 16 - 18, Funza, Colombia";
 const whatsappHref = `https://wa.me/573107860585?text=${encodeURIComponent(translations.home.contact.whatsappMessage)}`;
-const facebookHref = 'https://www.facebook.com/diamondpublicidadleon/';
+const facebookHref = "https://www.facebook.com/diamondpublicidadleon/";
 const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
-const mapTitle = translations.home.contact.mapTitle.replace('{address}', address);
-const internalArrowIcon = icon(faArrowRight).html.join('');
-const externalArrowIcon = icon(faArrowUpRightFromSquare).html.join('');
+const mapTitle = translations.home.contact.mapTitle.replace(
+  "{address}",
+  address,
+);
+const internalArrowIcon = icon(faArrowRight).html.join("");
+const externalArrowIcon = icon(faArrowUpRightFromSquare).html.join("");
 const icons = {
-  advertising: icon(faBullhorn).html.join(''), award: icon(faAward).html.join(''), bolt: icon(faBolt).html.join(''), building: icon(faBuilding).html.join(''), email: icon(faEnvelope).html.join(''), facebook: icon(faFacebook).html.join(''), gem: icon(faGem).html.join(''), leaf: icon(faLeaf).html.join(''), location: icon(faLocationDot).html.join(''), phone: icon(faPhone).html.join(''), print: icon(faPrint).html.join(''), design: icon(faPenRuler).html.join(''), star: icon(faStar).html.join(''), whatsapp: icon(faWhatsapp).html.join(''),
+  advertising: icon(faBullhorn).html.join(""),
+  award: icon(faAward).html.join(""),
+  bolt: icon(faBolt).html.join(""),
+  building: icon(faBuilding).html.join(""),
+  email: icon(faEnvelope).html.join(""),
+  facebook: icon(faFacebook).html.join(""),
+  gem: icon(faGem).html.join(""),
+  leaf: icon(faLeaf).html.join(""),
+  location: icon(faLocationDot).html.join(""),
+  phone: icon(faPhone).html.join(""),
+  print: icon(faPrint).html.join(""),
+  design: icon(faPenRuler).html.join(""),
+  star: icon(faStar).html.join(""),
+  whatsapp: icon(faWhatsapp).html.join(""),
 };
 const services = [
   { content: translations.home.services.largeFormat, icon: icons.print },
@@ -32,162 +63,385 @@ const services = [
   { content: translations.home.services.design, icon: icons.design },
 ];
 const clients = Array.isArray(clientData) ? clientData : [];
-const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map((group) =>
-  group.map((client: { name: string; icon?: string; logo?: string; description?: string }) => ({
-    ...client,
-    icon: client.icon && client.icon in icons ? icons[client.icon as keyof typeof icons] : icons.gem,
-  })),
+const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
+  (group) =>
+    group.map(
+      (client: {
+        name: string;
+        icon?: string;
+        logo?: string;
+        description?: string;
+      }) => ({
+        ...client,
+        icon:
+          client.icon && client.icon in icons
+            ? icons[client.icon as keyof typeof icons]
+            : icons.gem,
+      }),
+    ),
 );
 ---
 
-<BaseLayout title={translations.metadata.title} description={translations.metadata.description} locale={locale} translations={translations}>
-  <main id="inicio">
-    <section class="relative overflow-hidden border-b border-border bg-surface" aria-labelledby="page-title">
-      <div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:px-12 lg:py-32">
+<BaseLayout
+  title={translations.metadata.title}
+  description={translations.metadata.description}
+  locale={locale}
+  translations={translations}
+>
+  <main
+    id="inicio"
+    class="dark:[&_.bg-surface]:bg-[var(--theme-surface)] dark:[&_.bg-white]:bg-[var(--theme-card)] dark:[&_.bg-secondary]:bg-[var(--theme-inverse)] dark:[&_.border-border]:border-[var(--theme-border)] dark:[&_.text-text-muted]:text-[var(--theme-muted)] dark:[&_.text-secondary]:text-[var(--theme-text)]"
+  >
+    <section
+      class="relative overflow-hidden border-b border-border bg-surface"
+      aria-labelledby="page-title"
+    >
+      <div
+        class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:px-12 lg:py-32"
+      >
         <div class="relative z-10">
-          <p class="mb-6 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.18em] text-text-muted"><span class="h-2 w-2 bg-primary" aria-hidden="true"></span>{translations.home.hero.eyebrow}</p>
-          <h1 id="page-title" class="max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight text-secondary sm:text-6xl lg:text-8xl">{translations.home.hero.title}</h1>
-          <p class="mt-8 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl">{translations.home.hero.description}</p>
+          <p
+            class="mb-6 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.18em] text-text-muted"
+          >
+            <span class="h-2 w-2 bg-primary" aria-hidden="true"></span>{
+              translations.home.hero.eyebrow
+            }
+          </p>
+          <h1
+            id="page-title"
+            class="max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight text-secondary sm:text-6xl lg:text-8xl"
+          >
+            {translations.home.hero.title}
+          </h1>
+          <p
+            class="mt-8 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl"
+          >
+            {translations.home.hero.description}
+          </p>
           <div class="mt-10 flex flex-wrap gap-4">
-            <a class="hero-action inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-secondary" href="#contacto">{translations.home.hero.primaryAction}<span class="ml-3 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={internalArrowIcon}></span></a>
-            <a class="hero-action-outline inline-flex min-h-12 items-center justify-center rounded-md border border-secondary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-secondary" href="#servicios">{translations.home.hero.secondaryAction}</a>
+            <a
+              class="inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-secondary hover:text-white focus-visible:bg-secondary focus-visible:text-white dark:hover:bg-[var(--theme-text)] dark:hover:text-secondary dark:focus-visible:bg-[var(--theme-text)] dark:focus-visible:text-secondary"
+              href="#contacto"
+              >{translations.home.hero.primaryAction}<span
+                class="ml-3 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                aria-hidden="true"
+                set:html={internalArrowIcon}
+              /></a
+            >
+            <a
+              class="inline-flex min-h-12 items-center justify-center rounded-md border border-secondary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-secondary hover:text-white focus-visible:bg-secondary focus-visible:text-white dark:border-[var(--theme-text)] dark:text-[var(--theme-text)] dark:hover:border-primary dark:hover:bg-primary dark:hover:text-secondary dark:focus-visible:border-primary dark:focus-visible:bg-primary dark:focus-visible:text-secondary"
+              href="#servicios">{translations.home.hero.secondaryAction}</a
+            >
           </div>
         </div>
-        <div class="relative min-h-64 overflow-hidden border-2 border-secondary bg-secondary p-7 text-white sm:min-h-72 lg:min-h-96 lg:p-10" aria-label={translations.home.hero.identityLabel}>
-          <div class="absolute right-0 top-0 h-24 w-24 border-b-2 border-l-2 border-primary sm:h-32 sm:w-32" aria-hidden="true"></div>
-          <span class="pointer-events-none absolute -bottom-8 -right-6 h-56 w-56 text-white/10 [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.print}></span>
-          <div class="flex h-full flex-col justify-between gap-10"><span class="relative inline-flex h-16 w-16 items-center justify-center text-primary [&>svg]:h-12 [&>svg]:w-12" aria-hidden="true" set:html={icons.print}></span><div><span class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{translations.home.hero.identityEyebrow}</span><p class="mt-5 max-w-xs text-3xl font-bold leading-tight sm:text-4xl">{translations.home.hero.identityText}</p></div></div>
+        <div
+          class="relative min-h-64 overflow-hidden border-2 border-secondary bg-secondary p-7 text-white sm:min-h-72 lg:min-h-96 lg:p-10"
+          aria-label={translations.home.hero.identityLabel}
+        >
+          <div
+            class="absolute right-0 top-0 h-24 w-24 border-b-2 border-l-2 border-primary sm:h-32 sm:w-32"
+            aria-hidden="true"
+          >
+          </div>
+          <span
+            class="pointer-events-none absolute -bottom-8 -right-6 h-56 w-56 text-white/10 [&>svg]:h-full [&>svg]:w-full"
+            aria-hidden="true"
+            set:html={icons.print}
+          />
+          <div class="flex h-full flex-col justify-between gap-10">
+            <span
+              class="relative inline-flex h-16 w-16 items-center justify-center text-primary [&>svg]:h-12 [&>svg]:w-12"
+              aria-hidden="true"
+              set:html={icons.print}
+            /><div>
+              <span
+                class="text-sm font-semibold uppercase tracking-[0.2em] text-primary"
+                >{translations.home.hero.identityEyebrow}</span
+              ><p
+                class="mt-5 max-w-xs text-3xl font-bold leading-tight sm:text-4xl"
+              >
+                {translations.home.hero.identityText}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="servicios" class="scroll-mt-8 border-y border-border bg-surface" aria-labelledby="services-title">
+    <section
+      id="servicios"
+      class="scroll-mt-8 border-y border-border bg-surface"
+      aria-labelledby="services-title"
+    >
       <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
-        <div class="flex flex-col gap-5 border-b border-border pb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-8"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.home.services.eyebrow}</p><h2 id="services-title" class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">{translations.home.services.title}</h2></div><p class="max-w-xl text-lg leading-8 text-text-muted">{translations.home.services.description}</p></div>
-        <div class="mt-10 grid gap-5 lg:grid-cols-3">
-          {services.map(({ content, icon: serviceIcon }) => <article class="service-card group relative overflow-hidden rounded-md border-l-4 border-primary bg-white p-6 transition duration-200 hover:-translate-y-1 hover:border-secondary hover:shadow-sm sm:p-7"><span class="pointer-events-none absolute -bottom-5 -right-4 h-32 w-32 text-secondary/5 transition-colors duration-200 group-hover:text-primary/15 [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={serviceIcon}></span><span class="service-icon relative inline-flex h-11 w-11 items-center justify-center bg-secondary text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-secondary [&>svg]:h-5 [&>svg]:w-5" aria-hidden="true" set:html={serviceIcon}></span><h3 class="mt-7 text-xl font-extrabold leading-tight text-secondary">{content.title}</h3><p class="mt-4 text-base leading-7 text-text-muted">{content.description}</p><ul class="mt-5 grid gap-3 border-t border-border pt-5 text-sm font-semibold text-secondary">{content.items.map((item) => <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 shrink-0 bg-primary" aria-hidden="true"></span>{item}</li>)}</ul></article>)}
-        </div>
-      </div>
-    </section>
-
-    <section class="border-y border-border bg-white" aria-labelledby="clients-title">
-      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
-        <div class="flex flex-col gap-5 border-b border-border pb-10 lg:flex-row lg:items-end lg:justify-between">
+        <div
+          class="flex flex-col gap-5 border-b border-border pb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-8"
+        >
           <div>
-            <p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.home.clients.eyebrow}</p>
-            <h2 id="clients-title" class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">{translations.home.clients.title}</h2>
+            <p
+              class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted"
+            >
+              {translations.home.services.eyebrow}
+            </p><h2
+              id="services-title"
+              class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl"
+            >
+              {translations.home.services.title}
+            </h2>
+          </div><p class="max-w-xl text-lg leading-8 text-text-muted">
+            {translations.home.services.description}
+          </p>
+        </div>
+        <div class="mt-10 grid gap-5 lg:grid-cols-3">
+          {
+            services.map(({ content, icon: serviceIcon }) => (
+              <article class="group relative overflow-hidden rounded-md border-l-4 border-primary bg-white p-6 transition duration-200 hover:-translate-y-1 hover:border-secondary hover:shadow-sm sm:p-7">
+                <>
+                  <span
+                    class="pointer-events-none absolute -bottom-5 -right-4 h-32 w-32 text-secondary/5 transition-colors duration-200 group-hover:text-primary/15 [&>svg]:h-full [&>svg]:w-full"
+                    aria-hidden="true"
+                    set:html={serviceIcon}
+                  />
+                  <span
+                    class="relative inline-flex h-11 w-11 items-center justify-center bg-secondary text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-secondary dark:group-hover:bg-primary dark:group-hover:text-secondary [&>svg]:h-5 [&>svg]:w-5"
+                    aria-hidden="true"
+                    set:html={serviceIcon}
+                  />
+                  <h3 class="mt-7 text-xl font-extrabold leading-tight text-secondary">
+                    {content.title}
+                  </h3>
+                  <p class="mt-4 text-base leading-7 text-text-muted">
+                    {content.description}
+                  </p>
+                  <ul class="mt-5 grid gap-3 border-t border-border pt-5 text-sm font-semibold text-secondary">
+                    {content.items.map((item) => (
+                      <li class="flex items-center gap-3">
+                        <span
+                          class="h-1.5 w-1.5 shrink-0 bg-primary"
+                          aria-hidden="true"
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="border-y border-border bg-white"
+      aria-labelledby="clients-title"
+    >
+      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+        <div
+          class="flex flex-col gap-5 border-b border-border pb-10 lg:flex-row lg:items-end lg:justify-between"
+        >
+          <div>
+            <p
+              class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted"
+            >
+              {translations.home.clients.eyebrow}
+            </p>
+            <h2
+              id="clients-title"
+              class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl"
+            >
+              {translations.home.clients.title}
+            </h2>
           </div>
-          <p class="max-w-2xl text-lg leading-8 text-text-muted">{translations.home.clients.description}</p>
+          <p class="max-w-2xl text-lg leading-8 text-text-muted">
+            {translations.home.clients.description}
+          </p>
         </div>
 
-        <p class="mt-8 max-w-3xl text-base leading-7 text-text-muted">{translations.home.clients.providerNote}</p>
+        <p class="mt-8 max-w-3xl text-base leading-7 text-text-muted">
+          {translations.home.clients.providerNote}
+        </p>
 
-        <div class="client-marquee mt-10 overflow-hidden px-3 py-4 sm:px-4" aria-label={translations.home.clients.listLabel}>
-          <div class="client-track">
-            {clientMarqueeGroups.map((group, groupIndex) => (
-              <div class="client-group" aria-hidden={groupIndex > 0 ? 'true' : undefined}>
-                {group.map((client) => (
-                  <div class="client-item flex items-center gap-3 whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary">
-                    {client.logo ? (
-                      <img class="h-5 w-auto" src={client.logo} alt={client.name} loading="lazy" decoding="async" />
-                    ) : (
-                      <span class="client-mark inline-flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true" set:html={client.icon}></span>
-                    )}
-                    <span class="flex items-baseline gap-2">
-                      <span>{client.name}</span>
-                      {client.description ? <span class="text-sm font-semibold normal-case tracking-normal text-text-muted">{client.description}</span> : null}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ))}
+        <div
+          class="relative mt-10 overflow-hidden bg-transparent px-3 py-4 [--client-gap:clamp(1.5rem,2vw,2rem)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgb(0_0_0)_8%,rgb(0_0_0)_92%,transparent_100%)] [mask-image:linear-gradient(to_right,transparent_0%,rgb(0_0_0)_8%,rgb(0_0_0)_92%,transparent_100%)] dark:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgb(0_0_0)_10%,rgb(0_0_0)_90%,transparent_100%)] dark:[mask-image:linear-gradient(to_right,transparent_0%,rgb(0_0_0)_10%,rgb(0_0_0)_90%,transparent_100%)] sm:px-4"
+          aria-label={translations.home.clients.listLabel}
+        >
+          <div
+            class="flex w-max items-center [animation:client-marquee_56s_linear_infinite] will-change-transform motion-reduce:animate-none"
+          >
+            {
+              clientMarqueeGroups.map((group, groupIndex) => (
+                <div
+                  class="flex shrink-0 items-center gap-[var(--client-gap)] pr-[var(--client-gap)]"
+                  aria-hidden={groupIndex > 0 ? "true" : undefined}
+                >
+                  {group.map((client) => (
+                    <div class="relative flex shrink-0 items-center gap-3 bg-transparent px-[0.15rem] whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary">
+                      {client.logo ? (
+                        <img
+                          class="h-5 w-auto"
+                          src={client.logo}
+                          alt={client.name}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <span
+                          class="inline-flex h-5 w-5 items-center justify-center bg-transparent text-primary [&>svg]:h-4 [&>svg]:w-4 [&>svg]:fill-current [&>svg_*]:fill-current"
+                          aria-hidden="true"
+                          set:html={client.icon}
+                        />
+                      )}
+                      <span class="flex items-baseline gap-2">
+                        <span>{client.name}</span>
+                        {client.description ? (
+                          <span class="text-sm font-semibold normal-case tracking-normal text-text-muted">
+                            {client.description}
+                          </span>
+                        ) : null}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
     </section>
 
-    <section class="border-y border-border bg-surface" aria-labelledby="portfolio-title"><div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.7fr_1.3fr] lg:px-12"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.home.portfolio.eyebrow}</p><h2 id="portfolio-title" class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">{translations.home.portfolio.title}</h2></div><div class="border-t border-border pt-6"><p class="max-w-2xl text-lg leading-8 text-text-muted">{translations.home.portfolio.description}</p><p class="mt-6 inline-flex rounded-md border border-border bg-white px-4 py-3 text-sm font-semibold text-secondary">{translations.home.portfolio.status}</p></div></div></section>
+    <section
+      class="border-y border-border bg-surface"
+      aria-labelledby="portfolio-title"
+    >
+      <div
+        class="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.7fr_1.3fr] lg:px-12"
+      >
+        <div>
+          <p
+            class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted"
+          >
+            {translations.home.portfolio.eyebrow}
+          </p><h2
+            id="portfolio-title"
+            class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl"
+          >
+            {translations.home.portfolio.title}
+          </h2>
+        </div><div class="border-t border-border pt-6">
+          <p class="max-w-2xl text-lg leading-8 text-text-muted">
+            {translations.home.portfolio.description}
+          </p><p
+            class="mt-6 inline-flex rounded-md border border-border bg-white px-4 py-3 text-sm font-semibold text-secondary"
+          >
+            {translations.home.portfolio.status}
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <section id="contacto" class="scroll-mt-8 bg-secondary text-white" aria-labelledby="contact-title"><div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-12"><div><p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">{translations.home.contact.eyebrow}</p><h2 id="contact-title" class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">{translations.home.contact.title}</h2><p class="mt-6 max-w-md leading-7 text-gray-300">{translations.home.contact.description}</p><a class="whatsapp-action mt-8 inline-flex min-h-12 items-center rounded-md bg-primary px-6 py-3 font-bold no-underline transition-colors duration-200 hover:bg-white" href={whatsappHref} target="_blank" rel="noreferrer"><span class="mr-3 inline-flex h-5 w-5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.whatsapp}></span>{translations.home.contact.whatsapp}</a></div><div class="grid gap-8 sm:grid-cols-2"><div><h3 class="text-sm font-bold uppercase tracking-[0.15em] text-primary">{translations.home.contact.channels}</h3><address class="mt-5 grid gap-3 not-italic leading-7 text-gray-200"><a class="inline-flex w-fit items-center gap-2 hover:text-primary" href={phoneHref}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.phone}></span>{translations.home.contact.phonePrefix} {phone}</a><a class="inline-flex w-fit items-center gap-2 break-all hover:text-primary" href={`mailto:${email}`}><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.email}></span>{email}</a><a class="facebook-link inline-flex w-fit items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary" href={facebookHref} target="_blank" rel="noreferrer"><span class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.facebook}></span>{translations.home.contact.facebook}<span class="sr-only">, {translations.home.contact.externalPage}</span></a></address></div><div><h3 class="text-sm font-bold uppercase tracking-[0.15em] text-primary">{translations.home.contact.location}</h3><address class="mt-5 flex items-start gap-2 not-italic leading-7 text-gray-200"><span class="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={icons.location}></span><span>{address}</span></address><a class="mt-4 inline-flex items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 hover:text-primary" href={mapHref} target="_blank" rel="noreferrer">{translations.home.contact.openMap}<span class="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full" aria-hidden="true" set:html={externalArrowIcon}></span></a></div><div class="overflow-hidden rounded-md border border-gray-700 sm:col-span-2"><iframe class="h-64 w-full border-0 grayscale sm:h-72" src={mapEmbedSrc} title={mapTitle} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></div></section>
+    <section
+      id="contacto"
+      class="scroll-mt-8 bg-secondary text-white"
+      aria-labelledby="contact-title"
+    >
+      <div
+        class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-12"
+      >
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">
+            {translations.home.contact.eyebrow}
+          </p><h2
+            id="contact-title"
+            class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl"
+          >
+            {translations.home.contact.title}
+          </h2><p class="mt-6 max-w-md leading-7 text-gray-300">
+            {translations.home.contact.description}
+          </p><a
+            class="mt-8 inline-flex min-h-12 items-center rounded-md bg-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-white"
+            href={whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            ><span
+              class="mr-3 inline-flex h-5 w-5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+              aria-hidden="true"
+              set:html={icons.whatsapp}
+            />{translations.home.contact.whatsapp}</a>
+        </div><div class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3
+              class="text-sm font-bold uppercase tracking-[0.15em] text-primary"
+            >
+              {translations.home.contact.channels}
+            </h3><address
+              class="mt-5 grid gap-3 not-italic leading-7 text-gray-200"
+            >
+              <a
+                class="inline-flex w-fit items-center gap-2 hover:text-primary"
+                href={phoneHref}
+                ><span
+                  class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                  aria-hidden="true"
+                  set:html={icons.phone}
+                />{translations.home.contact.phonePrefix}
+                {phone}</a
+              ><a
+                class="inline-flex w-fit items-center gap-2 break-all hover:text-primary"
+                href={`mailto:${email}`}
+                ><span
+                  class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                  aria-hidden="true"
+                  set:html={icons.email}
+                />{email}</a
+              ><a
+                class="facebook-link inline-flex w-fit items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary"
+                href={facebookHref}
+                target="_blank"
+                rel="noreferrer"
+                ><span
+                  class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                  aria-hidden="true"
+                  set:html={icons.facebook}
+                />{translations.home.contact.facebook}<span class="sr-only"
+                  >, {translations.home.contact.externalPage}</span
+                ></a>
+            </address>
+          </div><div>
+            <h3
+              class="text-sm font-bold uppercase tracking-[0.15em] text-primary"
+            >
+              {translations.home.contact.location}
+            </h3><address
+              class="mt-5 flex items-start gap-2 not-italic leading-7 text-gray-200"
+            >
+              <span
+                class="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                aria-hidden="true"
+                set:html={icons.location}
+              /><span>{address}</span>
+            </address><a
+              class="mt-4 inline-flex items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 hover:text-primary"
+              href={mapHref}
+              target="_blank"
+              rel="noreferrer"
+              >{translations.home.contact.openMap}<span
+                class="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                aria-hidden="true"
+                set:html={externalArrowIcon}
+              /></a>
+          </div><div
+            class="overflow-hidden rounded-md border border-gray-700 sm:col-span-2"
+          >
+            <iframe
+              class="h-64 w-full border-0 grayscale sm:h-72"
+              src={mapEmbedSrc}
+              title={mapTitle}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </BaseLayout>
-
-<style>
-  :global([data-theme='dark']) .bg-surface { background-color: var(--theme-surface); }
-  :global([data-theme='dark']) .bg-white { background-color: var(--theme-card); }
-  :global([data-theme='dark']) .bg-secondary { background-color: var(--theme-inverse); }
-  :global([data-theme='dark']) .border-border { border-color: var(--theme-border); }
-  :global([data-theme='dark']) .text-text-muted { color: var(--theme-muted); }
-  :global([data-theme='dark']) .text-secondary { color: var(--theme-text); }
-  :global([data-theme='dark']) .hero-action, :global([data-theme='dark']) .whatsapp-action { color: var(--color-secondary); }
-  :global([data-theme='dark']) .hero-action:hover, :global([data-theme='dark']) .hero-action:focus-visible { background-color: var(--theme-text); color: var(--color-secondary); }
-  :global([data-theme='dark']) .hero-action-outline { border-color: var(--theme-text); color: var(--theme-text); }
-  :global([data-theme='dark']) .hero-action-outline:hover, :global([data-theme='dark']) .hero-action-outline:focus-visible { border-color: var(--color-primary); background-color: var(--color-primary); color: var(--color-secondary); }
-  :global([data-theme='dark']) .service-card:hover .service-icon { background-color: var(--color-primary) !important; color: var(--color-secondary) !important; }
-  .client-marquee {
-    --client-gap: clamp(1.5rem, 2vw, 2rem);
-    position: relative;
-    touch-action: auto;
-    background: transparent;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
-  }
-  .client-track {
-    display: flex;
-    width: max-content;
-    align-items: center;
-    animation: client-marquee 56s linear infinite;
-    will-change: transform;
-  }
-  .client-group {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    gap: var(--client-gap);
-    padding-right: var(--client-gap);
-  }
-  .client-item {
-    position: relative;
-    flex-shrink: 0;
-    padding-inline: 0.15rem;
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  .client-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    background: transparent !important;
-    color: var(--color-primary);
-    border: none !important;
-    box-shadow: none !important;
-  }
-  .client-mark svg {
-    width: 1rem;
-    height: 1rem;
-    fill: currentColor !important;
-    background: transparent !important;
-  }
-  .client-mark svg * {
-    fill: currentColor !important;
-  }
-  @keyframes client-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .client-track { animation: none; }
-  }
-  :global([data-theme='dark']) .client-marquee {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 100%);
-  }
-  :global([data-theme='dark']) .client-mark {
-    color: #f5c400;
-  }
-  .hero-action:hover, .hero-action:focus-visible, .hero-action-outline:hover, .hero-action-outline:focus-visible { color: #fff; }
-  .whatsapp-action, .whatsapp-action:visited, .whatsapp-action:hover, .whatsapp-action:focus-visible { color: var(--color-secondary); }
-</style>
