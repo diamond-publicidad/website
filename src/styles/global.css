@@ -106,7 +106,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--theme-text);
   text-decoration-color: var(--color-primary);
   text-underline-offset: 0.2em;
 }
@@ -134,4 +134,5 @@ input,
 select,
 textarea {
   font: inherit;
+  color: inherit;
 }
