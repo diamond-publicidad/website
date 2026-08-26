@@ -8,6 +8,7 @@ import {
   faBuilding,
   faBullhorn,
   faEnvelope,
+  faFolderOpen,
   faGem,
   faLeaf,
   faLocationDot,
@@ -48,6 +49,7 @@ const icons = {
   building: icon(faBuilding).html.join(""),
   email: icon(faEnvelope).html.join(""),
   facebook: icon(faFacebook).html.join(""),
+  folder: icon(faFolderOpen).html.join(""),
   gem: icon(faGem).html.join(""),
   leaf: icon(faLeaf).html.join(""),
   location: icon(faLocationDot).html.join(""),
@@ -328,11 +330,28 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
         </div><div class="border-t border-border pt-6">
           <p class="max-w-2xl text-lg leading-8 text-text-muted">
             {translations.home.portfolio.description}
-          </p><p
-            class="mt-6 inline-flex rounded-md border border-border bg-card px-4 py-3 text-sm font-semibold text-text"
-          >
-            {translations.home.portfolio.status}
           </p>
+          <div
+            class="mt-6 max-w-md rounded-md border border-primary/40 bg-primary/5 p-4 sm:p-5"
+            role="status"
+            aria-live="polite"
+          >
+            <div class="flex items-start gap-3">
+              <span
+                class="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-md border border-primary/30 bg-primary/10 text-lg text-primary"
+                aria-hidden="true"
+                set:html={icons.folder}
+              />
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-text-muted">
+                  {translations.home.portfolio.eyebrow}
+                </p>
+                <p class="mt-2 text-xl font-extrabold tracking-tight text-text">
+                  {translations.home.portfolio.status}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
