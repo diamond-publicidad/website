@@ -35,3 +35,15 @@ Incorporar un modo oscuro completo, coherente y accesible para la página públi
 - La solución funciona en viewport móvil y de escritorio, y la navegación por teclado no pierde ningún control ni enlace.
 - Con `prefers-reduced-motion: reduce`, el cambio de tema y la navegación siguen siendo comprensibles sin depender de animaciones.
 - `npm run check` y `npm run build` finalizan correctamente después de la implementación, sin añadir una dependencia de framework o servidor.
+
+## Implemented outcome and verified decisions
+
+La implementación quedó validada con estas decisiones confirmadas en código y verificación:
+
+- El sistema de tema se centralizó en tokens semánticos reutilizables desde `@theme inline` para `background`, `surface`, `card`, `text`, `text-muted`, `border` y `focus`, con variables dinámicas definidas en `:root` y `:root[data-theme='dark']`.
+- El texto de contenido general usa `text-text` y `text-text-muted`, mientras que `text-secondary` queda reservado para usos de marca y contextos fijos sobre amarillo o fondos oscuros, evitando que un mismo utility signifique distintos colores según el ancestro del componente.
+- Se eliminó el patrón de sobreescritura contextual por selector descendente en el bloque principal del inicio, que era la causa del comportamiento inconsistente entre el header y la hero section.
+- El control de tema conserva el valor actual, actualiza la etiqueta visible y mantiene la lógica del estado claro/oscuro con foco visible, teclado y persistencia local en navegador.
+- La navegación y los controles del menú móvil usan los mismos tokens del tema y ya no dependen de `dark:text-white` manuales para texto normal, manteniendo una jerarquía visual consistente en ambos temas.
+- Los iconos de la interfaz siguen heredando tamaño desde el texto y se mantiene el sistema de SVG del proyecto sin cargar un catálogo completo de Font Awesome.
+- La verificación final se ejecutó con `npm run check && npm run build`, con resultado: 0 errores, 0 warnings, 0 hints, y 4 páginas generadas correctamente.

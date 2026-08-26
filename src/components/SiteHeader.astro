@@ -22,64 +22,64 @@ const menuIcon = icon(faBars).html.join('');
 const closeIcon = icon(faXmark).html.join('');
 ---
 
-<header class="site-header sticky top-0 z-40 border-b border-border bg-[color-mix(in_srgb,var(--theme-card)_95%,transparent)] text-[var(--theme-text)] backdrop-blur-sm dark:bg-[color-mix(in_srgb,var(--theme-card)_88%,transparent)]" data-language-storage-key={languageStorageKey}>
+<header class="site-header sticky top-0 z-40 border-b border-border bg-card/95 text-text backdrop-blur-sm dark:bg-card/88" data-language-storage-key={languageStorageKey}>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-4 sm:px-8 lg:px-12">
     <a class="scroll-top flex items-center gap-3 no-underline" href="#inicio" aria-label={translations.navigation.home}>
-      <span class="inline-flex h-5 w-5 items-center justify-center text-[0.9rem] text-primary drop-shadow-[0_0.2rem_0.5rem_rgb(245_196_0_/_0.22)] [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={diamondIcon}></span>
+      <span class="text-lg text-primary" aria-hidden="true" set:html={diamondIcon}></span>
       <span class="text-base font-extrabold tracking-tight sm:text-lg">Diamond Publicidad</span>
     </a>
     <nav aria-label={translations.navigation.primary} class="flex items-center gap-4 sm:gap-7">
       <div class="settings-wrapper relative hidden sm:order-2 sm:block sm:ml-1">
-        <button id="settings-button" class="group inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] transition-colors duration-200 hover:border-primary hover:text-primary focus-visible:border-primary focus-visible:text-primary" type="button" aria-expanded="false" aria-controls="settings-menu" aria-label={translations.theme.heading} title={translations.theme.heading}>
-          <span class="inline-flex h-4 w-4 items-center justify-center [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={settingsIcon}></span>
+        <button id="settings-button" class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-card text-text transition-colors duration-200 hover:border-primary hover:text-primary focus-visible:border-primary focus-visible:text-primary" type="button" aria-expanded="false" aria-controls="settings-menu" aria-label={translations.theme.heading} title={translations.theme.heading}>
+          <span class="text-base" aria-hidden="true" set:html={settingsIcon}></span>
         </button>
         <div id="settings-menu" class="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-[13.5rem]" hidden>
-          <div class="grid gap-[0.65rem] rounded-xl border border-[var(--theme-border)] bg-[var(--theme-card)] p-3 shadow-[0_16px_36px_rgb(0_0_0_/_12%)]" role="menu" aria-label={translations.theme.heading}>
+          <div class="grid gap-[0.65rem] rounded-xl border border-border bg-card p-3 shadow-[0_16px_36px_rgb(0_0_0_/_12%)]" role="menu" aria-label={translations.theme.heading}>
             <div class="flex items-center justify-start gap-[0.65rem]">
               <label class="inline-flex h-7 cursor-pointer" title={translations.theme.label}>
                 <input id="theme-toggle" class="peer sr-only" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} />
-                <span class="relative inline-flex h-7 w-13 items-center justify-between rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)] px-[0.35rem] text-[var(--theme-muted)] peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--theme-focus)] peer-focus-visible:outline-offset-3">
-                  <span class="relative z-10 inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" set:html={moonIcon}></span>
-                  <span class="relative z-10 inline-flex h-4 w-4 shrink-0 items-center justify-center text-primary [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" set:html={sunIcon}></span>
-                  <span class="absolute left-[0.2rem] top-[0.2rem] z-20 h-[1.2rem] w-[1.2rem] rounded-full bg-[linear-gradient(145deg,color-mix(in_srgb,var(--theme-text)_85%,white),var(--theme-text))] shadow-[inset_0_1px_1px_rgb(255_255_255_/_42%),inset_0_-1px_1px_rgb(0_0_0_/_28%),0_1px_3px_rgb(0_0_0_/_34%)] transition duration-[180ms] peer-checked:translate-x-[1.45rem] peer-checked:bg-[linear-gradient(145deg,#ffe45c,var(--color-primary))]"></span>
+                <span class="relative inline-flex h-7 w-13 items-center justify-between rounded-full border border-border bg-theme-surface px-[0.35rem] text-text-muted peer-focus-visible:outline-2 peer-focus-visible:outline-focus peer-focus-visible:outline-offset-3 dark:text-gray-300">
+                  <span class="relative z-10 text-sm" set:html={moonIcon}></span>
+                  <span class="relative z-10 text-sm text-primary" set:html={sunIcon}></span>
+                  <span class="theme-toggle-thumb absolute left-[0.2rem] top-[0.2rem] z-20 h-[1.2rem] w-[1.2rem] rounded-full bg-[linear-gradient(145deg,color-mix(in_srgb,var(--theme-text)_85%,white),var(--theme-text))] shadow-[inset_0_1px_1px_rgb(255_255_255_/_42%),inset_0_-1px_1px_rgb(0_0_0_/_28%),0_1px_3px_rgb(0_0_0_/_34%)] transition-transform duration-[180ms] ease-out peer-checked:translate-x-[1.45rem] peer-checked:bg-[linear-gradient(145deg,#ffe45c,var(--color-primary))]"></span>
                 </span>
               </label>
-              <span class="theme-label text-[0.8rem] font-bold">{translations.theme.dark}</span>
+              <span class="theme-label text-xs font-bold text-text transition-colors duration-200">{translations.theme.dark}</span>
             </div>
             <div class="flex items-center justify-start gap-4" role="group" aria-label={translations.language.label}>
-              <button class="language-option inline-flex cursor-pointer items-center justify-center gap-[0.45rem] bg-transparent py-[0.2rem] font-bold text-[var(--theme-text)] transition-colors duration-150 hover:text-primary focus-visible:text-primary aria-pressed:text-primary" type="button" data-locale="es-co" aria-label={`${translations.language.esCO}`} aria-pressed={locale.slug === 'es-co'}><span class="inline-block h-[0.9rem] w-[1.3rem] rounded-[0.15rem] border border-black/15 bg-[linear-gradient(to_bottom,#fcd116_0_50%,#003893_50%_75%,#ce1126_75%_100%)] shadow-[inset_0_0_0_1px_rgb(255_255_255_/_18%)]" aria-hidden="true"></span><span class="text-[0.7rem] tracking-[0.08em]">ES</span></button>
-              <button class="language-option inline-flex cursor-pointer items-center justify-center gap-[0.45rem] bg-transparent py-[0.2rem] font-bold text-[var(--theme-text)] transition-colors duration-150 hover:text-primary focus-visible:text-primary aria-pressed:text-primary" type="button" data-locale="en-us" aria-label={`${translations.language.enUS}`} aria-pressed={locale.slug === 'en-us'}><span class="relative inline-block h-[0.9rem] w-[1.3rem] rounded-[0.15rem] border border-black/15 bg-[repeating-linear-gradient(to_bottom,#b22234_0_0.07rem,#fff_0.07rem_0.14rem)] shadow-[inset_0_0_0_1px_rgb(255_255_255_/_18%)] before:absolute before:left-0 before:top-0 before:h-[0.48rem] before:w-[0.58rem] before:bg-[#3c3b6e] before:content-['']" aria-hidden="true"></span><span class="text-[0.7rem] tracking-[0.08em]">EN</span></button>
+              <button class="language-option group inline-flex cursor-pointer items-center justify-center gap-2 bg-transparent py-1 font-bold text-text transition-colors duration-150 hover:text-primary focus-visible:text-primary aria-pressed:text-primary" type="button" data-locale="es-co" aria-label={`${translations.language.esCO}`} aria-pressed={locale.slug === 'es-co'}><span class="inline-block h-3.5 w-5 rounded-sm border border-black/15 bg-[linear-gradient(to_bottom,#fcd116_0_50%,#003893_50%_75%,#ce1126_75%_100%)]" aria-hidden="true"></span><span class="language-label text-xs tracking-wider text-current transition-colors duration-150 group-hover:text-primary group-focus-visible:text-primary">ES</span></button>
+              <button class="language-option group inline-flex cursor-pointer items-center justify-center gap-2 bg-transparent py-1 font-bold text-text transition-colors duration-150 hover:text-primary focus-visible:text-primary aria-pressed:text-primary" type="button" data-locale="en-us" aria-label={`${translations.language.enUS}`} aria-pressed={locale.slug === 'en-us'}><span class="relative inline-block h-3.5 w-5 rounded-sm border border-black/15 bg-[repeating-linear-gradient(to_bottom,#b22234_0_0.07rem,#fff_0.07rem_0.14rem)] before:absolute before:left-0 before:top-0 before:h-2 before:w-2.5 before:bg-[#3c3b6e] before:content-['']" aria-hidden="true"></span><span class="language-label text-xs tracking-wider text-current transition-colors duration-150 group-hover:text-primary group-focus-visible:text-primary">EN</span></button>
             </div>
           </div>
         </div>
       </div>
-      <button id="menu-toggle" class="group inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] transition duration-200 hover:border-primary hover:bg-primary hover:text-secondary focus-visible:border-primary focus-visible:bg-primary focus-visible:text-secondary sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label={translations.navigation.openMenu} title={translations.navigation.openMenu} data-open-label={translations.navigation.openMenu} data-close-label={translations.navigation.closeMenu}>
-        <span class="inline-flex h-5 w-5 items-center justify-center group-aria-expanded:hidden [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={menuIcon}></span>
-        <span class="hidden h-5 w-5 items-center justify-center group-aria-expanded:inline-flex [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={closeIcon}></span>
+      <button id="menu-toggle" class="group inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-border bg-card text-text transition duration-200 hover:border-primary hover:bg-primary hover:text-secondary focus-visible:border-primary focus-visible:bg-primary focus-visible:text-secondary sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label={translations.navigation.openMenu} title={translations.navigation.openMenu} data-open-label={translations.navigation.openMenu} data-close-label={translations.navigation.closeMenu}>
+        <span class="text-xl group-aria-expanded:hidden" aria-hidden="true" set:html={menuIcon}></span>
+        <span class="hidden text-xl group-aria-expanded:inline" aria-hidden="true" set:html={closeIcon}></span>
       </button>
-      <div id="primary-menu" class="fixed inset-x-0 top-[73px] z-60 hidden h-[calc(100dvh-73px)] flex-col gap-0 overflow-y-auto bg-[var(--theme-card)] p-8 data-[open=true]:flex data-[open=true]:animate-[mobile-menu-in_160ms_ease-out_both] motion-reduce:data-[open=true]:animate-none sm:static sm:order-1 sm:flex sm:h-auto sm:flex-row sm:items-center sm:gap-7 sm:overflow-visible sm:bg-transparent sm:p-0">
+      <div id="primary-menu" class="fixed inset-x-0 top-[73px] z-60 hidden h-[calc(100dvh-73px)] flex-col gap-0 overflow-y-auto bg-card p-8 data-[open=true]:flex data-[open=true]:animate-[mobile-menu-in_160ms_ease-out_both] motion-reduce:data-[open=true]:animate-none sm:static sm:order-1 sm:flex sm:h-auto sm:flex-row sm:items-center sm:gap-7 sm:overflow-visible sm:bg-transparent sm:p-0">
         <div>
-          <p class="mb-[0.8rem] flex items-center text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)] sm:hidden"><span class="mr-[0.45rem] inline-flex h-[0.8rem] w-[0.8rem] text-current [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={menuIcon}></span>{translations.navigation.heading}</p>
-          <ul class="grid gap-0 text-sm font-semibold text-[var(--theme-muted)] sm:flex sm:items-center sm:gap-7">
-            <li><a class="relative block py-[0.8rem] text-[1.05rem] text-[var(--theme-muted)] no-underline hover:text-[var(--theme-text)] focus-visible:text-[var(--theme-text)] sm:inline-block sm:py-[0.35rem] sm:text-sm sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:after:duration-[180ms] sm:hover:after:origin-left sm:hover:after:scale-x-100 sm:focus-visible:after:origin-left sm:focus-visible:after:scale-x-100" href="#servicios">{translations.navigation.services}</a></li>
-            <li class="border-t border-[var(--theme-border)] sm:border-0"><a class="relative block py-[0.8rem] text-[1.05rem] text-[var(--theme-muted)] no-underline hover:text-[var(--theme-text)] focus-visible:text-[var(--theme-text)] sm:inline-block sm:py-[0.35rem] sm:text-sm sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:after:duration-[180ms] sm:hover:after:origin-left sm:hover:after:scale-x-100 sm:focus-visible:after:origin-left sm:focus-visible:after:scale-x-100" href="#contacto">{translations.navigation.contact}</a></li>
+          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-300 sm:hidden"><span class="text-sm" aria-hidden="true" set:html={menuIcon}></span>{translations.navigation.heading}</p>
+          <ul class="grid gap-1 border-s-2 border-primary pl-4 text-sm font-semibold text-text-muted dark:text-gray-300 sm:flex sm:items-center sm:gap-7 sm:border-0 sm:p-0">
+            <li><a class="relative block rounded-sm px-3 py-3 text-base text-text no-underline transition-colors hover:text-text focus-visible:bg-theme-surface sm:inline-block sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href="#servicios">{translations.navigation.services}</a></li>
+            <li><a class="relative block rounded-sm px-3 py-3 text-base text-text no-underline transition-colors hover:text-text focus-visible:bg-theme-surface sm:inline-block sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href="#contacto">{translations.navigation.contact}</a></li>
           </ul>
         </div>
-        <div class="mt-5 border-t border-[var(--theme-border)] pt-5 sm:hidden">
-          <p class="mb-[0.8rem] flex items-center text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]"><span class="mr-[0.45rem] inline-flex h-[0.8rem] w-[0.8rem] text-current [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={settingsIcon}></span>{translations.theme.heading}</p>
-          <div class="inline-flex h-10 items-center gap-3 text-sm font-semibold"><label class="inline-flex h-7 cursor-pointer" title={translations.theme.label}><input id="mobile-theme-toggle" class="peer sr-only" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} /><span class="relative inline-flex h-7 w-13 items-center justify-between rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)] px-[0.35rem] text-[var(--theme-muted)] peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--theme-focus)] peer-focus-visible:outline-offset-3"><span class="relative z-10 inline-flex h-4 w-4 items-center justify-center [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" set:html={moonIcon}></span><span class="relative z-10 inline-flex h-4 w-4 items-center justify-center text-primary [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" set:html={sunIcon}></span><span class="absolute left-[0.2rem] top-[0.2rem] z-20 h-[1.2rem] w-[1.2rem] rounded-full bg-[linear-gradient(145deg,color-mix(in_srgb,var(--theme-text)_85%,white),var(--theme-text))] shadow-[inset_0_1px_1px_rgb(255_255_255_/_42%),inset_0_-1px_1px_rgb(0_0_0_/_28%),0_1px_3px_rgb(0_0_0_/_34%)] transition duration-[180ms] peer-checked:translate-x-[1.45rem] peer-checked:bg-[linear-gradient(145deg,#ffe45c,var(--color-primary))]"></span></span></label><span class="mobile-theme-label text-[var(--theme-text)]">{translations.theme.dark}</span></div>
+        <div class="mt-5 border-t border-border pt-5 sm:hidden">
+          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-300"><span class="text-sm" aria-hidden="true" set:html={settingsIcon}></span>{translations.theme.heading}</p>
+          <div class="inline-flex h-10 items-center gap-3 text-sm font-semibold"><label class="inline-flex h-7 cursor-pointer" title={translations.theme.label}><input id="mobile-theme-toggle" class="peer sr-only" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} /><span class="relative inline-flex h-7 w-13 items-center justify-between rounded-full border border-border bg-theme-surface px-[0.35rem] text-text-muted peer-focus-visible:outline-2 peer-focus-visible:outline-focus peer-focus-visible:outline-offset-3"><span class="relative z-10 text-sm" set:html={moonIcon}></span><span class="relative z-10 text-sm text-primary" set:html={sunIcon}></span><span class="theme-toggle-thumb absolute left-[0.2rem] top-[0.2rem] z-20 h-[1.2rem] w-[1.2rem] rounded-full bg-[linear-gradient(145deg,color-mix(in_srgb,var(--theme-text)_85%,white),var(--theme-text))] shadow-[inset_0_1px_1px_rgb(255_255_255_/_42%),inset_0_-1px_1px_rgb(0_0_0_/_28%),0_1px_3px_rgb(0_0_0_/_34%)] transition-transform duration-[180ms] ease-out peer-checked:translate-x-[1.45rem] peer-checked:bg-[linear-gradient(145deg,#ffe45c,var(--color-primary))]"></span></span></label><span class="mobile-theme-label text-text">{translations.theme.dark}</span></div>
         </div>
-        <div class="mt-auto flex flex-col justify-end border-t border-[var(--theme-border)] pt-5 sm:hidden">
-          <p class="mb-[0.8rem] flex items-center text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]"><span class="mr-[0.45rem] inline-flex h-[0.8rem] w-[0.8rem] text-current [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={infoIcon}></span>{translations.footer.aboutSite}</p>
+        <div class="mt-auto flex flex-col justify-end border-t border-border pt-5 sm:hidden">
+          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-300"><span class="text-sm" aria-hidden="true" set:html={infoIcon}></span>{translations.footer.aboutSite}</p>
           <div class="flex items-center justify-between gap-4 py-[0.42rem] text-[0.82rem]"><span>{translations.footer.versionLabel}</span><strong class="font-bold text-primary">{siteVersion}</strong></div>
           <div class="flex items-center justify-between gap-4 py-[0.42rem] text-[0.82rem]"><span>{translations.footer.dateLabel}</span><span>{siteVersionDate}</span></div>
-          <div class="relative mt-[0.7rem] flex flex-col gap-[0.45rem] overflow-hidden rounded-xl border border-[var(--theme-border)] bg-[color-mix(in_srgb,var(--theme-surface)_82%,transparent)] px-[0.8rem] pb-[0.8rem] pt-[0.9rem]"><span class="pointer-events-none absolute -bottom-[0.7rem] -right-[0.7rem] h-[4.1rem] w-[4.1rem] -rotate-8 text-secondary/10 dark:text-white/10 [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={cardDecorIcon}></span><div class="flex items-center justify-between gap-4 text-[0.8rem]"><span class="text-[var(--theme-muted)]">{translations.footer.madeBy}</span><strong class="font-bold text-primary">Julian Ospina</strong></div><p class="m-0 text-[0.78rem] leading-5 text-[var(--theme-muted)]">{translations.footer.developerDescription}</p><div class="relative z-10 mt-[0.15rem] flex items-center gap-3">
-              <a class="group inline-flex h-5 w-5 items-center justify-center text-[var(--theme-muted)] transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--theme-card)] dark:text-white/70" href="https://github.com/xhate83" target="_blank" rel="noreferrer" aria-label={translations.footer.githubLabel}>
-                <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center text-current [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={githubIcon}></span>
+              <div class="relative mt-3 flex flex-col gap-2 overflow-hidden rounded-xl border border-border bg-theme-surface/82 p-3"><span class="pointer-events-none absolute -bottom-3 -right-3 -rotate-8 text-6xl text-text/10" aria-hidden="true" set:html={cardDecorIcon}></span><div class="flex items-center justify-between gap-4 text-xs"><span class="text-text-muted">{translations.footer.madeBy}</span><strong class="font-bold text-primary">Julian Ospina</strong></div><p class="m-0 text-xs leading-5 text-text-muted">{translations.footer.developerDescription}</p><div class="relative z-10 mt-1 flex items-center gap-3">
+                <a class="text-text-muted transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card" href="https://github.com/xhate83" target="_blank" rel="noreferrer" aria-label={translations.footer.githubLabel}>
+                <span class="text-base" aria-hidden="true" set:html={githubIcon}></span>
                 <span class="sr-only">GitHub</span>
               </a>
-              <a class="group inline-flex h-5 w-5 items-center justify-center text-[var(--theme-muted)] transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--theme-card)] dark:text-white/70" href="https://www.linkedin.com/in/jeyson-julian-ospina-leon-14b4aa1aa/" target="_blank" rel="noreferrer" aria-label={translations.footer.linkedinLabel}>
-                <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center text-current [&>svg]:block [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current" aria-hidden="true" set:html={linkedinIcon}></span>
+              <a class="text-text-muted transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card" href="https://www.linkedin.com/in/jeyson-julian-ospina-leon-14b4aa1aa/" target="_blank" rel="noreferrer" aria-label={translations.footer.linkedinLabel}>
+                <span class="text-base" aria-hidden="true" set:html={linkedinIcon}></span>
                 <span class="sr-only">LinkedIn</span>
               </a>
             </div>
@@ -89,13 +89,13 @@ const closeIcon = icon(faXmark).html.join('');
     </nav>
   </div>
   <div class="flex items-center justify-end gap-[0.85rem] px-5 pb-[0.9rem] sm:hidden" role="group" aria-label={translations.language.label}>
-    <button class="mobile-language-option inline-flex cursor-pointer items-center justify-center gap-[0.45rem] bg-transparent px-[0.1rem] py-[0.2rem] font-bold text-[var(--theme-text)] aria-pressed:text-primary" type="button" data-locale="es-co" aria-label={`${translations.language.esCO}`} aria-pressed={locale.slug === 'es-co'}>
+    <button class="mobile-language-option group inline-flex cursor-pointer items-center justify-center gap-2 bg-transparent px-px py-1 font-bold text-text transition-colors duration-150 hover:text-primary focus-visible:text-primary" type="button" data-locale="es-co" aria-label={`${translations.language.esCO}`} aria-pressed={locale.slug === 'es-co'}>
       <span class="inline-block h-[0.9rem] w-[1.3rem] rounded-[0.15rem] border border-black/15 bg-[linear-gradient(to_bottom,#fcd116_0_50%,#003893_50%_75%,#ce1126_75%_100%)] shadow-[inset_0_0_0_1px_rgb(255_255_255_/_18%)]" aria-hidden="true"></span>
-      <span class="text-[0.7rem] tracking-[0.08em]">ES</span>
+      <span class="language-label text-[0.7rem] tracking-[0.08em] text-current transition-colors duration-150 group-hover:text-primary group-focus-visible:text-primary">ES</span>
     </button>
-    <button class="mobile-language-option inline-flex cursor-pointer items-center justify-center gap-[0.45rem] bg-transparent px-[0.1rem] py-[0.2rem] font-bold text-[var(--theme-text)] aria-pressed:text-primary" type="button" data-locale="en-us" aria-label={`${translations.language.enUS}`} aria-pressed={locale.slug === 'en-us'}>
+    <button class="mobile-language-option group inline-flex cursor-pointer items-center justify-center gap-2 bg-transparent px-px py-1 font-bold text-text transition-colors duration-150 hover:text-primary focus-visible:text-primary" type="button" data-locale="en-us" aria-label={`${translations.language.enUS}`} aria-pressed={locale.slug === 'en-us'}>
       <span class="relative inline-block h-[0.9rem] w-[1.3rem] rounded-[0.15rem] border border-black/15 bg-[repeating-linear-gradient(to_bottom,#b22234_0_0.07rem,#fff_0.07rem_0.14rem)] shadow-[inset_0_0_0_1px_rgb(255_255_255_/_18%)] before:absolute before:left-0 before:top-0 before:h-[0.48rem] before:w-[0.58rem] before:bg-[#3c3b6e] before:content-['']" aria-hidden="true"></span>
-      <span class="text-[0.7rem] tracking-[0.08em]">EN</span>
+      <span class="language-label text-[0.7rem] tracking-[0.08em] text-current transition-colors duration-150 group-hover:text-primary group-focus-visible:text-primary">EN</span>
     </button>
   </div>
 </header>
@@ -114,11 +114,20 @@ const closeIcon = icon(faXmark).html.join('');
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
   let menuOpenedByPointer = false;
 
+  const updateThemeThumb = (toggle: HTMLInputElement | null) => {
+    const thumb = toggle?.closest('label')?.querySelector<HTMLElement>('.theme-toggle-thumb');
+    if (!thumb) return;
+    thumb.style.transform = toggle?.checked ? 'translateX(1.45rem)' : 'translateX(0)';
+  };
+
   const updateThemeControl = (theme: 'light' | 'dark') => {
     const isDark = theme === 'dark';
 
     [themeToggle, mobileThemeToggle].forEach((toggle) => {
-      if (toggle) toggle.checked = isDark;
+      if (toggle) {
+        toggle.checked = isDark;
+        updateThemeThumb(toggle);
+      }
     });
 
     const label = isDark ? themeToggle?.dataset.darkLabel : themeToggle?.dataset.lightLabel;
@@ -129,6 +138,7 @@ const closeIcon = icon(faXmark).html.join('');
 
     if (label) themeLabels.forEach((themeLabel) => {
       themeLabel.textContent = label;
+      themeLabel.classList.toggle('text-primary', isDark);
     });
   };
 
@@ -184,8 +194,14 @@ const closeIcon = icon(faXmark).html.join('');
     }
   });
 
-  themeToggle?.addEventListener('change', () => setTheme(themeToggle.checked ? 'dark' : 'light'));
-  mobileThemeToggle?.addEventListener('change', () => setTheme(mobileThemeToggle.checked ? 'dark' : 'light'));
+  themeToggle?.addEventListener('change', () => {
+    updateThemeThumb(themeToggle);
+    setTheme(themeToggle.checked ? 'dark' : 'light');
+  });
+  mobileThemeToggle?.addEventListener('change', () => {
+    updateThemeThumb(mobileThemeToggle);
+    setTheme(mobileThemeToggle.checked ? 'dark' : 'light');
+  });
 
   const setMenuState = (isOpen: boolean) => {
     document.body.classList.toggle('menu-open', isOpen);
@@ -218,6 +234,16 @@ const closeIcon = icon(faXmark).html.join('');
 
   const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 
+  const updateLanguageSelection = () => {
+    document.querySelectorAll<HTMLButtonElement>('.language-option, .mobile-language-option').forEach((button) => {
+      const isSelected = button.dataset.locale === (window.location.pathname.includes('/en-us/') ? 'en-us' : 'es-co');
+      button.setAttribute('aria-pressed', String(isSelected));
+      button.classList.toggle('text-primary', isSelected);
+      const label = button.querySelector<HTMLElement>('.language-label');
+      if (label) label.classList.toggle('text-primary', isSelected);
+    });
+  };
+
   document.querySelectorAll<HTMLButtonElement>('.language-option, .mobile-language-option').forEach((button) => {
     button.addEventListener('click', () => {
       const nextLocale = button.dataset.locale === 'en-us' ? 'en-us' : 'es-co';
@@ -235,6 +261,8 @@ const closeIcon = icon(faXmark).html.join('');
       window.location.assign(nextPath);
     });
   });
+
+  updateLanguageSelection();
 
   systemTheme.addEventListener('change', (event) => {
     try {

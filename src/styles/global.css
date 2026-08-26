@@ -7,13 +7,18 @@
   --color-primary: #F5C400;
   --color-secondary: #171717;
   --color-accent: #8B8F94;
-  --color-background: #FFFFFF;
-  --color-surface: #F5F5F3;
-  --color-text: #1F2328;
-  --color-text-muted: #5D6268;
-  --color-border: #D9DADC;
   --color-dark-surface: #171717;
   --font-sans: 'Manrope', sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--theme-background);
+  --color-surface: var(--theme-surface);
+  --color-card: var(--theme-card);
+  --color-text: var(--theme-text);
+  --color-text-muted: var(--theme-muted);
+  --color-border: var(--theme-border);
+  --color-focus: var(--theme-focus);
 }
 
 :root {
@@ -61,6 +66,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+svg.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
 *,
 *::before,
 *::after {
@@ -70,12 +81,6 @@ body {
 ::selection {
   background: var(--color-primary);
   color: var(--color-secondary);
-}
-
-a {
-  color: var(--theme-text);
-  text-decoration-color: var(--color-primary);
-  text-underline-offset: 0.2em;
 }
 
 :focus-visible {
@@ -94,14 +99,6 @@ a {
     transition-duration: 0.01ms !important;
   }
 
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
 }
 
 @keyframes client-marquee {
