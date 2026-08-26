@@ -42,3 +42,22 @@ Esto asegura que la URL final sea `/favicon.ico` y que el navegador lo cargue co
 - La vista del navegador muestra el favicon sin errores ni 404.
 - La integración no rompe el resto de la estructura del sitio ni la navegación.
 - El cambio es compatible con la configuración de despliegue estático del proyecto.
+
+## Implementación verificada
+
+La implementación validada usa un favicon basado en la geometría del diamante y la identidad visual del proyecto, con un enfoque mínimo y legible para pestañas del navegador y marcadores.
+
+### Decisiones adoptadas
+
+- Se creó el asset principal en `public/favicon.ico` como fallback compatible con navegadores y sistemas antiguos.
+- Se añadieron versiones SVG en varios tamaños para mejorar la resolución y la adaptación del favicon en distintas resoluciones y entornos: `favicon.svg`, `favicon-32x32.svg`, `favicon-64x64.svg`, `favicon-128x128.svg` y `favicon-256x256.svg`.
+- El layout principal registra los enlaces en `<head>` con rutas absolutas calculadas desde `import.meta.env.BASE_URL`, de modo que funcionen correctamente con la base de GitHub Pages del sitio (`/website`).
+- Se mantuvo una estrategia sin dependencias adicionales ni procesos complejos de generación; el recurso es estático y compatible con Astro y despliegue estático.
+
+### Verificación realizada
+
+- `npm run check`: comprobación de Astro sin errores.
+- `npm run build`: compilación exitosa del sitio estático.
+- Resultado de build verificado: 6 páginas generadas correctamente y sin errores de rutas ni assets para la configuración de GitHub Pages.
+
+La decisión final quedó validada por la compilación del proyecto y por la compatibilidad de la ruta del favicon con la base de despliegue del sitio.
