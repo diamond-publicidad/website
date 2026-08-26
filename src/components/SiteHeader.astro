@@ -1,7 +1,7 @@
 ---
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faBars, faCode, faGem, faInfoCircle, faMoon, faSliders, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBriefcase, faChevronRight, faCode, faEnvelope, faGem, faInfoCircle, faMoon, faSliders, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { languageStorageKey, siteVersion, siteVersionDate, type Locale, type Translations } from '../i18n';
 
 interface Props {
@@ -20,6 +20,9 @@ const githubIcon = icon(faGithub).html.join('');
 const linkedinIcon = icon(faLinkedin).html.join('');
 const menuIcon = icon(faBars).html.join('');
 const closeIcon = icon(faXmark).html.join('');
+const servicesIcon = icon(faBriefcase).html.join('');
+const contactIcon = icon(faEnvelope).html.join('');
+const navArrowIcon = icon(faChevronRight).html.join('');
 ---
 
 <header class="site-header sticky top-0 z-40 border-b border-border bg-card/95 text-text backdrop-blur-sm dark:bg-card/88" data-language-storage-key={languageStorageKey}>
@@ -58,19 +61,35 @@ const closeIcon = icon(faXmark).html.join('');
         <span class="hidden text-xl group-aria-expanded:inline" aria-hidden="true" set:html={closeIcon}></span>
       </button>
       <div id="primary-menu" class="fixed inset-x-0 top-[73px] z-60 hidden h-[calc(100dvh-73px)] flex-col gap-0 overflow-y-auto bg-card p-8 data-[open=true]:flex data-[open=true]:animate-[mobile-menu-in_160ms_ease-out_both] motion-reduce:data-[open=true]:animate-none sm:static sm:order-1 sm:flex sm:h-auto sm:flex-row sm:items-center sm:gap-7 sm:overflow-visible sm:bg-transparent sm:p-0">
-        <div>
-          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-300 sm:hidden"><span class="text-sm" aria-hidden="true" set:html={menuIcon}></span>{translations.navigation.heading}</p>
-          <ul class="grid gap-1 border-s-2 border-primary pl-4 text-sm font-semibold text-text-muted dark:text-gray-300 sm:flex sm:items-center sm:gap-7 sm:border-0 sm:p-0">
-            <li><a class="relative block rounded-sm px-3 py-3 text-base text-text no-underline transition-colors hover:text-text focus-visible:bg-theme-surface sm:inline-block sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href="#servicios">{translations.navigation.services}</a></li>
-            <li><a class="relative block rounded-sm px-3 py-3 text-base text-text no-underline transition-colors hover:text-text focus-visible:bg-theme-surface sm:inline-block sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href="#contacto">{translations.navigation.contact}</a></li>
+        <div class="w-full sm:w-auto">
+          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-text-muted dark:text-gray-300 sm:hidden"><span class="text-sm" aria-hidden="true" set:html={menuIcon}></span>{translations.navigation.heading}</p>
+          <ul class="w-full overflow-hidden border-y border-border bg-card sm:flex sm:items-center sm:gap-7 sm:border-0 sm:bg-transparent sm:p-0">
+            <li class="border-b border-border last:border-b-0 sm:border-0">
+              <a class="group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href="#servicios">
+                <span class="flex items-center gap-3 sm:gap-1">
+                  <span class="flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={servicesIcon}></span>
+                  <span class="text-base font-semibold sm:text-sm">{translations.navigation.services}</span>
+                </span>
+                <span class="text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:hidden" aria-hidden="true" set:html={navArrowIcon}></span>
+              </a>
+            </li>
+            <li class="border-b border-border last:border-b-0 sm:border-0">
+              <a class="group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href="#contacto">
+                <span class="flex items-center gap-3 sm:gap-1">
+                  <span class="flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={contactIcon}></span>
+                  <span class="text-base font-semibold sm:text-sm">{translations.navigation.contact}</span>
+                </span>
+                <span class="text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:hidden" aria-hidden="true" set:html={navArrowIcon}></span>
+              </a>
+            </li>
           </ul>
         </div>
-        <div class="mt-5 border-t border-border pt-5 sm:hidden">
-          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-300"><span class="text-sm" aria-hidden="true" set:html={settingsIcon}></span>{translations.theme.heading}</p>
+        <div class="mt-5 pt-5 sm:hidden">
+          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-text-muted dark:text-gray-300"><span class="text-sm" aria-hidden="true" set:html={settingsIcon}></span>{translations.theme.heading}</p>
           <div class="inline-flex h-10 items-center gap-3 text-sm font-semibold"><label class="inline-flex h-7 cursor-pointer" title={translations.theme.label}><input id="mobile-theme-toggle" class="peer sr-only" type="checkbox" role="switch" aria-checked="false" aria-label={translations.theme.dark} data-dark-label={translations.theme.dark} data-light-label={translations.theme.light} /><span class="relative inline-flex h-7 w-13 items-center justify-between rounded-full border border-border bg-theme-surface px-[0.35rem] text-text-muted peer-focus-visible:outline-2 peer-focus-visible:outline-focus peer-focus-visible:outline-offset-3"><span class="relative z-10 text-sm" set:html={moonIcon}></span><span class="relative z-10 text-sm text-primary" set:html={sunIcon}></span><span class="theme-toggle-thumb absolute left-[0.2rem] top-[0.2rem] z-20 h-[1.2rem] w-[1.2rem] rounded-full bg-[linear-gradient(145deg,color-mix(in_srgb,var(--theme-text)_85%,white),var(--theme-text))] shadow-[inset_0_1px_1px_rgb(255_255_255_/_42%),inset_0_-1px_1px_rgb(0_0_0_/_28%),0_1px_3px_rgb(0_0_0_/_34%)] transition-transform duration-[180ms] ease-out peer-checked:translate-x-[1.45rem] peer-checked:bg-[linear-gradient(145deg,#ffe45c,var(--color-primary))]"></span></span></label><span class="mobile-theme-label text-text">{translations.theme.dark}</span></div>
         </div>
         <div class="mt-auto flex flex-col justify-end border-t border-border pt-5 sm:hidden">
-          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-300"><span class="text-sm" aria-hidden="true" set:html={infoIcon}></span>{translations.footer.aboutSite}</p>
+          <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-text-muted dark:text-gray-300"><span class="text-sm" aria-hidden="true" set:html={infoIcon}></span>{translations.footer.aboutSite}</p>
           <div class="flex items-center justify-between gap-4 py-[0.42rem] text-[0.82rem]"><span>{translations.footer.versionLabel}</span><strong class="font-bold text-primary">{siteVersion}</strong></div>
           <div class="flex items-center justify-between gap-4 py-[0.42rem] text-[0.82rem]"><span>{translations.footer.dateLabel}</span><span>{siteVersionDate}</span></div>
               <div class="relative mt-3 flex flex-col gap-2 overflow-hidden rounded-xl border border-border bg-theme-surface/82 p-3"><span class="pointer-events-none absolute -bottom-3 -right-3 -rotate-8 text-6xl text-text/10" aria-hidden="true" set:html={cardDecorIcon}></span><div class="flex items-center justify-between gap-4 text-xs"><span class="text-text-muted">{translations.footer.madeBy}</span><strong class="font-bold text-primary">Julian Ospina</strong></div><p class="m-0 text-xs leading-5 text-text-muted">{translations.footer.developerDescription}</p><div class="relative z-10 mt-1 flex items-center gap-3">
