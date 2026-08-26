@@ -1,63 +1,90 @@
-# Favicon del sitio
+# Favicon del sitio con nueva imagen circular
 
-## Objective
+## Objetivo
 
-Definir la adición del favicon de Diamond Publicidad para que el sitio cuente con una identidad visual consistente en pestañas del navegador, marcadores y dispositivos, siguiendo la forma correcta de Astro para archivos estáticos.
+Actualizar la identidad del favicon del sitio para que use la nueva imagen proporcionada por el propietario, sustituyendo los assets actuales de favicon por una versión rediseñada adaptada a un formato circular y escalado correctamente para navegadores, marcadores y vistas pequeñas.
 
-## Requirements
+## Requisitos
 
-- Crear un archivo favicon en formato `.ico` para la marca Diamond Publicidad.
-- Colocar el archivo en la carpeta pública de Astro, que es la ubicación correcta para assets estáticos que deben servirse tal cual en la raíz del sitio.
-- Usar la ruta recomendada: `public/favicon.ico`.
-- Diseñar un favicon mínimo, legible y reconocible, inspirado en la geometría del diamante y la identidad visual del proyecto.
-- Mantener el favicon simple, con fondo transparente o compatible, para que funcione bien en navegadores y sobre fondos claros/oscuro.
-- Registrar el favicon en el layout principal del sitio dentro del bloque `<head>` para que Astro lo sirva correctamente.
-- Evitar introducir librerías adicionales o generación compleja; el archivo debe ser un recurso estático listo para cargar.
-- Asegurar que el favicon no rompa la configuración de GitHub Pages ni la estructura de rutas del sitio.
+- Usar la imagen fuente que se deja en la carpeta pública como recurso base para el nuevo favicon: `public/new favicon.jpg`.
+- Sustituir todos los assets actuales del favicon del sitio por la nueva versión, incluyendo al menos:
+  - `public/favicon.ico`
+  - `public/favicon.svg`
+  - `public/favicon-32x32.svg`
+  - `public/favicon-64x64.svg`
+  - `public/favicon-128x128.svg`
+  - `public/favicon-256x256.svg`
+- Redimensionar y recortar la imagen para que el contenido principal quede centrado y legible dentro de un círculo.
+- Mantener el favicon con un formato visual limpio y compacto, sin deformar la imagen ni ocupar la franja completa del canvas.
+- Garantizar que el resultado siga siendo legible en tamaños muy pequeños, especialmente en la pestaña del navegador y en accesos directos del sistema.
+- Respetar la identidad gráfica del proyecto, sin introducir estilos o colores distintos a la dirección visual aprobada.
+- Mantener la estrategia actual de Astro con assets estáticos en `public/` y preservar la compatibilidad con GitHub Pages.
+- Evitar dependencias adicionales o procesos complejos de generación si no son necesarios.
 
-## Astro Implementation Guidance
+## Guía de implementación
 
-En Astro, los archivos en `public/` se sirven desde la raíz del sitio sin procesamiento. Por eso, para un favicon `.ico` se usa:
+La nueva imagen debe convertirse en una variante circular de favicon que se utilice de forma consistente en todas las resoluciones. La lógica recomendada es:
 
-- Ruta del archivo: `public/favicon.ico`
-- Enlace dentro del layout: `<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />`
+- Tomar la imagen original en `public/new favicon.jpg`.
+- Escalarla al tamaño correcto del canvas del favicon.
+- Recortar el contenido para dejarlo centrado dentro de un círculo.
+- Aplicar un fondo circular con una superficie compatible con la identidad visual del sitio.
+- Exportar una versión final para cada tamaño necesario y reemplazar los archivos actuales del favicon.
 
-Esto asegura que la URL final sea `/favicon.ico` y que el navegador lo cargue correctamente.
+La referencia del layout principal sigue siendo el mismo mecanismo de Astro para assets públicos, con rutas absolutas calculadas desde la base del sitio para mantener compatibilidad con despliegue estático.
 
-## Content and Visual Direction
+## Dirección visual y contenido
 
-- El favicon debe tener un enfoque minimalista y profesional.
-- Debe reflejar la marca sin copiar el logo completo; puede ser una versión simplificada de la geometría del diamante o su monograma.
-- No debe emplear colores fuera de la identidad visual aprobada.
-- Debe verse bien a tamaños pequeños y en la pestaña del navegador.
-- Si el proyecto decide complementar con SVG más adelante, puede agregarse adicionalmente, pero la versión requerida por esta spec es `.ico`.
+- La nueva imagen debe quedar integrada en un contenedor circular para que el favicon tenga una forma reconocible y consistente.
+- La composición circular debe respetar el centro visual de la imagen y evitar recortes agresivos que la vuelvan ilegible.
+- El favicon debe seguir siendo mínimo, profesional y legible en dimensiones pequeñas.
+- No se debe alterar el logo oficial ni reutilizar recursos no aprobados para reemplazar la marca.
+- El fondo, el borde y el acento visual deben mantenerse dentro de la gráfica aprobada del proyecto.
 
-## Acceptance Criteria
+## Criterios de aceptación
 
-- Existe un archivo `public/favicon.ico` en el proyecto.
-- El archivo se genera como favicon real y no como un placeholder.
-- El favicon está enlazado correctamente desde el layout principal del sitio en la sección `<head>`.
-- La ruta del recurso funciona en el sitio raíz y no depende de rutas relativas complejas.
-- El favicon conserva la identidad visual de Diamond Publicidad y se ve claramente en tamaño pequeño.
-- La vista del navegador muestra el favicon sin errores ni 404.
-- La integración no rompe el resto de la estructura del sitio ni la navegación.
-- El cambio es compatible con la configuración de despliegue estático del proyecto.
+- Existe una imagen fuente en `public/new favicon.jpg` y se usa como referencia para el nuevo favicon.
+- Todos los favicon actuales del proyecto fueron reemplazados por la nueva versión circular y escalada.
+- El resultado mantiene el contenido principal visualmente centrado dentro de un círculo.
+- El favicon sigue siendo legible y reconocible a pequeña escala en la pestaña del navegador.
+- El sistema de assets sigue funcionando sin errores de ruta ni 404.
+- La implementación no rompe la configuración de GitHub Pages ni la estructura del sitio.
+- La identificación visual del proyecto se conserva sin introducir cambios de marca no aprobados.
 
-## Implementación verificada
+## Alcance del cambio
 
-La implementación validada usa un favicon basado en la geometría del diamante y la identidad visual del proyecto, con un enfoque mínimo y legible para pestañas del navegador y marcadores.
+Este cambio contempla exclusivamente la actualización del favicon del sitio y la sustitución de los assets asociados. No incluye cambios de branding, contenido editorial ni rediseño del resto de la interfaz.
 
-### Decisiones adoptadas
+## Verificación esperada
 
-- Se creó el asset principal en `public/favicon.ico` como fallback compatible con navegadores y sistemas antiguos.
-- Se añadieron versiones SVG en varios tamaños para mejorar la resolución y la adaptación del favicon en distintas resoluciones y entornos: `favicon.svg`, `favicon-32x32.svg`, `favicon-64x64.svg`, `favicon-128x128.svg` y `favicon-256x256.svg`.
-- El layout principal registra los enlaces en `<head>` con rutas absolutas calculadas desde `import.meta.env.BASE_URL`, de modo que funcionen correctamente con la base de GitHub Pages del sitio (`/website`).
-- Se mantuvo una estrategia sin dependencias adicionales ni procesos complejos de generación; el recurso es estático y compatible con Astro y despliegue estático.
+Antes de considerarlo aceptado, la implementación debe comprobar:
 
-### Verificación realizada
+- que la imagen está correctamente ubicada en `public/`;
+- que los archivos de favicon se reemplazaron y están servidos desde la raíz;
+- que aparecen en un formato circular en todos los tamaños;
+- que la vista del navegador muestra el nuevo favicon sin errores de carga.
 
-- `npm run check`: comprobación de Astro sin errores.
-- `npm run build`: compilación exitosa del sitio estático.
-- Resultado de build verificado: 6 páginas generadas correctamente y sin errores de rutas ni assets para la configuración de GitHub Pages.
+## Implementación realizada y verificada
 
-La decisión final quedó validada por la compilación del proyecto y por la compatibilidad de la ruta del favicon con la base de despliegue del sitio.
+La actualización del favicon quedó aplicada usando la imagen nueva de referencia en `public/new favicon.jpg` y reemplazando los assets estáticos del sitio por una versión circular y escalada para diferentes resoluciones.
+
+### Decisiones confirmadas
+
+- Se reutilizó la estructura de assets estáticos de Astro en `public/` sin introducir dependencias ni flujo adicional.
+- La nueva imagen se recortó y se escalo para mantener la composición centrada dentro de un círculo, sin deformar la pieza ni reducir su legibilidad a tamaños pequeños.
+- Se sustituyeron los archivos del favicon del sitio por variantes compatibles con navegadores modernos y con la base de GitHub Pages:
+  - `public/favicon.ico`
+  - `public/favicon.svg`
+  - `public/favicon-32x32.svg`
+  - `public/favicon-64x64.svg`
+  - `public/favicon-128x128.svg`
+  - `public/favicon-256x256.svg`
+- La ruta del favicon se mantiene compatible con el layout principal del sitio y con la configuración de despliegue estático del proyecto.
+
+### Verificación realizada en la implementación
+
+- `npm run check`: validación exitosa de Astro sin errores, warnings ni hints.
+- `npm run build`: compilación exitosa del sitio estático con 6 páginas generadas.
+- Resultado verificado: la build finalizó correctamente y la entrega no introdujo errores de rutas ni assets para la configuración de GitHub Pages.
+
+La decisión final queda documentada como una actualización validada del favicon, con la imagen nueva aplicada, los assets reemplazados y la compresión visual circular confirmada por la compilación del proyecto.

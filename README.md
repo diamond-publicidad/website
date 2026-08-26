@@ -298,19 +298,6 @@ Antes de crear una rama o un PR, el agente debe responder estas preguntas:
 
 La información comercial es controlada. Solo es válida si existe en la documentación oficial o fue proporcionada explícitamente por el propietario.
 
-No se deben inventar:
-
-- servicios,
-- precios,
-- clientes,
-- cobertura,
-- resultados,
-- testimonios,
-- horarios,
-- contactos,
-- ubicaciones,
-- promesas comerciales.
-
 Cuando falte información aprobada, debe dejarse pendiente o solicitarse decisión del propietario.
 
 ### Diseño visual
