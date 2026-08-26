@@ -32,7 +32,7 @@ const navArrowIcon = icon(faChevronRight).html.join('');
 
 <header class="site-header sticky top-0 z-40 border-b border-border bg-card/95 text-text backdrop-blur-sm dark:bg-card/88" data-language-storage-key={languageStorageKey}>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-4 sm:px-8 lg:px-12">
-    <a class="scroll-top flex items-center gap-3 no-underline" href={homeHref} aria-label={translations.navigation.home}>
+    <a class="site-nav-link scroll-top flex items-center gap-3 no-underline" href={homeHref} aria-label={translations.navigation.home} data-nav="home">
       <span class="text-lg text-primary" aria-hidden="true" set:html={diamondIcon}></span>
       <span class="text-base font-extrabold tracking-tight sm:text-lg">Diamond Publicidad</span>
     </a>
@@ -70,28 +70,28 @@ const navArrowIcon = icon(faChevronRight).html.join('');
           <p class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-text-muted dark:text-gray-300 sm:hidden"><span class="text-sm" aria-hidden="true" set:html={menuIcon}></span>{translations.navigation.heading}</p>
           <ul class="w-full overflow-hidden border-y border-border bg-card sm:flex sm:items-center sm:gap-7 sm:border-0 sm:bg-transparent sm:p-0">
             <li class="border-b border-border last:border-b-0 sm:border-0">
-              <a class="group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href={servicesHref}>
+              <a class="site-nav-link group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href={servicesHref} data-nav="services">
                 <span class="flex items-center gap-3 sm:gap-1">
-                  <span class="flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={servicesIcon}></span>
-                  <span class="text-base font-semibold sm:text-sm">{translations.navigation.services}</span>
+                  <span class="nav-icon flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={servicesIcon}></span>
+                  <span class="nav-label text-base font-semibold sm:text-sm">{translations.navigation.services}</span>
                 </span>
                 <span class="text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:hidden" aria-hidden="true" set:html={navArrowIcon}></span>
               </a>
             </li>
             <li class="border-b border-border last:border-b-0 sm:border-0">
-              <a class="group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href={storyHref}>
+              <a class="site-nav-link group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href={storyHref} data-nav="story">
                 <span class="flex items-center gap-3 sm:gap-1">
-                  <span class="flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={infoIcon}></span>
-                  <span class="text-base font-semibold sm:text-sm">{translations.navigation.story}</span>
+                  <span class="nav-icon flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={infoIcon}></span>
+                  <span class="nav-label text-base font-semibold sm:text-sm">{translations.navigation.story}</span>
                 </span>
                 <span class="text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:hidden" aria-hidden="true" set:html={navArrowIcon}></span>
               </a>
             </li>
             <li class="border-b border-border last:border-b-0 sm:border-0">
-              <a class="group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href={contactHref}>
+              <a class="site-nav-link group relative flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-text no-underline transition-colors duration-200 hover:bg-theme-surface hover:text-text focus-visible:bg-theme-surface focus-visible:text-text sm:inline-flex sm:w-auto sm:items-center sm:gap-2 sm:rounded-none sm:px-0 sm:py-1 sm:text-sm sm:hover:bg-transparent sm:focus-visible:text-primary sm:after:absolute sm:after:inset-x-0 sm:after:bottom-0 sm:after:h-0.5 sm:after:origin-right sm:after:scale-x-0 sm:after:bg-primary sm:after:transition-transform sm:hover:after:origin-left sm:hover:after:scale-x-100" href={contactHref} data-nav="contact">
                 <span class="flex items-center gap-3 sm:gap-1">
-                  <span class="flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={contactIcon}></span>
-                  <span class="text-base font-semibold sm:text-sm">{translations.navigation.contact}</span>
+                  <span class="nav-icon flex h-9 w-9 items-center justify-center rounded-md bg-theme-surface text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:border-0 sm:bg-transparent" aria-hidden="true" set:html={contactIcon}></span>
+                  <span class="nav-label text-base font-semibold sm:text-sm">{translations.navigation.contact}</span>
                 </span>
                 <span class="text-base text-text-muted transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary sm:hidden" aria-hidden="true" set:html={navArrowIcon}></span>
               </a>
@@ -132,6 +132,35 @@ const navArrowIcon = icon(faChevronRight).html.join('');
     </button>
   </div>
 </header>
+
+<style>
+  .site-nav-link[data-active='true'] {
+    background: var(--theme-surface);
+    color: var(--theme-text);
+  }
+
+  .site-nav-link[data-active='true'] .nav-icon,
+  .site-nav-link[data-active='true'] .nav-label {
+    color: var(--color-primary);
+  }
+
+  .site-nav-link[data-active='true']::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  @media (min-width: 640px) {
+    .site-nav-link[data-active='true'] {
+      background: transparent;
+      color: var(--color-primary);
+    }
+
+    .site-nav-link[data-active='true'] .nav-icon,
+    .site-nav-link[data-active='true'] .nav-label {
+      color: var(--color-primary);
+    }
+  }
+</style>
 
 <script>
   const themeStorageKey = 'diamond-publicidad-theme';
@@ -266,6 +295,33 @@ const navArrowIcon = icon(faChevronRight).html.join('');
   });
 
   const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+  const normalizePath = (path: string) => path.replace(/\/+$/, '') || '/';
+
+  const syncNavState = () => {
+    const currentPath = normalizePath(window.location.pathname);
+    const currentHash = window.location.hash;
+
+    document.querySelectorAll<HTMLAnchorElement>('.site-nav-link').forEach((link) => {
+      const targetUrl = new URL(link.href);
+      const targetPath = normalizePath(targetUrl.pathname);
+      const targetHash = targetUrl.hash;
+      const isActive = targetHash
+        ? targetPath === currentPath && currentHash === targetHash
+        : targetPath === currentPath && currentHash === '';
+
+      link.dataset.active = String(isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', targetHash ? 'location' : 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  syncNavState();
+  window.addEventListener('hashchange', syncNavState);
+  window.addEventListener('popstate', syncNavState);
 
   const updateLanguageSelection = () => {
     document.querySelectorAll<HTMLButtonElement>('.language-option, .mobile-language-option').forEach((button) => {

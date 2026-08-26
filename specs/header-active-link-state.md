@@ -34,3 +34,25 @@ Definir el comportamiento visual del estado activo en los enlaces de navegación
 - El estilo activo respeta la paleta del proyecto y la dirección visual definida para Diamond Publicidad.
 - No se introduce un patrón visual inconsistente con el resto del sitio.
 - La implementación se mantiene simple, reutilizable y compatible con Astro y el componente actual del header.
+
+## Implementation Notes
+
+### Cambios realizados
+
+- Se añadió una detección del estado activo basada en la ruta actual y el hash vigente para cada enlace del header.
+- Los enlaces coincidentes reciben un estado visual `data-active` y un valor `aria-current` para comunicar la ubicación actual de forma accesible.
+- El estado activo comparte la intensidad visual del hover y añade una segunda señal clara: fondo suave en la opción y línea decorativa inferior en desktop.
+- La misma lógica se aplica al menú móvil para mantener consistencia entre navegación principal y menú desplegable.
+- Se mantuvo el comportamiento del foco y del hover sin reemplazar la interacción normal del usuario.
+
+### Decisiones verificadas
+
+- La comparación usa la ruta normalizada y el hash actual para manejar páginas y anclas dentro del mismo documento.
+- El estado activo se mantiene para rutas con base path y locales (`/es-co/`, `/en-us/`), sin romper las redirecciones ni la navegación del sitio.
+- La implementación sigue los tokens visuales del proyecto: texto oscuro, acento amarillo, separadores y superficies suaves, sin introducir una identidad visual nueva.
+- Se validó con comprobaciones formales del proyecto: `npm run check` y `npm run build`, ambas con resultado exitoso.
+
+### Resultado de validación
+
+- Astro check: 0 errores, 0 warnings, 0 hints.
+- Astro build: 6 páginas generadas correctamente y compilación exitosa.
