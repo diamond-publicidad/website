@@ -88,10 +88,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
   locale={locale}
   translations={translations}
 >
-  <main
-    id="inicio"
-    class="dark:[&_.bg-surface]:bg-[var(--theme-surface)] dark:[&_.bg-white]:bg-[var(--theme-card)] dark:[&_.bg-secondary]:bg-[var(--theme-inverse)] dark:[&_.border-border]:border-[var(--theme-border)] dark:[&_.text-text-muted]:text-[var(--theme-muted)] dark:[&_.text-secondary]:text-[var(--theme-text)]"
-  >
+  <main id="inicio">
     <section
       class="relative overflow-hidden border-b border-border bg-surface"
       aria-labelledby="page-title"
@@ -109,7 +106,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
           </p>
           <h1
             id="page-title"
-            class="max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight text-secondary sm:text-6xl lg:text-8xl"
+            class="max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight text-text sm:text-6xl lg:text-8xl"
           >
             {translations.home.hero.title}
           </h1>
@@ -120,16 +117,16 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
           </p>
           <div class="mt-10 flex flex-wrap gap-4">
             <a
-              class="inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-secondary hover:text-white focus-visible:bg-secondary focus-visible:text-white dark:hover:bg-[var(--theme-text)] dark:hover:text-secondary dark:focus-visible:bg-[var(--theme-text)] dark:focus-visible:text-secondary"
+              class="inline-flex items-center justify-center rounded-md border-1 border-primary bg-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-white hover:text-secondary dark:text-secondary dark:hover:bg-white dark:hover:text-secondary"
               href="#contacto"
               >{translations.home.hero.primaryAction}<span
-                class="ml-3 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                class="ml-3 text-sm"
                 aria-hidden="true"
                 set:html={internalArrowIcon}
               /></a
             >
             <a
-              class="inline-flex min-h-12 items-center justify-center rounded-md border border-secondary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-secondary hover:text-white focus-visible:bg-secondary focus-visible:text-white dark:border-[var(--theme-text)] dark:text-[var(--theme-text)] dark:hover:border-primary dark:hover:bg-primary dark:hover:text-secondary dark:focus-visible:border-primary dark:focus-visible:bg-primary dark:focus-visible:text-secondary"
+              class="inline-flex items-center justify-center rounded-md border border-text px-6 py-3 font-bold text-text no-underline transition-colors duration-200 hover:bg-secondary hover:text-white dark:hover:border-primary dark:hover:bg-primary dark:hover:text-secondary"
               href="#servicios">{translations.home.hero.secondaryAction}</a
             >
           </div>
@@ -144,13 +141,13 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
           >
           </div>
           <span
-            class="pointer-events-none absolute -bottom-8 -right-6 h-56 w-56 text-white/10 [&>svg]:h-full [&>svg]:w-full"
+            class="pointer-events-none absolute -bottom-8 -right-6 text-[14rem] text-white/10"
             aria-hidden="true"
             set:html={icons.print}
           />
           <div class="flex h-full flex-col justify-between gap-10">
             <span
-              class="relative inline-flex h-16 w-16 items-center justify-center text-primary [&>svg]:h-12 [&>svg]:w-12"
+              class="relative text-5xl text-primary"
               aria-hidden="true"
               set:html={icons.print}
             /><div>
@@ -184,7 +181,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
               {translations.home.services.eyebrow}
             </p><h2
               id="services-title"
-              class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl"
+              class="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl"
             >
               {translations.home.services.title}
             </h2>
@@ -195,25 +192,25 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
         <div class="mt-10 grid gap-5 lg:grid-cols-3">
           {
             services.map(({ content, icon: serviceIcon }) => (
-              <article class="group relative overflow-hidden rounded-md border-l-4 border-primary bg-white p-6 transition duration-200 hover:-translate-y-1 hover:border-secondary hover:shadow-sm sm:p-7">
+              <article class="group relative overflow-hidden rounded-md border-l-4 border-primary bg-card p-6 transition duration-200 hover:-translate-y-1 hover:border-secondary hover:shadow-sm sm:p-7">
                 <>
                   <span
-                    class="pointer-events-none absolute -bottom-5 -right-4 h-32 w-32 text-secondary/5 transition-colors duration-200 group-hover:text-primary/15 [&>svg]:h-full [&>svg]:w-full"
+                    class="pointer-events-none absolute -bottom-3 -right-3 text-8xl text-text/5 transition-colors duration-200 group-hover:text-primary/15"
                     aria-hidden="true"
                     set:html={serviceIcon}
                   />
                   <span
-                    class="relative inline-flex h-11 w-11 items-center justify-center bg-secondary text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-secondary dark:group-hover:bg-primary dark:group-hover:text-secondary [&>svg]:h-5 [&>svg]:w-5"
+                    class="relative inline-flex items-center justify-center bg-secondary p-3 text-xl text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-secondary dark:group-hover:bg-primary dark:group-hover:text-secondary"
                     aria-hidden="true"
                     set:html={serviceIcon}
                   />
-                  <h3 class="mt-7 text-xl font-extrabold leading-tight text-secondary">
+                  <h3 class="mt-7 text-xl font-extrabold leading-tight text-text">
                     {content.title}
                   </h3>
                   <p class="mt-4 text-base leading-7 text-text-muted">
                     {content.description}
                   </p>
-                  <ul class="mt-5 grid gap-3 border-t border-border pt-5 text-sm font-semibold text-secondary">
+                  <ul class="mt-5 grid gap-3 border-t border-border pt-5 text-sm font-semibold text-text">
                     {content.items.map((item) => (
                       <li class="flex items-center gap-3">
                         <span
@@ -233,7 +230,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
     </section>
 
     <section
-      class="border-y border-border bg-white"
+      class="border-y border-border bg-card"
       aria-labelledby="clients-title"
     >
       <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
@@ -248,7 +245,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
             </p>
             <h2
               id="clients-title"
-              class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl"
+              class="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl"
             >
               {translations.home.clients.title}
             </h2>
@@ -276,7 +273,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
                   aria-hidden={groupIndex > 0 ? "true" : undefined}
                 >
                   {group.map((client) => (
-                    <div class="relative flex shrink-0 items-center gap-3 bg-transparent px-[0.15rem] whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-secondary">
+                    <div class="relative flex shrink-0 items-center gap-3 bg-transparent px-[0.15rem] whitespace-nowrap text-sm font-bold uppercase tracking-[0.16em] text-text">
                       {client.logo ? (
                         <img
                           class="h-5 w-auto"
@@ -287,7 +284,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
                         />
                       ) : (
                         <span
-                          class="inline-flex h-5 w-5 items-center justify-center bg-transparent text-primary [&>svg]:h-4 [&>svg]:w-4 [&>svg]:fill-current [&>svg_*]:fill-current"
+                          class="text-base text-primary"
                           aria-hidden="true"
                           set:html={client.icon}
                         />
@@ -324,7 +321,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
             {translations.home.portfolio.eyebrow}
           </p><h2
             id="portfolio-title"
-            class="mt-4 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl"
+            class="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl"
           >
             {translations.home.portfolio.title}
           </h2>
@@ -332,7 +329,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
           <p class="max-w-2xl text-lg leading-8 text-text-muted">
             {translations.home.portfolio.description}
           </p><p
-            class="mt-6 inline-flex rounded-md border border-border bg-white px-4 py-3 text-sm font-semibold text-secondary"
+            class="mt-6 inline-flex rounded-md border border-border bg-card px-4 py-3 text-sm font-semibold text-text"
           >
             {translations.home.portfolio.status}
           </p>
@@ -359,12 +356,12 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
           </h2><p class="mt-6 max-w-md leading-7 text-gray-300">
             {translations.home.contact.description}
           </p><a
-            class="mt-8 inline-flex min-h-12 items-center rounded-md bg-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-white"
+            class="mt-8 inline-flex items-center rounded-md bg-primary border-1 border-primary px-6 py-3 font-bold text-secondary no-underline transition-colors duration-200 hover:bg-white"
             href={whatsappHref}
             target="_blank"
             rel="noreferrer"
             ><span
-              class="mr-3 inline-flex h-5 w-5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+              class="mr-3 text-xl"
               aria-hidden="true"
               set:html={icons.whatsapp}
             />{translations.home.contact.whatsapp}</a>
@@ -378,29 +375,29 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
               class="mt-5 grid gap-3 not-italic leading-7 text-gray-200"
             >
               <a
-                class="inline-flex w-fit items-center gap-2 hover:text-primary"
+                class="inline-flex w-fit items-center gap-2 text-white no-underline transition-colors duration-200 hover:text-primary hover:underline focus-visible:text-primary focus-visible:underline"
                 href={phoneHref}
                 ><span
-                  class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                  class="text-base"
                   aria-hidden="true"
                   set:html={icons.phone}
                 />{translations.home.contact.phonePrefix}
                 {phone}</a
               ><a
-                class="inline-flex w-fit items-center gap-2 break-all hover:text-primary"
+                class="inline-flex w-fit items-center gap-2 break-all text-white no-underline transition-colors duration-200 hover:text-primary hover:underline focus-visible:text-primary focus-visible:underline"
                 href={`mailto:${email}`}
                 ><span
-                  class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                  class="text-base"
                   aria-hidden="true"
                   set:html={icons.email}
                 />{email}</a
               ><a
-                class="facebook-link inline-flex w-fit items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary"
+                class="facebook-link inline-flex w-fit items-center gap-2 font-semibold text-white no-underline transition-colors duration-200 hover:text-primary hover:underline focus-visible:text-primary focus-visible:underline"
                 href={facebookHref}
                 target="_blank"
                 rel="noreferrer"
                 ><span
-                  class="inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                  class="text-base"
                   aria-hidden="true"
                   set:html={icons.facebook}
                 />{translations.home.contact.facebook}<span class="sr-only"
@@ -413,20 +410,20 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
             >
               {translations.home.contact.location}
             </h3><address
-              class="mt-5 flex items-start gap-2 not-italic leading-7 text-gray-200"
+              class="mt-5 flex items-start gap-2 not-italic leading-7 text-white"
             >
               <span
-                class="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                class="mt-1 text-base text-white"
                 aria-hidden="true"
                 set:html={icons.location}
               /><span>{address}</span>
             </address><a
-              class="mt-4 inline-flex items-center gap-2 font-semibold text-white underline decoration-primary decoration-2 underline-offset-4 hover:text-primary"
+              class="mt-4 inline-flex items-center gap-2 font-semibold text-white no-underline transition-colors duration-200 hover:text-primary hover:underline focus-visible:text-primary focus-visible:underline"
               href={mapHref}
               target="_blank"
               rel="noreferrer"
               >{translations.home.contact.openMap}<span
-                class="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                class="text-sm"
                 aria-hidden="true"
                 set:html={externalArrowIcon}
               /></a>
