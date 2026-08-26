@@ -51,6 +51,8 @@ Los siguientes valores son una primera traducción digital de la identidad visua
 - Usar fondos oscuros en bloques puntuales y deliberados, especialmente cuando mejoren el contraste de la variante correspondiente del logo o creen una pausa visual.
 - Mantener blanco, blanco roto, grises y carbón como base de la experiencia para preservar limpieza y lectura.
 - Usar neutros para separar, ordenar y dar profundidad; no convertirlos en una decoración facetada constante.
+- En modo oscuro, `background` debe funcionar como base general de la página, `surface` solo para bloques con énfasis visual y `card` únicamente para contenido agrupado dentro de un bloque, nunca como fondo de una sección completa.
+- Esta convención ya quedó aplicada y verificada en el home del sitio para sostener continuidad visual en la navegación, los bloques de contenidos y las secciones de servicios/portafolio/clientes sin fragmentar la lectura.
 - No introducir gradientes arbitrarios ni colores adicionales que compitan con el amarillo o el diamante gris.
 - Comprobar contraste y legibilidad en texto, enlaces, botones, foco y todos los estados interactivos.
 - Elegir la variante del logo que conserve contraste y legibilidad en cada superficie.
