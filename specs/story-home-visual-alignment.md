@@ -19,7 +19,7 @@ Actualizar la presentación visual de la página de inicio y de "Nuestra Histori
 
 - La hero de "Nuestra Historia" ya no usa un SVG como imagen principal ni un elemento con `role="img"` que sustituya una imagen real.
 - La imagen principal se sirve desde un archivo JPG local y se renderiza con la solución recomendada por Astro para activos locales.
-- La imagen se encuentra almacenada en una carpeta de assets del proyecto y puede cargarse de forma optimizada sin afectar el rendimiento.
+- La imagen debes crearla y ubicarla en una carpeta de assets del proyecto y puede cargarse de forma optimizada sin afectar el rendimiento.
 - La paginación y el comportamiento responsive de la imagen se mantienen correctos en dispositivos pequeños y grandes.
 - Las cards de servicios de la homepage siguen la misma estructura visual y la misma sensación de bloque que las cards de valores de "Nuestra Historia".
 - Las cards de servicios y de valores comparten tonalidad, contornos, iconografía y ritmo espaciado definidos por la dirección visual.
