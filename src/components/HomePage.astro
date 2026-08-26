@@ -18,6 +18,7 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import ActionButton from "./ActionButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import clientData from "../data/clients.json";
 import type { Locale, Translations } from "../i18n";
@@ -118,19 +119,8 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
             {translations.home.hero.description}
           </p>
           <div class="mt-10 flex flex-wrap gap-4">
-            <a
-              class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-6 py-3 font-bold text-secondary no-underline shadow-[0_4px_10px_rgba(23,23,23,0.08)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary hover:bg-primary/95 hover:shadow-[0_10px_18px_rgba(23,23,23,0.14)] focus-visible:-translate-y-0.5 focus-visible:border-primary focus-visible:bg-primary focus-visible:text-secondary focus-visible:shadow-[0_10px_18px_rgba(23,23,23,0.14)] active:translate-y-0 active:shadow-[0_4px_10px_rgba(23,23,23,0.1)] dark:text-secondary dark:hover:bg-primary dark:hover:text-secondary"
-              href="#contacto"
-              >{translations.home.hero.primaryAction}<span
-                class="ml-3 text-sm"
-                aria-hidden="true"
-                set:html={internalArrowIcon}
-              /></a
-            >
-            <a
-              class="inline-flex items-center justify-center rounded-md border border-text bg-white px-6 py-3 font-bold text-text no-underline shadow-[0_4px_10px_rgba(23,23,23,0.04)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary hover:bg-secondary hover:text-white hover:shadow-[0_10px_18px_rgba(23,23,23,0.12)] focus-visible:-translate-y-0.5 focus-visible:border-primary focus-visible:bg-secondary focus-visible:text-white focus-visible:shadow-[0_10px_18px_rgba(23,23,23,0.12)] active:translate-y-0 active:shadow-[0_4px_10px_rgba(23,23,23,0.08)] dark:border-border dark:bg-transparent dark:text-text dark:hover:border-primary dark:hover:bg-primary dark:hover:text-secondary"
-              href="#servicios">{translations.home.hero.secondaryAction}</a
-            >
+            <ActionButton href="#contacto" text={translations.home.hero.primaryAction} variant="primary" icon={internalArrowIcon} iconPosition="right" />
+            <ActionButton href="#servicios" text={translations.home.hero.secondaryAction} variant="secondary" />
           </div>
         </div>
         <div
@@ -374,16 +364,10 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
             {translations.home.contact.title}
           </h2><p class="mt-6 max-w-md leading-7 text-gray-300">
             {translations.home.contact.description}
-          </p><a
-            class="mt-8 inline-flex items-center rounded-md border border-primary bg-primary px-6 py-3 font-bold text-secondary no-underline shadow-[0_4px_10px_rgba(23,23,23,0.08)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary hover:bg-primary/95 hover:shadow-[0_10px_18px_rgba(245,196,0,0.24)] focus-visible:-translate-y-0.5 focus-visible:border-primary focus-visible:bg-primary focus-visible:text-secondary focus-visible:shadow-[0_10px_18px_rgba(245,196,0,0.24)] active:translate-y-0 active:shadow-[0_4px_10px_rgba(23,23,23,0.1)]"
-            href={whatsappHref}
-            target="_blank"
-            rel="noreferrer"
-            ><span
-              class="mr-3 text-xl"
-              aria-hidden="true"
-              set:html={icons.whatsapp}
-            />{translations.home.contact.whatsapp}</a>
+          </p>
+          <div class="mt-8">
+            <ActionButton href={whatsappHref} text={translations.home.contact.whatsapp} variant="primary" icon={icons.whatsapp} iconPosition="left" />
+          </div>
         </div><div class="grid gap-8 sm:grid-cols-2">
           <div>
             <h3
