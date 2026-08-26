@@ -1,0 +1,41 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  variant?: 'primary' | 'secondary';
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+}
+
+const {
+  href,
+  text,
+  variant = 'primary',
+  icon,
+  iconPosition = 'right',
+} = Astro.props;
+
+const baseClasses =
+  'inline-flex items-center justify-center rounded-md border px-6 py-3 font-bold no-underline transition-all duration-200 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 active:translate-y-0';
+
+const variantClasses = {
+  primary:
+    'border-primary bg-primary text-secondary shadow-[0_4px_10px_rgba(23,23,23,0.08)] hover:shadow-[0_10px_18px_rgba(23,23,23,0.12)] focus-visible:shadow-[0_10px_18px_rgba(23,23,23,0.12)] dark:text-secondary dark:hover:bg-primary dark:hover:text-secondary',
+  secondary:
+    'border border-text bg-white text-text shadow-[0_4px_10px_rgba(23,23,23,0.04)] hover:-translate-y-0.5 hover:border-primary hover:bg-secondary hover:text-white hover:shadow-[0_10px_18px_rgba(23,23,23,0.12)] focus-visible:-translate-y-0.5 focus-visible:border-primary focus-visible:bg-secondary focus-visible:text-white focus-visible:shadow-[0_10px_18px_rgba(23,23,23,0.12)] active:translate-y-0 active:shadow-[0_4px_10px_rgba(23,23,23,0.08)] dark:border-border dark:bg-transparent dark:text-text dark:hover:border-primary dark:hover:bg-primary dark:hover:text-secondary',
+};
+---
+
+<a class={`${baseClasses} ${variantClasses[variant]}`} href={href}>
+  {
+    icon && iconPosition === 'left' && (
+      <span class="mr-3 text-sm" aria-hidden="true" set:html={icon}></span>
+    )
+  }
+  <span>{text}</span>
+  {
+    icon && iconPosition === 'right' && (
+      <span class="ml-3 text-sm" aria-hidden="true" set:html={icon}></span>
+    )
+  }
+</a>
