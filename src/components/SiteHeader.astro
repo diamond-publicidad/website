@@ -33,7 +33,7 @@ const navArrowIcon = icon(faChevronRight).html.join('');
     </a>
     <nav aria-label={translations.navigation.primary} class="flex items-center gap-4 sm:gap-7">
       <div class="settings-wrapper relative hidden sm:order-2 sm:block sm:ml-1">
-        <button id="settings-button" class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-card text-text transition-colors duration-200 hover:border-primary hover:text-primary focus-visible:border-primary focus-visible:text-primary" type="button" aria-expanded="false" aria-controls="settings-menu" aria-label={translations.theme.heading} title={translations.theme.heading}>
+        <button id="settings-button" class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-card text-text shadow-[0_2px_8px_rgba(23,23,23,0.04)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_8px_16px_rgba(23,23,23,0.1)] focus-visible:-translate-y-0.5 focus-visible:border-primary focus-visible:text-primary focus-visible:shadow-[0_8px_16px_rgba(23,23,23,0.1)] active:translate-y-0 active:shadow-[0_3px_8px_rgba(23,23,23,0.08)]" type="button" aria-expanded="false" aria-controls="settings-menu" aria-label={translations.theme.heading} title={translations.theme.heading}>
           <span class="text-base" aria-hidden="true" set:html={settingsIcon}></span>
         </button>
         <div id="settings-menu" class="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-[13.5rem]" hidden>
@@ -56,7 +56,7 @@ const navArrowIcon = icon(faChevronRight).html.join('');
           </div>
         </div>
       </div>
-      <button id="menu-toggle" class="group inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-border bg-card text-text transition duration-200 hover:border-primary hover:bg-primary hover:text-secondary focus-visible:border-primary focus-visible:bg-primary focus-visible:text-secondary sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label={translations.navigation.openMenu} title={translations.navigation.openMenu} data-open-label={translations.navigation.openMenu} data-close-label={translations.navigation.closeMenu}>
+      <button id="menu-toggle" class="group inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-border bg-card text-text shadow-[0_2px_8px_rgba(23,23,23,0.04)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-secondary hover:shadow-[0_8px_16px_rgba(23,23,23,0.1)] focus-visible:-translate-y-0.5 focus-visible:border-primary focus-visible:bg-primary focus-visible:text-secondary focus-visible:shadow-[0_8px_16px_rgba(23,23,23,0.1)] active:translate-y-0 active:shadow-[0_3px_8px_rgba(23,23,23,0.08)] sm:hidden" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label={translations.navigation.openMenu} title={translations.navigation.openMenu} data-open-label={translations.navigation.openMenu} data-close-label={translations.navigation.closeMenu}>
         <span class="text-xl group-aria-expanded:hidden" aria-hidden="true" set:html={menuIcon}></span>
         <span class="hidden text-xl group-aria-expanded:inline" aria-hidden="true" set:html={closeIcon}></span>
       </button>
