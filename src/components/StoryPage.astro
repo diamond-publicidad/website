@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import {
   faArrowRight,
@@ -11,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import ActionButton from './ActionButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import storyHeroImage from '../assets/story-hero.jpg';
 import type { Locale, Translations } from '../i18n';
 
 interface Props {
@@ -94,59 +96,16 @@ const valueCards = [
         </div>
 
         <figure class="relative overflow-hidden rounded-md border border-border bg-surface p-4 sm:p-5">
-          <svg
-            viewBox="0 0 620 760"
-            class="block h-auto w-full"
-            role="img"
-            aria-labelledby="story-illustration-title story-illustration-desc"
-          >
-            <title id="story-illustration-title">Composición original inspirada en papel, geometría y materiales impresos</title>
-            <desc id="story-illustration-desc">Una ilustración abstracta con recortes geométricos en fondo claro, tonos grises y un acento amarillo que sugiere trabajo gráfico, diamante y material impreso.</desc>
-            <defs>
-              <linearGradient id="paperGlow" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#f7f7f5" />
-                <stop offset="100%" stop-color="#e6e6e4" />
-              </linearGradient>
-            </defs>
-            <rect width="620" height="760" fill="#f5f5f3"/>
-            <g opacity="0.9">
-              <path d="M105 115L250 40L330 120L185 220L105 115Z" fill="#d7d9dc"/>
-              <path d="M250 40L390 120L405 270L260 206L250 40Z" fill="#efefee"/>
-              <path d="M185 220L260 206L405 270L330 475L180 390L185 220Z" fill="#f0f0ee"/>
-              <path d="M330 475L405 270L520 360L470 585L330 475Z" fill="#d9dbdd"/>
-              <path d="M180 390L330 475L470 585L360 690L140 610L180 390Z" fill="#ededeb"/>
-              <path d="M180 390L260 206L330 475L180 390Z" fill="#171717" opacity="0.14"/>
-              <path d="M305 255L405 270L360 690L305 255Z" fill="#171717" opacity="0.08"/>
-              <path d="M195 120L250 40L330 120L310 175L195 120Z" fill="#f5c400"/>
-            </g>
-            <g opacity="0.95">
-              <rect x="70" y="430" width="170" height="130" rx="12" fill="#ffffff" stroke="#d9dadc" stroke-width="2"/>
-              <rect x="86" y="445" width="78" height="14" fill="#171717" opacity="0.85"/>
-              <rect x="86" y="470" width="110" height="10" fill="#8b8f94"/>
-              <rect x="86" y="490" width="96" height="10" fill="#8b8f94" opacity="0.8"/>
-              <rect x="86" y="520" width="120" height="18" fill="#f5c400"/>
-              <circle cx="150" cy="585" r="58" fill="#171717"/>
-              <circle cx="150" cy="585" r="38" fill="#f5f5f3"/>
-              <path d="M120 585L150 559L181 585L150 611L120 585Z" fill="#f5c400"/>
-            </g>
-            <g opacity="0.92">
-              <rect x="360" y="120" width="180" height="160" rx="12" fill="url(#paperGlow)" stroke="#d9dadc" stroke-width="2"/>
-              <path d="M390 145L440 115L490 145L465 220L405 220L390 145Z" fill="#171717"/>
-              <path d="M404 168L440 138L478 168L457 208L421 208L404 168Z" fill="#f5f5f3"/>
-              <path d="M502 200L540 160L560 200L520 260L502 200Z" fill="#f5c400"/>
-              <line x1="382" y1="245" x2="529" y2="245" stroke="#8b8f94" stroke-width="7" stroke-linecap="round"/>
-              <line x1="382" y1="262" x2="508" y2="262" stroke="#8b8f94" stroke-width="5" stroke-linecap="round"/>
-            </g>
-            <g opacity="0.98">
-              <path d="M45 272L129 234L165 308L93 358L45 272Z" fill="#f5c400"/>
-              <path d="M166 308L195 218L265 250L213 392L166 308Z" fill="#171717" opacity="0.18"/>
-            </g>
-            <g fill="#171717" opacity="0.8">
-              <rect x="420" y="370" width="110" height="10" transform="rotate(18 420 370)"/>
-              <rect x="405" y="392" width="160" height="10" transform="rotate(18 405 392)"/>
-              <rect x="440" y="416" width="120" height="10" transform="rotate(18 440 416)"/>
-            </g>
-          </svg>
+          <div class="overflow-hidden rounded-md border border-border bg-surface">
+            <Image
+              src={storyHeroImage}
+              alt="Composición abstracta inspirada en materiales impresos, geometría y diamante de Diamond Publicidad."
+              width={620}
+              height={760}
+              class="block h-auto w-full object-cover"
+              loading="eager"
+            />
+          </div>
           <figcaption class="mt-4 text-sm leading-6 text-text-muted">
             {translations.story.hero.imageCaption}
           </figcaption>
@@ -188,11 +147,11 @@ const valueCards = [
         </div>
         <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {valueCards.map((card) => (
-            <article class="group relative overflow-hidden rounded-md border border-border bg-card p-6 transition-transform duration-200 hover:-translate-y-1 hover:border-primary">
-              <span class="pointer-events-none absolute -bottom-3 -right-3 text-7xl text-text/5" aria-hidden="true" set:html={card.icon}></span>
+            <article class="group relative overflow-hidden rounded-md border border-border bg-card p-6 transition-transform duration-200 hover:-translate-y-1 hover:border-primary sm:p-7">
+              <span class="pointer-events-none absolute -bottom-3 -right-3 text-8xl text-text/5 transition-colors duration-200 group-hover:text-primary/15" aria-hidden="true" set:html={card.icon}></span>
               <span class="relative inline-flex h-12 w-12 items-center justify-center rounded-md border border-primary bg-primary/10 text-lg text-primary" aria-hidden="true" set:html={card.icon}></span>
-              <h3 class="relative mt-6 text-xl font-extrabold text-text">{card.title}</h3>
-              <p class="relative mt-3 text-base leading-7 text-text-muted">{card.description}</p>
+              <h3 class="relative mt-6 text-xl font-extrabold leading-tight text-text">{card.title}</h3>
+              <p class="relative mt-4 text-base leading-7 text-text-muted">{card.description}</p>
             </article>
           ))}
         </div>

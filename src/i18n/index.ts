@@ -35,7 +35,7 @@ const esCO = {
       lead: 'Empezó como una alternativa práctica, cercana y visualmente cuidada para quienes necesitaban diseño, impresión y soluciones gráficas sin perder claridad ni tiempo.',
       primaryAction: 'Hablemos de tu proyecto',
       secondaryAction: 'Ver servicios',
-      imageCaption: 'Composición original inspirada en diseño gráfico, materiales impresos y la geometría del diamante.',
+      imageCaption: 'Cll 12 # 16 - 18, Funza, Colombia',
     },
     narrative: {
       eyebrow: 'Origen',
@@ -213,7 +213,7 @@ const enUS = {
       lead: 'It began as a practical, close, and visually careful alternative for people who needed design, printing, and graphic solutions without losing clarity or time.',
       primaryAction: 'Let us talk about your project',
       secondaryAction: 'See services',
-      imageCaption: 'Original composition inspired by graphic design, printed materials, and the geometry of the diamond.',
+      imageCaption: 'Cll 12 # 16 - 18, Funza, Colombia',
     },
     narrative: {
       eyebrow: 'Origin',

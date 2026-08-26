@@ -31,3 +31,21 @@ Actualizar la presentación visual de la página de inicio y de "Nuestra Histori
 
 - Se mantiene la implementación bloqueada hasta aprobación explícita del recurso visual final y del resultado visual de las cards.
 - La referencia base para el ajuste visual es la documentación del producto y la dirección visual ya definidas en `docs/product/context.md`, `docs/product/visual-direction.md` y la estructura actual de las componentes `HomePage.astro` y `StoryPage.astro`.
+
+## Verified Implementation Notes
+
+Las decisiones siguientes quedaron validadas con la implementación realizada y con la comprobación final del sitio:
+
+- La imagen principal de la página "Nuestra Historia" se reemplazó por un archivo JPG local almacenado en `src/assets/story-hero.jpg` y se cargó a través de `astro:assets`/`Image`, según la práctica recomendada por Astro para optimizar activos locales.
+- El SVG original con `role="img"` fue removido como recurso principal de la hero, dejando una composición visual accesible con texto alternativo útil y carga optimizada.
+- Las cards de la sección de servicios quedaron como referencia visual para las cards de valores, manteniendo la misma lógica de borde, hover, sombreado suave, icono principal y icono de fondo desbordado.
+- La estructura del hover se mantuvo alineada con la identidad visual del proyecto: amarillo como acento, fondo claro, borde fino y transición sutil sin introducir estilos ajenos a la paleta establecida.
+- La implementación se hizo sin inventar contenido comercial ni material de trabajo no aprobado, preservando la integridad de la marca y la narrativa documentada.
+
+## Verification Evidence
+
+Se validó con los siguientes comandos y resultados:
+
+- `npm run check` → 0 errores, 0 warnings, 0 hints.
+- `npm run build` → compilación exitosa; 6 páginas generadas; resultado final `Complete!`.
+
