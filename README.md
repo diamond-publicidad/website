@@ -43,6 +43,7 @@ La arquitectura del proyecto sigue una lógica simple:
 - `src/pages/` para páginas públicas,
 - `src/layouts/` para la estructura base del documento,
 - `src/components/` para bloques reutilizables,
+- `src/config/` para la configuración pública compartida del sitio,
 - `src/i18n/` para internacionalización,
 - `src/styles/` para tokens y estilos globales.
 
@@ -108,6 +109,7 @@ npm run preview
 - `src/pages/`: rutas y contenido visible del sitio.
 - `src/layouts/`: layout general con cabecera, metadatos y estructura base.
 - `src/components/`: componentes reutilizables como navegación o footer.
+- `src/config/`: origen público y subruta de despliegue compartidos por Astro y los artefactos SEO.
 - `src/i18n/`: lógica de locales y textos internacionalizados.
 - `src/styles/`: estilos globales, tokens y base visual.
 - `docs/`: documentación de producto, negocio, identidad visual y SDD.
@@ -207,6 +209,7 @@ npm run build
 - `src/pages/`: rutas del sitio.
 - `src/layouts/`: estructura HTML y metadatos compartidos.
 - `src/components/`: partes reutilizables de la interfaz.
+- `src/config/`: configuración pública compartida del sitio.
 - `src/i18n/`: textos y locales.
 - `src/styles/`: estilos globales y tokens de diseño.
 - `docs/`: decisiones de negocio, producto y SDD.

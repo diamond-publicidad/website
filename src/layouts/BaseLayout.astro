@@ -3,7 +3,7 @@ import BackToTop from '../components/BackToTop.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
-import type { Locale, Translations } from '../i18n';
+import { localeSlugs, locales, type Locale, type Translations } from '../i18n';
 
 interface Props {
   description: string;
@@ -20,6 +20,19 @@ const favicon32Href = `${siteBasePath}favicon-32x32.svg`;
 const favicon64Href = `${siteBasePath}favicon-64x64.svg`;
 const favicon128Href = `${siteBasePath}favicon-128x128.svg`;
 const favicon256Href = `${siteBasePath}favicon-256x256.svg`;
+const siteUrl = Astro.site ?? Astro.url;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const pathWithoutBase = Astro.url.pathname.startsWith(siteBasePath)
+  ? Astro.url.pathname.slice(siteBasePath.length)
+  : Astro.url.pathname.replace(/^\//, '');
+const pathAfterLocale = pathWithoutBase.startsWith(`${locale.slug}/`)
+  ? pathWithoutBase.slice(locale.slug.length + 1)
+  : '';
+const alternateUrls = localeSlugs.map((localeSlug) => ({
+  href: new URL(`${siteBasePath}${localeSlug}/${pathAfterLocale}`, siteUrl).href,
+  hreflang: locales[localeSlug].code,
+}));
+const openGraphLocale = locale.code.replace('-', '_');
 ---
 
 <!doctype html>
@@ -28,6 +41,14 @@ const favicon256Href = `${siteBasePath}favicon-256x256.svg`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternateUrls.map(({ href, hreflang }) => <link rel="alternate" hreflang={hreflang} href={href} />)}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={openGraphLocale} />
+    <meta property="og:site_name" content="Diamond Publicidad" />
     <link rel="icon" href={faviconSvgHref} type="image/svg+xml" />
     <link rel="icon" href={favicon32Href} type="image/svg+xml" sizes="32x32" />
     <link rel="icon" href={favicon64Href} type="image/svg+xml" sizes="64x64" />

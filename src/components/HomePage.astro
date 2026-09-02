@@ -60,10 +60,11 @@ const icons = {
   star: icon(faStar).html.join(""),
   whatsapp: icon(faWhatsapp).html.join(""),
 };
+const servicesHref = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${locale.slug}/servicios`;
 const services = [
-  { content: translations.home.services.largeFormat, icon: icons.print },
-  { content: translations.home.services.outdoor, icon: icons.advertising },
-  { content: translations.home.services.design, icon: icons.design },
+  { content: translations.home.services.largeFormat, href: `${servicesHref}#impresion-digital`, icon: icons.print },
+  { content: translations.home.services.outdoor, href: `${servicesHref}#impresos-senalizacion`, icon: icons.advertising },
+  { content: translations.home.services.design, href: `${servicesHref}#piezas-publicitarias`, icon: icons.design },
 ];
 const clients = Array.isArray(clientData) ? clientData : [];
 const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
@@ -120,7 +121,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
           </p>
           <div class="mt-10 flex flex-wrap gap-4">
             <ActionButton href="#contacto" text={translations.home.hero.primaryAction} variant="primary" icon={internalArrowIcon} iconPosition="right" />
-            <ActionButton href="#servicios" text={translations.home.hero.secondaryAction} variant="secondary" />
+            <ActionButton href={servicesHref} text={translations.home.hero.secondaryAction} variant="secondary" />
           </div>
         </div>
         <div
@@ -183,7 +184,7 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
         </div>
         <div class="mt-10 grid gap-5 lg:grid-cols-3">
           {
-            services.map(({ content, icon: serviceIcon }) => (
+            services.map(({ content, href, icon: serviceIcon }) => (
               <article class="group relative overflow-hidden rounded-md border border-border bg-card p-6 transition-transform duration-200 hover:-translate-y-1 hover:border-primary sm:p-7">
                 <>
                   <span
@@ -202,17 +203,9 @@ const clientMarqueeGroups = Array.from({ length: 6 }, () => clients).map(
                   <p class="relative mt-4 text-base leading-7 text-text-muted">
                     {content.description}
                   </p>
-                  <ul class="relative mt-5 grid gap-3 border-t border-border pt-5 text-sm font-semibold text-text">
-                    {content.items.map((item) => (
-                      <li class="flex items-center gap-3">
-                        <span
-                          class="h-1.5 w-1.5 shrink-0 bg-primary"
-                          aria-hidden="true"
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  <div class="relative mt-6">
+                    <ActionButton href={href} text="Ver detalle" variant="secondary" />
+                  </div>
                 </>
               </article>
             ))

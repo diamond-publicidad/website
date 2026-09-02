@@ -1,0 +1,222 @@
+---
+import { Image } from 'astro:assets';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faBullhorn,
+  faPenRuler,
+  faPrint,
+  faRectangleAd,
+} from '@fortawesome/free-solid-svg-icons';
+import ActionButton from './ActionButton.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import service11 from '../assets/serivice-1.1.jpg';
+import service12 from '../assets/serivice-1.2.jpg';
+import service21 from '../assets/serivice-2.1.jpg';
+import service22 from '../assets/serivice-2.2.jpg';
+import service31 from '../assets/serivice-3.1.jpg';
+import service32 from '../assets/serivice-3.2.jpg';
+import type { Locale, Translations } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  translations: Translations;
+}
+
+const { locale, translations } = Astro.props;
+const siteBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homeHref = `${siteBasePath}/${locale.slug}/`;
+const contactHref = `${siteBasePath}/${locale.slug}/#contacto`;
+const arrowIcon = icon(faArrowRight).html.join('');
+const icons = {
+  largeFormat: icon(faPrint).html.join(''),
+  signage: icon(faRectangleAd).html.join(''),
+  advertising: icon(faBullhorn).html.join(''),
+  design: icon(faPenRuler).html.join(''),
+};
+
+const services = [
+  {
+    id: 'impresion-digital',
+    icon: icons.largeFormat,
+    title: translations.services.cards.largeFormat.title,
+    description: translations.services.cards.largeFormat.description,
+    lead: translations.services.cards.largeFormat.lead,
+    body: translations.services.cards.largeFormat.body,
+    highlights: translations.services.cards.largeFormat.highlights,
+    items: translations.services.cards.largeFormat.items,
+    layout: 'normal',
+    images: [
+      { src: service11, alt: 'Pieza gráfica de gran formato en exposición' },
+      { src: service12, alt: 'Detalle de materiales de gran formato aplicados' },
+    ],
+  },
+  {
+    id: 'impresos-senalizacion',
+    icon: icons.signage,
+    title: translations.services.cards.signage.title,
+    description: translations.services.cards.signage.description,
+    lead: translations.services.cards.signage.lead,
+    body: translations.services.cards.signage.body,
+    highlights: translations.services.cards.signage.highlights,
+    items: translations.services.cards.signage.items,
+    layout: 'reverse',
+    images: [
+      { src: service21, alt: 'Señalización y piezas impresas para marca' },
+      { src: service22, alt: 'Material publicitario y de señalización' },
+    ],
+  },
+  {
+    id: 'piezas-publicitarias',
+    icon: icons.advertising,
+    title: translations.services.cards.advertising.title,
+    description: translations.services.cards.advertising.description,
+    lead: translations.services.cards.advertising.lead,
+    body: translations.services.cards.advertising.body,
+    highlights: translations.services.cards.advertising.highlights,
+    items: translations.services.cards.advertising.items,
+    layout: 'normal',
+    images: [
+      { src: service31, alt: 'Piezas publicitarias y diseño promocional' },
+      { src: service32, alt: 'Detalle de pieza publicitaria aplicada' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={translations.services.metaTitle}
+  description={translations.services.metaDescription}
+  locale={locale}
+  translations={translations}
+>
+  <main id="servicios" class="bg-background text-text">
+    <section class="border-b border-border bg-background" aria-labelledby="services-page-title">
+      <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
+        <div class="max-w-3xl">
+          <p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-text-muted">
+            <span class="mr-3 inline-block h-2 w-2 rounded-full bg-primary" aria-hidden="true"></span>
+            {translations.services.hero.eyebrow}
+          </p>
+          <h1 id="services-page-title" class="text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
+            {translations.services.hero.title}
+          </h1>
+          <p class="mt-6 text-xl leading-8 text-text-muted">
+            {translations.services.hero.intro}
+          </p>
+          <p class="mt-4 max-w-2xl text-base leading-7 text-text-muted">
+            {translations.services.hero.description}
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <ActionButton href={contactHref} text={translations.services.hero.primaryAction} variant="primary" icon={arrowIcon} iconPosition="right" />
+            <ActionButton href={homeHref} text={translations.services.hero.secondaryAction} variant="secondary" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-border bg-surface" aria-labelledby="services-overview-title">
+      <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+        <div class="max-w-2xl">
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.services.overview.eyebrow}</p>
+          <h2 id="services-overview-title" class="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+            {translations.services.overview.title}
+          </h2>
+          <p class="mt-5 text-lg leading-8 text-text-muted">
+            {translations.services.overview.description}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background" aria-label={translations.navigation.services}>
+      <div class="mx-auto max-w-7xl space-y-8 px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+        {services.map((service) => (
+          <article id={service.id} class="scroll-mt-24 overflow-hidden rounded-md border border-border bg-card">
+            <div class={`grid gap-0 ${service.layout === 'reverse' ? 'lg:grid-cols-[0.95fr_1.05fr]' : service.layout === 'compact' ? 'lg:grid-cols-[1.15fr_0.85fr]' : 'lg:grid-cols-[1.2fr_0.8fr]'} ${service.layout === 'reverse' ? 'lg:[&_.service-media]:order-first' : ''}`}>
+              <div class="p-6 sm:p-8 lg:p-8 xl:p-10">
+                <div class="flex items-center gap-4">
+                  <span class="inline-flex h-12 w-12 items-center justify-center rounded-md border border-primary bg-primary/10 text-lg text-primary" aria-hidden="true" set:html={service.icon}></span>
+                </div>
+                <h3 class="mt-6 text-3xl font-extrabold leading-tight text-text sm:text-4xl">
+                  {service.title}
+                </h3>
+                <p class="mt-4 text-base leading-7 text-text-muted">
+                  {service.lead}
+                </p>
+                <p class="mt-4 text-base leading-7 text-text-muted">
+                  {service.body}
+                </p>
+
+                <ul class="mt-6 grid gap-3 border-t border-border pt-5 text-sm font-semibold text-text">
+                  {service.items.map((item) => (
+                    <li class="flex items-center gap-3">
+                      <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="mt-8">
+                  <p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.services.overview.eyebrow}</p>
+                  <ul class="mt-4 grid gap-3 text-base leading-7 text-text-muted">
+                    {service.highlights.map((highlight) => (
+                      <li class="flex gap-3">
+                        <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div class={`service-media border-t border-border bg-surface lg:border-l lg:border-t-0 ${service.layout === 'compact' ? 'lg:border-l-0 lg:border-r' : ''}`}>
+                <div class={`grid h-full gap-3 p-2.5 sm:p-3 lg:p-4 ${service.layout === 'compact' ? 'lg:grid-cols-2' : 'lg:grid-cols-1'} ${service.layout === 'reverse' ? 'lg:[&>*:first-child]:min-h-[200px]' : ''}`}>
+                  {service.images.map((image, index) => {
+                    const mediaClass = service.layout === 'compact'
+                      ? index === 0
+                        ? 'lg:aspect-[4/5]'
+                        : 'lg:aspect-[4/5]'
+                      : service.layout === 'reverse'
+                        ? index === 0
+                          ? 'lg:aspect-[5/4]'
+                          : 'lg:aspect-[4/5]'
+                        : index === 0
+                          ? 'lg:aspect-[4/5]'
+                          : 'lg:aspect-[5/4]';
+
+                    return (
+                      <div class={`h-full overflow-hidden rounded-md border border-border bg-card ${mediaClass}`}>
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          class="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="border-t border-border bg-surface" aria-labelledby="services-cta-title">
+      <div class="mx-auto max-w-4xl px-5 py-16 text-center sm:px-8 lg:px-12 lg:py-20">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-text-muted">{translations.story.cta.eyebrow}</p>
+        <h2 id="services-cta-title" class="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+          {translations.story.cta.title}
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-text-muted">
+          {translations.story.cta.description}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <ActionButton href={contactHref} text={translations.story.cta.primaryAction} variant="primary" icon={arrowIcon} iconPosition="right" />
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
