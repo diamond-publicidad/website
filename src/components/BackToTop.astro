@@ -22,11 +22,9 @@ const backToTopIcon = icon(faArrowUp).html.join('');
     });
   };
 
-  document.querySelectorAll<HTMLAnchorElement>('.scroll-top').forEach((link) => {
-    link.addEventListener('click', scrollToTop);
-  });
+  const backToTop = document.querySelector<HTMLAnchorElement>('#back-to-top');
+  backToTop?.addEventListener('click', scrollToTop);
 
-  const backToTop = document.querySelector('#back-to-top');
 
   if (backToTop) {
     const updateBackToTop = () => {

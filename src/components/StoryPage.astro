@@ -22,7 +22,7 @@ interface Props {
 
 const { locale, translations } = Astro.props;
 const siteBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const servicesHref = `${siteBasePath}/${locale.slug}/#servicios`;
+const servicesHref = `${siteBasePath}/${locale.slug}/servicios`;
 const contactHref = `${siteBasePath}/${locale.slug}/#contacto`;
 const arrowIcon = icon(faArrowRight).html.join('');
 const icons = {
